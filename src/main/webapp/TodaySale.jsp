@@ -1,10 +1,10 @@
 <%@page import="java.util.Date"%>
-<%@page import="com.grocery.model.Customer"%>
-<%@page import="com.grocery.daoimpl.CustomerDaoImpl"%>
-<%@page import="com.grocery.model.Order"%>
-<%@page import="com.grocery.model.Feature"%>
+<%@page import="com.chainsys.model.Customer"%>
+<%@page import="com.chainsys.daoimpl.CustomerDaoImpl"%>
+<%@page import="com.chainsys.model.Order"%>
+<%@page import="com.chainsys.model.Feature"%>
 <%@page import="java.util.List"%>
-<%@page import="com.grocery.daoimpl.OrderDaoImpl"%>
+<%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>

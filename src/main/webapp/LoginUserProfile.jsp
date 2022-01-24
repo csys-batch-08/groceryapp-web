@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<%@page import="com.grocery.model.Customer"%>
-<%@page import="com.grocery.model.Product"%>
+<%@page import="com.chainsys.model.Customer"%>
+<%@page import="com.chainsys.model.Product"%>
 <%@page import="java.util.List"%>
-<%@page import="com.grocery.daoimpl.ProductDaoImpl"%>
+<%@page import="com.chainsys.daoimpl.ProductDaoImpl"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

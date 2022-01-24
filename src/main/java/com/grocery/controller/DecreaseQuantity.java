@@ -37,7 +37,7 @@ public class DecreaseQuantity extends HttpServlet {
 		 int oid= (int) session.getAttribute("logincustomerorderId");	
 		 int pid=Integer.parseInt(request.getParameter("pId"));
 		 int qty=0;
-		 Cart stt=new Cart();
+		 Cart stt=new Cart ();
 		 stt.setOrderid(oid);
 		 stt.setProductid(pid);
 		 CartDaoImpl obj= new CartDaoImpl();

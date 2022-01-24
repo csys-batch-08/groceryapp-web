@@ -143,12 +143,13 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	public List<Order> orderdetails() throws ClassNotFoundException, SQLException {
 		List<Order> todayOrder = new ArrayList<Order>();
 		Connection con = GetConnection.getConnections();
-		String query = "  SELECT order_id,status,order_date FROM order_details where order_date=trunc(sysdate )  and status in ('place order',  'confirm','cancel')";
+		String query = "  SELECT order_id,status,order_date FROM order_details where  status ='confirm'";
 		PreparedStatement stmt = con.prepareStatement(query);
 		Order order = new Order();
 		// stmt.executeUpdate();
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
+			order = new Order();
 			order.setOrderid(rs.getInt(1));
 			order.setStatus(rs.getString(2));
 			order.setOrderdate(rs.getDate(3));
@@ -202,7 +203,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	public List<Order> orderdetail(Order order) throws ClassNotFoundException, SQLException {
 		Connection con = GetConnection.getConnections();
 		List<Order> orderList = new ArrayList<Order>();
-		String query = " SELECT order_id,status,order_date FROM order_details where  customer_id= ? and status in ('place order',  'confirm','cancel')";
+		String query = " SELECT order_id,status,order_date FROM order_details where  customer_id= ? and status in ('delivered',  'confirm','cancel') order by order_date desc";
 		PreparedStatement stmt = con.prepareStatement(query);
 
 		stmt.setInt(1, order.getCustomerid());
@@ -323,7 +324,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	public List<Order> graphsale() throws ClassNotFoundException, SQLException {
 		Connection con = GetConnection.getConnections();
 		List<Order> todaysale = new ArrayList<Order>();
-		String query = "SELECT count(status),trunc(order_date) FROM order_details where  trunc(order_date) between trunc(sysdate-7) and trunc(sysdate ) and status ='confirm' group by trunc(order_date)";
+		String query = "SELECT count(status),trunc(order_date) FROM order_details where  trunc(order_date) between trunc(sysdate-7) and trunc(sysdate ) and status ='delivered' group by trunc(order_date)";
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
 		while (rs.next()) {
@@ -337,5 +338,47 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	}
 	
 	
+	public List<Order> listoforder() throws ClassNotFoundException, SQLException {
+		Connection con = GetConnection.getConnections();
+		List<Order> todaysale = new ArrayList<Order>();
+		String query = "  SELECT order_id,status,order_date  FROM order_details where  status in ('delivered',  'confirm','cancel') order by order_date desc";
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		while (rs.next()) {
+			Order orders = new Order();
+			orders.setStatus(rs.getString(2));
+			orders.setOrderdate(rs.getDate(3));
+			orders.setOrderid(rs.getInt(1));
+			todaysale.add(orders);
+
+		}
+		return todaysale;
+	}
+	
+	
+	public boolean accept (Order order) {
+		Connection con = null;
+		try {
+			con = GetConnection.getConnections();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String query = " update order_details set status ='delivered'  where order_id=?";
+
+		try {
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setInt(1, order.getOrderid());
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
+	}
 	
 }

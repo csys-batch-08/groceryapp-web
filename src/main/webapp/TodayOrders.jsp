@@ -16,7 +16,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Orders</title>
 
 <style>
 .kon
@@ -46,7 +46,7 @@
       font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
     .footer {
-  position: absolute;
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -70,13 +70,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item p-3">
-          <a class="nav-link active" aria-current="page" href="#">Welcome Admin</a>
-        </li>
         
-        <li class="nav-item p-3">
-          <a class="nav-link" href="AdminAllUser.jsp">User</a>
-        </li>
+        
+       
         <li class="nav-item p-3">
           <a class="nav-link" href="Product.jsp">Product</a>
         </li>
@@ -97,13 +93,14 @@
 </nav>
         </div>
       </div>
-       <div class="row">
+ <div class="row">
         <div class="col-sm-12 "> 
-        <input type="button" class="btn btn-primary" value="Today Orders"
+        <input type="button" class="btn btn-primary" value="Pending Orders"
 		onclick="window.location='TodayOrders.jsp'">
+		<input type="button" class="btn btn-primary" value="List of Orders"
+		onclick="window.location='Listoforder.jsp'">
           </div>
-          </div>
-          
+          </div>          
           <% OrderDaoImpl obj =new OrderDaoImpl();
  Order order =new Order();
 List<Order> OrderList =obj.orderdetails();%>
@@ -113,6 +110,7 @@ List<Order> OrderList =obj.orderdetails();%>
       <th scope="col">Order Id</th>
       <th scope="col">Status</th>
       <th scope="col">Order Date</th>
+      <th scope="col">Accept</th>
     </tr>
   </thead>
   <tbody>
@@ -121,7 +119,7 @@ List<Order> OrderList =obj.orderdetails();%>
 <td><%=product.getOrderid()%></td>
 <td><%=product.getStatus()%></td>
 <td><%=product.getOrderdate()%></td>
-
+<td> <input type="button" value="confirm" onclick="window.location='Accept?orderId=<%=product.getOrderid()%>'" ></td>
 </tr>
 <%} %>
   </tbody>

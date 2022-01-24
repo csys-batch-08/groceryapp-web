@@ -1,5 +1,20 @@
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html>
+<head>
+<meta charset="ISO-8859-1">
+<title>WELCOME</title>
+</head>
 <body>
-<h2>Welcome to Demo App!</h2>
+<script>
+         setTimeout(function(){
+            window.location.href = 'Login.jsp';
+         }, 2000);
+      </script>
+      
+      <h2>HELLO TO GROCERY SHOP!</h2>
+
 </body>
 </html>

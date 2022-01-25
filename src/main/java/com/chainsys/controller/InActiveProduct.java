@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -25,7 +24,7 @@ public class InActiveProduct extends HttpServlet {
 		product.setProductName(productname);
 		product.setProducStatus(productstatus);
 		ProductDaoImpl obj =new ProductDaoImpl();
-		PrintWriter out=resp.getWriter(); 
+		
 		 resp.setContentType("text/html");
 		try {
 			
@@ -33,13 +32,13 @@ public class InActiveProduct extends HttpServlet {
 			boolean	flag =obj.delete(product);
 			if(flag)
 			{
-				 out.print("change product"); 
+				
 				 req.getRequestDispatcher("InActiveProducts.jsp").include(req, resp);
 					
 			}
 			else
 			{
-				 out.print("Fail"); 	
+					
 				 req.getRequestDispatcher("InActiveProducts.jsp").include(req, resp);
 			}
 		} catch (ClassNotFoundException | SQLException e) {

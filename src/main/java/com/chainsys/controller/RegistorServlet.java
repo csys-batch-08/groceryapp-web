@@ -24,10 +24,10 @@ public class RegistorServlet extends HttpServlet {
 	 String address=req.getParameter("address");
 	 long phonenumber=Long.parseLong(req.getParameter("pnumber"));
 	 String emailid=req.getParameter("eid");
-	 Customer str1 =new Customer( username,  password,  firstName,  lastName,  address, phonenumber,  emailid);
+	 Customer customer =new Customer( username,  password,  firstName,  lastName,  address, phonenumber,  emailid);
 	 CustomerDaoImpl obj1= new CustomerDaoImpl();
 	 try {
-		boolean flag= obj1.signup( str1);
+		boolean flag= obj1.signup( customer);
 		if(flag)
 		{
 			resp.sendRedirect("Login.jsp");

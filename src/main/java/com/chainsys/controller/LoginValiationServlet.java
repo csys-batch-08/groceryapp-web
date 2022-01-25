@@ -43,10 +43,12 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 			if(customer.getCustomerid()==1)
 			{
 				resp.sendRedirect("AdminView.jsp");
+
+				
 			}
 			else
 			{
-				resp.sendRedirect("CustomerView.jsp");
+				resp.sendRedirect("CustomerviewServlet");
 			}
 		}
 		else {
@@ -60,7 +62,6 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 		session.setAttribute("erroruserid", ((LoginException) e).getUserNameLoginMessage());
 	
 		req.getRequestDispatcher("Login.jsp").include(req, resp);
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	

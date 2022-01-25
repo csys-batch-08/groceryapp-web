@@ -1,10 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,11 +37,9 @@ public class AddToCart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
+
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
-
-	
 
 		Customer customer = (Customer) session.getAttribute("logincustomer");
 		int pid = Integer.parseInt(request.getParameter("orderId"));
@@ -52,7 +47,7 @@ public class AddToCart extends HttpServlet {
 		Order order = new Order();
 		order.setCustomerid(cid);
 		OrderDaoImpl obj = new OrderDaoImpl();
-	int oid = 0;
+		int oid = 0;
 		try {
 			oid = obj.cartCheck(order);
 		} catch (ClassNotFoundException e) {
@@ -64,13 +59,12 @@ public class AddToCart extends HttpServlet {
 		}
 		// check user if order id already exist in cart
 		if (!(oid > 0)) {
-			Order str = new Order();
 
-			str.setCustomerid(cid);
-			str.setStatus("in cart");
+			order.setCustomerid(cid);
+			order.setStatus("in cart");
 
-			obj.creatingOrderId(str);
-			oid = obj.GettingOrderID(str);
+			obj.creatingOrderId(order);
+			oid = obj.GettingOrderID(order);
 
 		}
 		Cart stt = new Cart();
@@ -88,8 +82,7 @@ public class AddToCart extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (qty > 0&&!(qty>9)) {//check quantity
-
+		if (qty > 0 && !(qty > 9)) {// check quantity
 
 			stt.setQuantity(qty + 1);
 			try {
@@ -101,16 +94,13 @@ public class AddToCart extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			out.print("Increase quantity");
+
 			request.getRequestDispatcher("CustomerView.jsp").include(request, response);
 
+		} else if (qty > 9) {
 
-		} else if(qty>9)
-		{
-			out.print("reached max quantity");
-			request.getRequestDispatcher("CustomerView.jsp").include(request, response);	
-		}
-		else {
+			request.getRequestDispatcher("CustomerView.jsp").include(request, response);
+		} else {
 
 			stt.setQuantity(1);
 			stt.setPrice(0);
@@ -123,12 +113,10 @@ public class AddToCart extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			out.print("add to cart");
+
 			request.getRequestDispatcher("CustomerView.jsp").include(request, response);
-			
 
 		}
-		
 
 	}
 

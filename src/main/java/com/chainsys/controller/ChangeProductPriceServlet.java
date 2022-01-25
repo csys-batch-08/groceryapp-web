@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -22,29 +21,28 @@ public class ChangeProductPriceServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String product= req.getParameter("pname");
+		String products= req.getParameter("pname");
 		double price= Double.parseDouble(req.getParameter("price"));
-		Product products = new Product();
-		products.setProductName(product);
-		products.setProductPrice(price);
-		ProductDaoImpl obj =new ProductDaoImpl();
-		 PrintWriter out=resp.getWriter();  
+		Product product = new Product();
+		product.setProductName(products);
+		product.setProductPrice(price);
+		ProductDaoImpl obj =new ProductDaoImpl(); 
 		 resp.setContentType("text/html");
 		try {
-		boolean	flag =obj.changePrice(products);
+		boolean	flag =obj.changePrice(product);
 			if(flag)
 			{
-				 out.print("Change price product"); 
+				
 				 req.getRequestDispatcher("ChangeProductPrice.jsp").include(req, resp);
 					
 			}
 			else
 			{
-				 out.print("Fail"); 	
+				
 				 req.getRequestDispatcher("ChangeProductPrice.jsp").include(req, resp);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

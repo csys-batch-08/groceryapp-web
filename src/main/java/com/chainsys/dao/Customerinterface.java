@@ -6,10 +6,9 @@ import java.util.List;
 import com.chainsys.model.Customer;
 
 public interface Customerinterface {
-	public boolean signup(Customer str1) throws ClassNotFoundException, SQLException;
-	public boolean changepassword(Customer str3) throws ClassNotFoundException, SQLException;
-	public Customer login(Customer str) throws ClassNotFoundException, SQLException;
-	public void viewLoginUser(Customer str2) throws ClassNotFoundException, SQLException;
+	public boolean signup(Customer customer) throws ClassNotFoundException, SQLException;
+	public boolean changepassword(Customer customer) throws ClassNotFoundException, SQLException;
+	public Customer login(Customer customer) throws ClassNotFoundException, SQLException;
 	public List<Customer> viewallLoginUser() throws ClassNotFoundException, SQLException;
 
 }

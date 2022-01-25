@@ -100,12 +100,12 @@
         <% int b=Integer.parseInt(request.getParameter("orderId"));
 Feature feature= new Feature();
 feature.setOrderId(b);
-Order str =new Order();
-str.setOrderid(b);
+Order order =new Order();
+order.setOrderid(b);
 OrderDaoImpl
 obj =new OrderDaoImpl ();
 List<Feature> orderlist=obj.userOrderDetails(feature);
-String status = obj.status(str);
+String status = obj.status(order);
 double c=obj.userOrderDetailse(feature);
 %>
 <div class="table-responsive">

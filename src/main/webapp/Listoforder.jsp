@@ -6,6 +6,9 @@
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+
+    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,19 +71,21 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         
         
-       
         <li class="nav-item p-3">
-          <a class="nav-link" href="Product.jsp">Product</a>
+          <a class="nav-link" href="AdminAllUserServlet">User</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Sale.jsp">Sale</a>
+          <a class="nav-link" href="ProductServlet">Product</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Orders.jsp">Orders</a>
+          <a class="nav-link" href="SaleServlet">Sale</a>
+        </li>
+        <li class="nav-item p-3">
+          <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -96,14 +101,11 @@
  <div class="row">
         <div class="col-sm-12 "> 
         <input type="button" class="btn btn-primary" value="Pending Orders"
-		onclick="window.location='TodayOrders.jsp'">
+		onclick="window.location='PendingOrdersServlet'">
 		<input type="button" class="btn btn-primary" value="List of Orders"
-		onclick="window.location='Listoforder.jsp'">
+		onclick="window.location='ListoforderServlet'">
           </div>
           </div>          
-          <% OrderDaoImpl obj =new OrderDaoImpl();
- Order order =new Order();
-List<Order> OrderList =obj.listoforder();%>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -113,14 +115,13 @@ List<Order> OrderList =obj.listoforder();%>
     </tr>
   </thead>
   <tbody>
-  <%for(Order product:OrderList){ %>
+ <c:forEach items="${OrderLists}" var="current">
 <tr>
-<td><%=product.getOrderid()%></td>
-<td><%=product.getStatus()%></td>
-<td><%=product.getOrderdate()%></td>
-
+<td><c:out value="${current.getOrderid()}" /></td>
+<td><c:out value="${current.getStatus()}" /></td>
+<td><c:out value="${current.getOrderdate()}" /></td>
 </tr>
-<%} %>
+</c:forEach>
   </tbody>
 </table>
           

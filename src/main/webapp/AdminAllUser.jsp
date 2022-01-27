@@ -6,6 +6,9 @@
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+
+    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,18 +73,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-       
+        
+        
         <li class="nav-item p-3">
-          <a class="nav-link" href="AdminAllUser.jsp">User</a>
+          <a class="nav-link" href="AdminAllUserServlet">User</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Product.jsp">Product</a>
+          <a class="nav-link" href="ProductServlet">Product</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Sale.jsp">Sale</a>
+          <a class="nav-link" href="SaleServlet">Sale</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Orders.jsp">Orders</a>
+          <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -98,9 +102,7 @@
         <div class="col-sm-12 "> 
           </div>
           </div>
-           <% CustomerDaoImpl obj=new CustomerDaoImpl();
-List<Customer> userList= obj.viewallLoginUser();
-%>
+           
 <div class= kon>
 <table class="table table-striped">
   <thead>
@@ -115,17 +117,17 @@ List<Customer> userList= obj.viewallLoginUser();
     </tr>
   </thead>
  <tbody>
-<%for(Customer customer:userList){ %>
+<c:forEach items="${userList}" var="current">
 <tr>
-<td><%=customer.getCustomerid() %></td>
-<td><%=customer.getFirstName()%></td>
-<td><%=customer.getLastName() %></td>
-<td><%=customer.getAddress() %></td>
-<td><%=customer.getPhonenumber() %></td>
-<td><%=customer.getUsername()%></td>
-<td><%=customer.getEmailid()%></td>
+<td><c:out value="${current.getCustomerid()}" /></td>
+<td><c:out value="${current.getFirstName()}" /></td>
+<td><c:out value="${current.getLastName()}" /></td>
+<td><c:out value="${current.getAddress()}" /></td>
+<td><c:out value="${current.getPhonenumber()}" /></td>
+<td><c:out value="${current.getUsername()}" /></td>
+<td><c:out value="${current.getEmailid()}" />td>
 </tr>
-<%} %>
+</c:forEach>
 </tbody>
 </table>
  </div>

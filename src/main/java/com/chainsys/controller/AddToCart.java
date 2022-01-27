@@ -15,28 +15,17 @@ import com.chainsys.model.Cart;
 import com.chainsys.model.Customer;
 import com.chainsys.model.Order;
 
-/**
- * Servlet implementation class AddToCart
- */
 @WebServlet("/AddToCart")
 public class AddToCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public AddToCart() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
@@ -51,10 +40,10 @@ public class AddToCart extends HttpServlet {
 		try {
 			oid = obj.cartCheck(order);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		// check user if order id already exist in cart
@@ -76,10 +65,10 @@ public class AddToCart extends HttpServlet {
 		try {
 			qty = obj1.check(stt);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		if (qty > 0 && !(qty > 9)) {// check quantity
@@ -88,18 +77,18 @@ public class AddToCart extends HttpServlet {
 			try {
 				obj1.incease(stt);
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 
-			request.getRequestDispatcher("CustomerView.jsp").include(request, response);
+			response.sendRedirect("CustomerviewServlet");
 
 		} else if (qty > 9) {
 
-			request.getRequestDispatcher("CustomerView.jsp").include(request, response);
+			response.sendRedirect("CustomerviewServlet");
 		} else {
 
 			stt.setQuantity(1);
@@ -107,14 +96,15 @@ public class AddToCart extends HttpServlet {
 			try {
 				obj1.addToCart(stt);
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 
-			request.getRequestDispatcher("CustomerView.jsp").include(request, response);
+			response.sendRedirect("CustomerviewServlet");
+			;
 
 		}
 

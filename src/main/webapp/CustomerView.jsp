@@ -3,6 +3,10 @@
 <%@page import="com.chainsys.model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="com.chainsys.daoimpl.ProductDaoImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,27 +55,27 @@
 </style>
 
 <body>
-<% Customer customer = (Customer) session.getAttribute("logincustomer");%>
+
     <div class="row">
         <div class="col-sm-12 p-3   text-white"> 
           <img src="assets/logo.jpg" alt="" class="float-start">
             <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="CustomerView.jsp">Home</a>
+    <a class="navbar-brand" href="CustomerviewServlet">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="LoginUserProfile.jsp">Profile </a>
+          <a class="nav-link active" aria-current="page" href="LoginUserProfileServlet">Profile </a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="CustomerOrder.jsp">Order</a>
+          <a class="nav-link" href="CustomerOrderServlet">Order</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="Cart.jsp">Cart</a>
+          <a class="nav-link" href="CartServlet">Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -87,25 +91,27 @@
 </nav>
         </div>
       </div>
-       <div class="row">
-       <% ProductDaoImpl obj5 = new ProductDaoImpl();
-List<Product> productList =obj5.ViewAllProducte();
-     session.setAttribute("productList", productList);%>
+      
+      
+      
+         <div class="row">
+      
           
-          <%for(Product product:productList){ %>
+         <c:forEach items="${productLists}" var="current">
 
 
-        <div class="col-sm-3 p-5  "><img alt="" src="assets/<%=product.getProducStatus()%>"width="200" height="140"> <br> <br>
-       <span> <%=product.getProductName()%></span> <br> <br>
+        <div class="col-sm-3 p-5  "><img alt="" src="assets/<c:out value="${current.getProducStatus()}" />"width="200" height="140"> <br> <br>
+       <span> <c:out value="${current.getProductName()}" /></span> <br> <br>
        <span> <label>Rs</label></span>
-       <span> <%=product.getProductPrice() %> </span><br> <br>
+       <span> <c:out value="${current.getProductPrice()}" /> </span><br> <br>
        
 		<input type="button" value="Add to cart" class="btn btn-primary"
-		onclick="alert('Added To Cart'); window.location='AddToCart?orderId=<%=product.getProductId()%>';">
+		onclick="alert('Added To Cart'); window.location='AddToCart?orderId=<c:out value="${current.getProductId()}" />';">
 
         </div>
-        <%} %>
+       </c:forEach>
       </div>
+      
       <div class="row">
         <div class="col-sm-12 "> 
           </div>

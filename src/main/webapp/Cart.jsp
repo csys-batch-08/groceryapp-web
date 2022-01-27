@@ -7,6 +7,10 @@
 <%@page import="com.chainsys.model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="com.chainsys.daoimpl.ProductDaoImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -60,27 +64,26 @@
 </style>
 
 <body>
-<% Customer customer = (Customer) session.getAttribute("logincustomer");%>
     <div class="row">
         <div class="col-sm-12 p-3   text-white"> 
           <img src="assets/logo.jpg" alt="" class="float-start">
             <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="CustomerView.jsp">Home</a>
+    <a class="navbar-brand" href="CustomerviewServlet">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="LoginUserProfile.jsp">Profile </a>
+          <a class="nav-link active" aria-current="page" href="LoginUserProfileServlet">Profile </a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="CustomerOrder.jsp">Order</a>
+          <a class="nav-link" href="CustomerOrderServlet">Order</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="Cart.jsp">Cart</a>
+          <a class="nav-link" href="CartServlet">Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -97,29 +100,8 @@
         </div>
       </div>
  <div class=kon>
-  <% 
-int oid = 0;
-
-
- 
-	int cid=customer.getCustomerid();
-	Order order = new Order();
-	order.setCustomerid(cid);
-	OrderDaoImpl obj1 = new OrderDaoImpl();
-	int ojid = obj1.cartCheck(order);
-	if(ojid>0)
-	{
-		oid=ojid;
-	}  
-	session.setAttribute("logincustomerorderId", oid); 
-	double offer=0;
-%>
-<% Feature feature = new Feature();
-feature.setOrderId(oid);
-CartDaoImpl obj =new CartDaoImpl();
-List<Feature> cartlist= obj.showCartin(feature);
-double total= obj.showCartinTotal(feature);%>
 <div class="table-responsive">
+<c:if test="${not empty cartlist}">
   <table class="table">
 <thead>
 <tr>
@@ -132,35 +114,31 @@ double total= obj.showCartinTotal(feature);%>
 </tr>
 </thead>
 <tbody>
-<%for(Feature list: cartlist){ %>
+
+<c:forEach items="${cartlist}" var="current">
 <tr>
-<td><img alt="" src="assets/<%=list.getProductImage()%>"width="120" height="80"></td>
-<td><%=list.getProductName()%></td>
-<td><%=list.getPrice() %></td>
-<td><input type="button" value="-" onclick="window.location='DecreaseQuantity?pId=<%=list.getProductId()%>'" ><%=list.getQuantity()%>
-<input type="button" value="+" onclick="window.location='IncreaseQuantity?pId=<%=list.getProductId()%>'" ></td>
-<td><%=list.getCost() %></td>
-<td><input type="button" value="Remove" onclick="window.location='Deleteproductincart?pId=<%=list.getProductId()%>'" ></td>
+<td><img alt="" src="assets/<c:out value="${current.getProductImage()}" />"width="120" height="80"></td>
+<td><c:out value="${current.getProductName()}" /></td>
+<td><c:out value="${current.getPrice()}" /></td>
+<td><input type="button" value="-" onclick="window.location='DecreaseQuantity?pId=<c:out value="${current.getProductId()}" />'" ><c:out value="${current.getQuantity()}" />
+<input type="button" value="+" onclick="window.location='IncreaseQuantity?pId=<c:out value="${current.getProductId()}" />'" ></td>
+<td><c:out value="${current.getCost()}" /></td>
+<td><input type="button" value="Remove" onclick="window.location='Deleteproductincart?pId=<c:out value="${current.getProductId()}" />'" ></td>
 </tr>
-<%} %>
+</c:forEach>
 </tbody>
 </table><br>
-Total  Price = <% out.print( total) ;%>/-<br>
-<%if(total>499&& total<999)
-	{
-	offer=total*0.05;
-	total= total-offer;
-	 out.print("offer price="+ total+"/-") ;
-	}
-	else if(total>=999)
-	{
-		offer=total*0.1;
-		total= total-offer;
-		out.print("offer price="+ total+"/-") ;
-	}%>
-	<%if(!cartlist.isEmpty()) {%>
-<h4><input type="button" value="Place the order" onclick="window.location='ConformOrder'" ></h4>
-<%} %>
+Total  Price = <c:out value="${total}" />/-<br>
+<c:if test="${total>499}">
+<br>Offer price=<c:out value="${offer}"/>/-<br> 
+ </c:if>
+ <c:if test="${not empty cartlist}">
+ <h4><input type="button" value="Place the order" onclick="window.location='ConformOrder'" ></h4>
+ </c:if>
+</c:if>
+ <c:if test="${empty cartlist}">
+   <p>Cart Empty</p>
+</c:if>
 </div>
  </div>
       <div class="footer">

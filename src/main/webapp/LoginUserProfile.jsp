@@ -3,6 +3,10 @@
 <%@page import="com.chainsys.model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="com.chainsys.daoimpl.ProductDaoImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,7 +55,7 @@
 </style>
 
 <body>
-<% Customer customer = (Customer) session.getAttribute("logincustomer");%>
+
     <div class="row">
         <div class="col-sm-12 p-3   text-white"> 
           <img src="assets/logo.jpg" alt="" class="float-start">
@@ -64,14 +68,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="LoginUserProfile.jsp">Profile </a>
+          <a class="nav-link active" aria-current="page" href="LoginUserProfileServlet">Profile </a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="CustomerOrder.jsp">Order</a>
+          <a class="nav-link" href="CustomerOrderServlet">Order</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="Cart.jsp">Cart</a>
+          <a class="nav-link" href="CartServlet">Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -96,14 +100,15 @@
        <div class="row">
         <div class="col-sm-12 "> 
         <ul class="list-group">
-  <li class="list-group-item"><h4>Name:</h4><% out.print( customer.getFirstName()+" "+customer.getLastName()); %></li>
-  <li class="list-group-item"><h4>Address:</h4><% out.print( customer.getAddress()); %></li>
-  <li class="list-group-item"><h4>Email:</h4><% out.print( customer.getEmailid()); %></li>
-  <li class="list-group-item"><h4>User Name:</h4><% out.print( customer.getUsername()); %></li>
-  <li class="list-group-item"><h4>Phone Number:</h4><% out.print( customer.getPhonenumber()); %></li>
+  <li class="list-group-item"><h4>Name:</h4><c:out value="${logincustomer.getFirstName()}" /> <c:out value="${logincustomer.getLastName()}"/></li>
+  <li class="list-group-item"><h4>Address:</h4><c:out value="${logincustomer.getAddress()}" /></li>
+  <li class="list-group-item"><h4>Email:</h4><c:out value="${logincustomer.getEmailid()}" /></li>
+  <li class="list-group-item"><h4>User Name:</h4><c:out value="${logincustomer.getUsername()}" /></li>
+  <li class="list-group-item"><h4>Phone Number:</h4><c:out value="${logincustomer.getPhonenumber()}" /></li>
 </ul>
           </div>
           </div>
+          
       <div class="row">
         <div class="col-sm-12 "> 
           </div>

@@ -1,13 +1,13 @@
 package com.chainsys.model;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 public class Order {
 	private int orderid;
 	private int customerid;
 	private String status;
 	private Date orderdate;
+	
 
 	public int getOrderid() {
 		return orderid;

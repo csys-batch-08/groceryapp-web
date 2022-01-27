@@ -9,6 +9,9 @@
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+
+    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +22,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>WeekSale</title>
 
 <style>
 .kon
@@ -62,9 +65,7 @@
 }
 </style>
 <body>
- <% OrderDaoImpl obj =new OrderDaoImpl();
-List<Feature> sale =obj.weekSale();
-double b =obj.weekSales();%>
+ 
     <div class="row">
         <div class="col-sm-12 p-3   text-white"> 
           <img src="assets/logo.jpg" alt="" class="float-start">
@@ -79,16 +80,16 @@ double b =obj.weekSales();%>
         
         
         <li class="nav-item p-3">
-          <a class="nav-link" href="AdminAllUser.jsp">User</a>
+          <a class="nav-link" href="AdminAllUserServlet">User</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Product.jsp">Product</a>
+          <a class="nav-link" href="ProductServlet">Product</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Sale.jsp">Sale</a>
+          <a class="nav-link" href="SaleServlet">Sale</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Orders.jsp">Orders</a>
+          <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -96,17 +97,16 @@ double b =obj.weekSales();%>
         
       </ul>
 
-    </div>
-  </div>
+    </div>  </div>
 </nav>
         </div>
       </div>
        <div class="row">
         <div class="col-sm-12 "> 
         <input type="button" class="btn btn-primary" value="Today sale"
-		onclick="window.location='TodaySale.jsp'">
+		onclick="window.location='TodaySaleServlet'">
 		<input type="button" class="btn btn-primary" value="weekly sale"
-		onclick="window.location='WeekSale.jsp'">
+		onclick="window.location='WeekSaleServlet'">
           </div>
           </div>
           <div><%
@@ -114,7 +114,7 @@ double b =obj.weekSales();%>
          out.print( "<h2 align = \"center\">" +date.toString()+"</h2>");
       %>
 <h1>Total </h1>
-<h1><%out.print(b); %></h1>
+<h1><c:out value="${b}" /></h1>
 <h3><%
 String todaydates =null;
 String lastdates=null;
@@ -155,16 +155,16 @@ out.print("Sale Between  " +lastdates+" and "+todaydates);
     </tr>
   </thead>
   <tbody>
-  <%for(Feature feature:sale){ %>
+  <c:forEach items="${sale}" var="current">
 <tr>
-<td><img alt="" src="assets/<%=feature.getProductImage()%>"width="120" height="80"></td>
-<td><%=feature.getProductName() %></td>
-<td><%=feature.getPrice()%></td>
-<td><%=feature.getQuantity() %></td>
-<td><%=feature.getCost() %></td>
+<td><img alt="" src="assets/<c:out value="${current.getProductImage()}" />"width="120" height="80"></td>
+<td><c:out value="${current.getProductName()}" /></td>
+<td><c:out value="${current.getPrice()}" /></td>
+<td><c:out value="${current.getQuantity()}" /></td>
+<td><c:out value="${current.getCost()}" /></td>
 
 </tr>
-<%} %>
+</c:forEach>
   </tbody>
 </table>
           </div>

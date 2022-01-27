@@ -11,6 +11,10 @@
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>   
+
+    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,8 +68,7 @@
 }
 </style>
 <body>
- <% ProductDaoImpl obj = new ProductDaoImpl();
-List<Product> productList =obj.AdminViewAllProducts();%>
+
     <div class="row">
         <div class="col-sm-12 p-3   text-white"> 
           <img src="assets/logo.jpg" alt="" class="float-start">
@@ -80,16 +83,16 @@ List<Product> productList =obj.AdminViewAllProducts();%>
         
         
         <li class="nav-item p-3">
-          <a class="nav-link" href="AdminAllUser.jsp">User</a>
+          <a class="nav-link" href="AdminAllUserServlet">User</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Product.jsp">Product</a>
+          <a class="nav-link" href="ProductServlet">Product</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Sale.jsp">Sale</a>
+          <a class="nav-link" href="SaleServlet">Sale</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Orders.jsp">Orders</a>
+          <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -105,14 +108,14 @@ List<Product> productList =obj.AdminViewAllProducts();%>
        <div class="row">
         <div class="col-sm-12 "> 
         	<input type="button" class="btn btn-primary" value="Add product"
-		onclick="window.location='AddProduct.jsp'">
+		onclick="window.location='AddProductAdminServlet'">
         <input type="button" class="btn btn-primary" value="Status product"
-		onclick="window.location='InActiveProducts.jsp'">
+		onclick="window.location='InActiveProductsServlet'">
 	
 		<input type="button" class="btn btn-primary" value=" Change Products Price"
-		onclick="window.location='ChangeProductPrice.jsp'">
+		onclick="window.location='ChangeProductPriceAdminServlet'">
 		<input type="button" class="btn btn-primary" value="Modify Product Name"
-		onclick="window.location='ModifiyProduct.jsp'">
+		onclick="window.location='ModifiyProductAdminServlet'">
           </div>
           </div>
           
@@ -129,16 +132,26 @@ List<Product> productList =obj.AdminViewAllProducts();%>
     </tr>
   </thead>
   <tbody>
-  <%for(Product product:productList){ %>
+  
+  <c:forEach items="${productList}" var="current">
 <tr>
-<td><img alt="" src="assets/<%=product.getProductImage()%>"width="120" height="80"></td>
-<td><%=product.getProductId()%></td>
-<td><%=product.getProductName()%></td>
-<td><%=product.getProductPrice() %></td>
-<td><%=product.getProducStatus() %></td>
-
+<td><img alt="" src="assets/<c:out value="${current.getProductImage()}" />"width="120" height="80"></td>
+<td><c:out value="${current.getProductId()}" /></td>
+<td><c:out value="${current.getProductName()}" /></td>
+<td><c:out value="${current.getProductPrice()}" /></td>
+<td><c:set var="String" value="${current.getProducStatus()}"/> 
+<c:choose>  
+    <c:when test="${fn:containsIgnoreCase(String, 'Y')}">  
+       In stock 
+    </c:when>  
+    <c:otherwise>  
+       Out of stock   
+    </c:otherwise>  
+</c:choose> 
+</td>  
+  
 </tr>
-<%} %>
+</c:forEach>
   </tbody>
 </table>
           </div>

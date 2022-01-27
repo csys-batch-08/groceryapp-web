@@ -4,6 +4,9 @@
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+
+    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,14 +17,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Home</title>
 </head>
-<% OrderDaoImpl obj =new OrderDaoImpl();
-          List<Feature> sale =obj.todaySale(); 
-          List<Order> sales =obj.graphsale(); 
-          
-       
-          %>
           <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -33,11 +30,12 @@
           data.addColumn('string', 'Topping');
           data.addColumn('number', 'Slices');
           data.addRows([
-        	  <%for(Feature feature:sale){ %>
-        	  [ '<%=feature.getProductName() %>', <%=feature.getQuantity() %> ],
+        	  <c:forEach items="${sale}" var="current"> 
+        	  [ '<c:out value="${current.getProductName()}" />', <c:out value="${current.getQuantity()}" /> ],
+        		  
+        	  </c:forEach>
         	  
-        	  <%} %>
-          ]);
+        	          ]);
   
         var options = {
           title: 'Today Sales'
@@ -56,10 +54,10 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Weekly', 'orders'],
-          <%for(Order feature:sales){ %>
-    	  [ '<%=feature.getOrderdate() %>', <%=feature.getOrderid() %> ],
+           <c:forEach items="${sales}" var="current">
+    	  [ '<c:out value="${current.getOrderdate()}" />',<c:out value="${current.getOrderid()}" /> ],
     	  
-    	  <%} %>
+    		  </c:forEach>
         ]);
 
         var options = {
@@ -114,7 +112,7 @@
           <img src="assets/logo.jpg" alt="" class="float-start">
             <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="AdminView.jsp">Home</a>
+    <a class="navbar-brand" href="AdminViewServlet">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -123,16 +121,16 @@
         
         
         <li class="nav-item p-3">
-          <a class="nav-link" href="AdminAllUser.jsp">User</a>
+          <a class="nav-link" href="AdminAllUserServlet">User</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Product.jsp">Product</a>
+          <a class="nav-link" href="ProductServlet">Product</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Sale.jsp">Sale</a>
+          <a class="nav-link" href="SaleServlet">Sale</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Orders.jsp">Orders</a>
+          <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -156,7 +154,7 @@
           <div class="col-sm-6 "> 
                     <div id="curve_chart" style="width: 700px; height: 500px"></div>
           
-          </div>
+.          </div>
           
           </div>
       <div class="footer">

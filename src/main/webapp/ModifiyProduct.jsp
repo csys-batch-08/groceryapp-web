@@ -73,21 +73,21 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         
         
         <li class="nav-item p-3">
-          <a class="nav-link" href="AdminAllUser.jsp">User</a>
+          <a class="nav-link" href="AdminAllUserServlet">User</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Product.jsp">Product</a>
+          <a class="nav-link" href="ProductServlet">Product</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Sale.jsp">Sale</a>
+          <a class="nav-link" href="SaleServlet">Sale</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Orders.jsp">Orders</a>
+          <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -103,14 +103,14 @@
        <div class="row">
         <div class="col-sm-12 "> 
         	<input type="button" class="btn btn-primary" value="Add product"
-		onclick="window.location='AddProduct.jsp'">
+		onclick="window.location='AddProductAdminServlet'">
         <input type="button" class="btn btn-primary" value="Status product"
-		onclick="window.location='InActiveProducts.jsp'">
+		onclick="window.location='InActiveProductsServlet'">
 	
 		<input type="button" class="btn btn-primary" value=" Change Products Price"
-		onclick="window.location='ChangeProductPrice.jsp'">
+		onclick="window.location='ChangeProductPriceAdminServlet'">
 		<input type="button" class="btn btn-primary" value="Modify Product Name"
-		onclick="window.location='ModifiyProduct.jsp'">
+		onclick="window.location='ModifiyProductAdminServlet'">
           </div>
           </div>
           <div id="allusers">

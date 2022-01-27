@@ -7,6 +7,10 @@
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
+
+    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,9 +64,7 @@
 }
 </style>
 <body>
-<% OrderDaoImpl obj =new OrderDaoImpl();
-List<Feature> sale =obj.todaySale();
-double b =obj.todaySales();%>
+
     <div class="row">
         <div class="col-sm-12 p-3   text-white"> 
           <img src="assets/logo.jpg" alt="" class="float-start">
@@ -74,19 +76,19 @@ double b =obj.todaySales();%>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-       
+        
         
         <li class="nav-item p-3">
-          <a class="nav-link" href="AdminAllUser.jsp">User</a>
+          <a class="nav-link" href="AdminAllUserServlet">User</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Product.jsp">Product</a>
+          <a class="nav-link" href="ProductServlet">Product</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Sale.jsp">Sale</a>
+          <a class="nav-link" href="SaleServlet">Sale</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Orders.jsp">Orders</a>
+          <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -102,9 +104,9 @@ double b =obj.todaySales();%>
        <div class="row">
         <div class="col-sm-12 "> 
         <input type="button" class="btn btn-primary" value="Today sale"
-		onclick="window.location='TodaySale.jsp'">
+		onclick="window.location='TodaySaleServlet'">
 		<input type="button" class="btn btn-primary" value="weekly sale"
-		onclick="window.location='WeekSale.jsp'">
+		onclick="window.location='WeekSaleServlet'">
           </div>
           </div>
           <div><%
@@ -112,8 +114,9 @@ double b =obj.todaySales();%>
          out.print( "<h4 align = \"center\">" +date.toString()+"</h4>");
       %>
 <h1>Total </h1>
-<h3><%out.print(b); %></h3></div>
+<h3><c:out value="${b}" /></h3></div>
           <div>
+          <c:if test="${not empty sale}">
           <table class="table table-striped">
   <thead>
     <tr>
@@ -125,18 +128,23 @@ double b =obj.todaySales();%>
     </tr>
   </thead>
   <tbody>
-  <%for(Feature feature:sale){ %>
+ 
+  <c:forEach items="${sale}" var="current">
 <tr>
-<td><img alt="" src="assets/<%=feature.getProductImage()%>"width="120" height="80"></td>
-<td><%=feature.getProductName() %></td>
-<td><%=feature.getPrice()%></td>
-<td><%=feature.getQuantity() %></td>
-<td><%=feature.getCost() %></td>
+<td><img alt="" src="assets/<c:out value="${current.getProductImage()}" />"width="120" height="80"></td>
+<td><c:out value="${current.getProductName()}" /></td>
+<td><c:out value="${current.getPrice()}" /></td>
+<td><c:out value="${current.getQuantity()}" /></td>
+<td><c:out value="${current.getCost()}" /></td>
 
 </tr>
-<%} %>
+</c:forEach>
   </tbody>
 </table>
+</c:if>
+ <c:if test="${empty OrderList}">
+   <p>no sale</p>
+</c:if>
           </div>
           
            

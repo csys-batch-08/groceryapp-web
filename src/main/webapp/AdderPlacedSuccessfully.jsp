@@ -9,7 +9,7 @@
 <body>
 <script>
          setTimeout(function(){
-            window.location.href = 'CustomerView.jsp';
+            window.location.href = 'CustomerviewServlet';
          }, 3000);
       </script>
       <h1>THANK FOR PURCHASE</h1>

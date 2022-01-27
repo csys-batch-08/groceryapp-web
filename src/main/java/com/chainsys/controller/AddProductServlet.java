@@ -13,26 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.daoimpl.ProductDaoImpl;
 import com.chainsys.model.Product;
 
-/**
- * Servlet implementation class AddProduct
- */
+
 @WebServlet("/Addproduct")
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public AddProductServlet() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		String productimage= request.getParameter("productimage");
 		System.out.println(productimage);
 		String products= request.getParameter("pname");
@@ -48,27 +41,25 @@ public class AddProductServlet extends HttpServlet {
 		boolean	flag =obj.addproduct(product);
 			if(flag)
 			{
+				response.sendRedirect("AddProductAdminServlet");
 				 
-				 request.getRequestDispatcher("AddProduct.jsp").include(request, response);
 					
 			}
 			else
 			{
 				 	
-				 request.getRequestDispatcher("AddProduct.jsp").include(request, response);
+				response.sendRedirect("AddProductAdminServlet");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

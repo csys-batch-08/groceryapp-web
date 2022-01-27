@@ -5,6 +5,10 @@
 <%@page import="com.chainsys.model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="com.chainsys.daoimpl.ProductDaoImpl"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page isELIgnored="false" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +24,6 @@
 .kon
 {
   height : 500px;
-
 }
     .float-start
     {
@@ -58,31 +61,28 @@
 </style>
 
 <body>
-<% Customer customer = (Customer) session.getAttribute("logincustomer");%>
-  <%  Order order = new Order();
-  order.setCustomerid(customer.getCustomerid());
-  OrderDaoImpl obj1 =new  OrderDaoImpl();
-  List<Order> orderlist= obj1.orderdetail(order);%>
+
+  
     <div class="row">
         <div class="col-sm-12 p-3   text-white"> 
           <img src="assets/logo.jpg" alt="" class="float-start">
             <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Home</a>
+    <a class="navbar-brand" href="CustomerviewServlet">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="LoginUserProfile.jsp">Profile </a>
+         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="LoginUserProfileServlet">Profile </a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="CustomerOrder.jsp">Order</a>
+          <a class="nav-link" href="CustomerOrderServlet">Order</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="Cart.jsp">Cart</a>
+          <a class="nav-link" href="CartServlet">Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="Logout.jsp">Logout</a>
@@ -109,18 +109,22 @@
     </tr>
   </thead>
   <tbody>
-   <%for(Order orders:orderlist){ %>
+  <c:if test="${not empty orderlist}">
+   <c:forEach items="${orderlist}" var="current">
 <tr>
-<td><%=orders.getOrderid()%></td>
-<td><%=orders.getStatus()%></td>
-<td><%=orders.getOrderdate()%></td>
-<td> <input type="button" value="Details" onclick="window.location='UserOrderFullDetails.jsp?orderId=<%=orders.getOrderid()%>'" ></td>
-
-
+<td><c:out value="${current.getOrderid()}" /></td>
+<td><c:out value="${current.getStatus()}" /></td>
+<td><c:out value="${current.getOrderdate()}" /></td>
+<td> <input type="button" value="Details" onclick="window.location='UserOrderFullDetailsServlet?orderId=<c:out value="${current.getOrderid()}" />'" ></td>
 </tr>
-<%} %>
+</c:forEach>
+</c:if>
+ <c:if test="${empty orderlist}">
+   <p>Place Order</p>
+</c:if>
   </tbody>
 </table>
+
  </div>
  
       <div class="row">

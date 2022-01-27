@@ -48,7 +48,7 @@
           </div>
            <% CustomerDaoImpl obj=new CustomerDaoImpl();
 List<Customer> userList= obj.viewallLoginUser();
-pageContext.setAttribute("userList", userList);
+request.setAttribute("userList", userList);
 %>
 <div class= kon>
 <table >

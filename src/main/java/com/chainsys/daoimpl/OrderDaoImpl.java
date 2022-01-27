@@ -197,7 +197,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		PreparedStatement stmt = con.prepareStatement(query);
 
 		stmt.setInt(1, order.getCustomerid());
-		// stmt.executeUpdate();
+	
 
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
@@ -359,6 +359,24 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			e.printStackTrace();
 		}
 		return true;
+	}
+	public List<Feature> todaySalegraph() throws ClassNotFoundException, SQLException {
+		Connection con = GetConnection.getConnections();
+		List<Feature> todaysale = new ArrayList<Feature>();
+		String query = "  SELECT products_name,price,quantity,cost,productsimage FROM  today_product_salegraph";
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		while (rs.next()) {
+			Feature feature = new Feature();
+			feature.setProductName(rs.getString(1));
+			feature.setPrice(rs.getDouble(2));
+			feature.setQuantity(rs.getInt(3));
+			feature.setCost(rs.getDouble(4));
+			feature.setProductImage(rs.getString(5));
+			todaysale.add(feature);
+
+		}
+		return todaysale;
 	}
 
 }

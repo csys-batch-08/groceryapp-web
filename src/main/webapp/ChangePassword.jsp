@@ -65,21 +65,21 @@
           <img src="assets/logo.jpg" alt="" class="float-start">
             <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="CustomerView.jsp">Home</a>
+    <a class="navbar-brand" href="CustomerviewServlet">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="LoginUserProfile.jsp">Profile </a>
+          <a class="nav-link active" aria-current="page" href="LoginUserProfileServlet">Profile </a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="CustomerOrder.jsp">Order</a>
+          <a class="nav-link" href="CustomerOrderServlet">Order</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="Cart.jsp">Cart</a>
+          <a class="nav-link" href="CartServlet">Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="Logout.jsp">Logout</a>

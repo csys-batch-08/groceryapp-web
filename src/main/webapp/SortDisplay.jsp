@@ -64,28 +64,28 @@
           <img src="assets/logo.jpg" alt="" class="float-start">
             <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="CustomerView.jsp">Home</a>
+    <a class="navbar-brand" href="CustomerviewServlet">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
          <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="LoginUserProfile.jsp">Profile </a>
+          <a class="nav-link active" aria-current="page" href="LoginUserProfileServlet">Profile </a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="CustomerOrder.jsp">Order</a>
+          <a class="nav-link" href="CustomerOrderServlet">Order</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="Cart.jsp">Cart</a>
+          <a class="nav-link" href="CartServlet">Cart</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="Logout.jsp">Logout</a>
         </li>
         
       </ul>
-       <form class="d-flex" action="SearchProduct">
+      <form class="d-flex" action="SearchProduct">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name">
         <button class="btn btn-primary" type="submit">Search</button>
       </form>
@@ -95,35 +95,26 @@
         </div>
       </div>
        <div class="row">
-       
-       <%
-     List <Product> productList =   ( List <Product>) session.getAttribute("productList");
-     if (!(productList.isEmpty()))
-     {%>
+     <c:if test="${not empty productList}">
           
-          <%for(Product products:productList){ %>
+         <c:forEach items="${productList}" var="current">
 
 
-        <div class="col-sm-3 p-5  ">
-        <img alt="" src="assets/<%=products.getProductImage()%>"width="200" height="140"> <br> <br>
-       <span> <%=products.getProductName()%></span> <br> <br>
+        <div class="col-sm-3 p-5  "><img alt="" src="assets/<c:out value="${current.getProductImage()}" />"width="200" height="140"> <br> <br>
+       <span> <c:out value="${current.getProductName()}" /></span> <br> <br>
        <span> <label>Rs</label></span>
-       <span> <%=products.getProductPrice() %> </span><br> <br>
-      <input type="button" value="Add to cart" class="btn btn-primary"
-		onclick="alert('Added To Cart'); window.location='AddToCart?orderId=<%=products.getProductId()%>';">
+       <span> <c:out value="${current.getProductPrice()}" /> </span><br> <br>
+       
+		<input type="button" value="Add to cart" class="btn btn-primary"
+		onclick="alert('Added To Cart'); window.location='AddToCart?orderId=<c:out value="${current.getProductId()}" />';">
 
         </div>
-        
-        <%} }else {%>
+       </c:forEach>
+       </c:if>
+       <c:if test="${empty productList}">
+   <p>No Result found</p>
+</c:if>
       </div>
-      
-      <div class="row">
-        <div class="col-sm-9 "> 
-        <p>no result found</p>
-          </div>
-          </div>
-      
-      <%} %>
 
       
       

@@ -2,6 +2,8 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -25,8 +27,37 @@ public class WeekSaleServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		long millis=System.currentTimeMillis();  
+		 java.sql.Date date = new java.sql.Date(millis);  
 		HttpSession session = request.getSession();
+		
+		String todaydates =null;
+		String lastdates=null;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy ");
+		Calendar cal = Calendar.getInstance();
+		// get starting date
+		cal.add(Calendar.DAY_OF_YEAR, -8);
+
+		// loop adding one day in each iteration
+		for(int i = 0; i<8; i++){
+					    cal.add(Calendar.DAY_OF_YEAR, 1);
+
+		   if(i==1)
+				   {
+			    lastdates =sdf.format(cal.getTime());
+			   
+		   }
+		    if(i==7)
+		   {
+		    	  todaydates =sdf.format(cal.getTime());
+
+		   }
+		    
+		}
+		session.setAttribute("lastdates", lastdates);
+		session.setAttribute("todaydates", todaydates);
+
+		 
 		OrderDaoImpl obj = new OrderDaoImpl();
 		try {
 			List<Feature> sale = obj.weekSale();
@@ -42,6 +73,7 @@ public class WeekSaleServlet extends HttpServlet {
 
 			e.printStackTrace();
 		}
+		session.setAttribute("date", date);
 		response.sendRedirect("WeekSale.jsp");
 	}
 

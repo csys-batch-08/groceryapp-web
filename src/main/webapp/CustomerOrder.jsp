@@ -8,6 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>  
     <%@ page isELIgnored="false" %>
 <html lang="en">
 <head>
@@ -23,7 +24,7 @@
 <style>
 .kon
 {
-  height : 500px;
+  height : 600px;
 }
     .float-start
     {
@@ -114,7 +115,7 @@
 <tr>
 <td><c:out value="${current.getOrderid()}" /></td>
 <td><c:out value="${current.getStatus()}" /></td>
-<td><c:out value="${current.getOrderdate()}" /></td>
+<td><fmt:formatDate value="${current.getOrderdate()}" pattern="DD-MM-YYYY" /></td>
 <td> <input type="button" value="Details" onclick="window.location='UserOrderFullDetailsServlet?orderId=<c:out value="${current.getOrderid()}" />'" ></td>
 </tr>
 </c:forEach>

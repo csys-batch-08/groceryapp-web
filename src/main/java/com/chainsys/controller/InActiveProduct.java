@@ -15,9 +15,10 @@ import com.chainsys.model.Product;
 @WebServlet("/InActiveproduct")
 
 public class InActiveProduct extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		String productname = req.getParameter("pname");
 		String productstatus = req.getParameter("status");
 		Product product = new Product();

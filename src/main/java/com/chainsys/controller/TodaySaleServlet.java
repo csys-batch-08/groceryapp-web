@@ -1,6 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -25,7 +26,10 @@ public class TodaySaleServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		long millis=System.currentTimeMillis();  
+		 java.sql.Date date = new java.sql.Date(millis);   
+		 
+     
 		OrderDaoImpl obj = new OrderDaoImpl();
 		HttpSession session = request.getSession();
 		try {
@@ -42,6 +46,7 @@ public class TodaySaleServlet extends HttpServlet {
 
 			e.printStackTrace();
 		}
+		session.setAttribute("date", date);
 		response.sendRedirect("TodaySale.jsp");
 	}
 

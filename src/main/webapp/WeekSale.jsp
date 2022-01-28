@@ -12,6 +12,7 @@
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 
     <%@ page isELIgnored="false" %>
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,7 +72,7 @@
           <img src="assets/logo.jpg" alt="" class="float-start">
             <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="AdminView.jsp">Home</a>
+    <a class="navbar-brand" href="AdminViewServlet">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -109,40 +110,14 @@
 		onclick="window.location='WeekSaleServlet'">
           </div>
           </div>
-          <div><%
-         Date date = new Date();
-         out.print( "<h2 align = \"center\">" +date.toString()+"</h2>");
-      %>
+          <div><h4 align = "center"><fmt:formatDate value="${date}"  
+             type="both" timeStyle="long" dateStyle="long" /></h4>
 <h1>Total </h1>
 <h1><c:out value="${b}" /></h1>
-<h3><%
-String todaydates =null;
-String lastdates=null;
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
-Calendar cal = Calendar.getInstance();
-// get starting date
-cal.add(Calendar.DAY_OF_YEAR, -8);
+<h3>
+Sale Between <c:out value="${lastdates}" />  and <c:out value="${todaydates}" />
 
-// loop adding one day in each iteration
-for(int i = 0; i<8; i++){
-			    cal.add(Calendar.DAY_OF_YEAR, 1);
-
-   if(i==1)
-		   {
-	    lastdates =sdf.format(cal.getTime());
-	   
-   }
-    if(i==7)
-   {
-    	  todaydates =sdf.format(cal.getTime());
-
-   }
-    
-}
-out.print("Sale Between  " +lastdates+" and "+todaydates);
-
-
- %></h3></div>
+</h3></div>
           <div>
           <table class="table table-striped">
   <thead>

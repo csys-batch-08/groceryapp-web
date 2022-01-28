@@ -18,27 +18,19 @@ import com.chainsys.model.Cart;
 import com.chainsys.model.Customer;
 import com.chainsys.model.Order;
 
-/**
- * Servlet implementation class AddToCart
- */
+
 public class Testclass extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public Testclass() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
@@ -55,10 +47,10 @@ public class Testclass extends HttpServlet {
 		try {
 			oid = obj.cartCheck(order);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		// check user if order id already exist in cart

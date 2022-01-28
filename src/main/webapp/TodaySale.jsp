@@ -21,7 +21,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Today sale</title>
 
 <style>
 .kon
@@ -70,7 +70,7 @@
           <img src="assets/logo.jpg" alt="" class="float-start">
             <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="AdminView.jsp">Home</a>
+    <a class="navbar-brand" href="AdminViewServlet">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -109,10 +109,10 @@
 		onclick="window.location='WeekSaleServlet'">
           </div>
           </div>
-          <div><%
-         Date date = new Date();
-         out.print( "<h4 align = \"center\">" +date.toString()+"</h4>");
-      %>
+          <div>
+       
+         <h4 align = "center"><fmt:formatDate value="${date}"  
+             type="both" timeStyle="long" dateStyle="long" /></h4>
 <h1>Total </h1>
 <h3><c:out value="${b}" /></h3></div>
           <div>

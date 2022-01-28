@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.chainsys.daoimpl.CartDaoImpl;
 import com.chainsys.model.Cart;
-import com.chainsys.model.Customer;
+
 
 @WebServlet("/Deleteproductincart")
 public class Deleteproductincart extends HttpServlet {

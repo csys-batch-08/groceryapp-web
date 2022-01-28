@@ -58,7 +58,6 @@
 }
 </style>
 <body>
-<% Customer customer = (Customer) session.getAttribute("logincustomer");%>
     <div class="row">
         <div class="col-sm-12 p-3   text-white"> 
           <img src="assets/logo.jpg" alt="" class="float-start">

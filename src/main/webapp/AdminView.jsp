@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>  
     <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +55,7 @@
         var data = google.visualization.arrayToDataTable([
           ['Weekly', 'orders'],
            <c:forEach items="${sales}" var="current">
-    	  [ '<c:out value="${current.getOrderdate()}" />',<c:out value="${current.getOrderid()}" /> ],
+    	  [ '<fmt:formatDate value="${current.getOrderdate()}" pattern="DD-MM-YYYY" />',<c:out value="${current.getOrderid()}" /> ],
     	  
     		  </c:forEach>
         ]);

@@ -14,6 +14,7 @@ import com.chainsys.model.Product;
 
 @WebServlet("/ChangeProductPrice")
 public class ChangeProductPriceServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -32,12 +33,12 @@ public class ChangeProductPriceServlet extends HttpServlet {
 		try {
 			boolean flag = obj.changePrice(product);
 			if (flag) {
-
-				req.getRequestDispatcher("ChangeProductPrice.jsp").include(req, resp);
+resp.sendRedirect("ChangeProductPriceAdminServlet");
+				
 
 			} else {
 
-				req.getRequestDispatcher("ChangeProductPrice.jsp").include(req, resp);
+				resp.sendRedirect("ChangeProductPriceAdminServlet");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 

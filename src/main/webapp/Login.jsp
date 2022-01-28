@@ -1,5 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
+    <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,10 +43,12 @@ body {
 			placeholder="Enter password"> <br> <br> <input
 			type="submit" class="btn btn-success" value="Login"><br>
 		<br>
-		<%String erroruserid=(String)session.getAttribute("erroruserid");
-if(erroruserid!=null){ %>
-		<p id="errorcontent"><%=erroruserid %></p>
-		<% session.removeAttribute("erroruserid");} %>
+		
+
+ <c:if test="${not empty erroruserid}">
+		<p id="errorcontent"><c:out value="${erroruserid}" /></p>
+		</c:if>
+		
 	</form>
 	<label>New User? </label>
 	<input type="button" class="btn btn-primary" value="Sign Up"

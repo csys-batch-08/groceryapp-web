@@ -19,7 +19,7 @@ public class AddProductAdminServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.sendRedirect("AddProduct.jsp");
+		response.sendRedirect("addProduct.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -34,7 +34,7 @@ public class ProductServlet extends HttpServlet {
 
 			e.printStackTrace();
 		}
-		response.sendRedirect("Product.jsp");
+		response.sendRedirect("product.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

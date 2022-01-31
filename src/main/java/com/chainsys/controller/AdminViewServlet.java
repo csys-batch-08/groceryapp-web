@@ -52,7 +52,7 @@ public class AdminViewServlet extends HttpServlet {
 
 			e.printStackTrace();
 		}
-		response.sendRedirect("AdminView.jsp");
+		response.sendRedirect("adminView.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

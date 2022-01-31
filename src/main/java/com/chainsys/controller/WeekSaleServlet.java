@@ -74,7 +74,7 @@ public class WeekSaleServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		session.setAttribute("date", date);
-		response.sendRedirect("WeekSale.jsp");
+		response.sendRedirect("weekSale.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

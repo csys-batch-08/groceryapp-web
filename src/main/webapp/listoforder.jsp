@@ -1,8 +1,3 @@
-<%@page import="com.chainsys.model.Product"%>
-<%@page import="com.chainsys.daoimpl.ProductDaoImpl"%>
-<%@page import="java.util.Calendar"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
 <%@page import="com.chainsys.model.Customer"%>
 <%@page import="com.chainsys.daoimpl.CustomerDaoImpl"%>
 <%@page import="com.chainsys.model.Order"%>
@@ -11,9 +6,8 @@
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>   
-
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>  
     <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +19,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <title>Products</title>
+    <title>Orders</title>
 
 <style>
 .kon
@@ -68,7 +62,6 @@
 }
 </style>
 <body>
-
     <div class="row">
         <div class="col-sm-12 p-3   text-white"> 
           <img src="assets/logo.jpg" alt="" class="float-start">
@@ -78,7 +71,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         
         
@@ -95,7 +88,7 @@
           <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Logout.jsp">Logout</a>
+          <a class="nav-link" href="logout.jsp">Logout</a>
         </li>
         
       </ul>
@@ -105,56 +98,33 @@
 </nav>
         </div>
       </div>
-       <div class="row">
+ <div class="row">
         <div class="col-sm-12 "> 
-        	<input type="button" class="btn btn-primary" value="Add product"
-		onclick="window.location='AddProductAdminServlet'">
-        <input type="button" class="btn btn-primary" value="Status product"
-		onclick="window.location='InActiveProductsServlet'">
-	
-		<input type="button" class="btn btn-primary" value=" Change Products Price"
-		onclick="window.location='ChangeProductPriceAdminServlet'">
-		<input type="button" class="btn btn-primary" value="Modify Product Name"
-		onclick="window.location='ModifiyProductAdminServlet'">
+        <input type="button" class="btn btn-primary" value="Pending Orders"
+		onclick="window.location='PendingOrdersServlet'">
+		<input type="button" class="btn btn-primary" value="List of Orders"
+		onclick="window.location='ListoforderServlet'">
           </div>
-          </div>
-          
-          <div>
-          <table class="table table-striped">
+          </div>          
+<table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">Product</th>
-       <th scope="col">ProductId</th>
-      <th scope="col">ProductName</th>
-      <th scope="col">UnitPrice</th>
+      <th scope="col">Order Id</th>
       <th scope="col">Status</th>
-      
+      <th scope="col">Order Date</th>
     </tr>
   </thead>
   <tbody>
-  
-  <c:forEach items="${productList}" var="current">
+ <c:forEach items="${OrderLists}" var="current">
 <tr>
-<td><img alt="" src="assets/<c:out value="${current.getProductImage()}" />"width="120" height="80"></td>
-<td><c:out value="${current.getProductId()}" /></td>
-<td><c:out value="${current.getProductName()}" /></td>
-<td><c:out value="${current.getProductPrice()}" /></td>
-<td><c:set var="String" value="${current.getProducStatus()}"/> 
-<c:choose>  
-    <c:when test="${fn:containsIgnoreCase(String, 'Y')}">  
-       In stock 
-    </c:when>  
-    <c:otherwise>  
-       Out of stock   
-    </c:otherwise>  
-</c:choose> 
-</td>  
-  
+<td><c:out value="${current.getOrderid()}" /></td>
+<td><c:out value="${current.getStatus()}" /></td>
+<td><fmt:formatDate value="${current.getOrderdate()}" pattern="DD-MM-YYYY" /></td>
 </tr>
 </c:forEach>
   </tbody>
 </table>
-          </div>
+          
           
            
       <div class="footer">

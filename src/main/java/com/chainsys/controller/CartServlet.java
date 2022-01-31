@@ -91,7 +91,7 @@ public class CartServlet extends HttpServlet {
 		}
 		session.setAttribute("offer", total);
 
-		response.sendRedirect("Cart.jsp");
+		response.sendRedirect("cart.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

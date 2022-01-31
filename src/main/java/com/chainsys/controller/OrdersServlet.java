@@ -19,7 +19,7 @@ public class OrdersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.sendRedirect("Orders.jsp");
+		response.sendRedirect("orders.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

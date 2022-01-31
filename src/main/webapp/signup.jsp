@@ -12,7 +12,7 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<title>Login</title>
+<title>Sign Up</title>
 </head>
 <style>
 body {
@@ -52,9 +52,12 @@ body {
         <label for="address">Enter the Address</label> 
         <input type="text" name="address"required maxlength="128"> <br> <br> 
         <input type="submit"class="btn btn-success" value="Submit">  <br> <br>
+         <c:if test="${not empty erroruserids}">
+		<p id="errorcontent"><c:out value="${erroruserids}" /></p>
+		</c:if>
     </form> 
     <label>Already User? </label> 
-    <input type="button"class="btn btn-primary" value="login in" onclick="window.location='Login.jsp'" >
+    <input type="button"class="btn btn-primary" value="login in" onclick="window.location='login.jsp'" >
 
 </body>
 </html>

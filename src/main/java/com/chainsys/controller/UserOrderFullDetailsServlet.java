@@ -50,7 +50,7 @@ public class UserOrderFullDetailsServlet extends HttpServlet {
 		try {
 			double c = obj.userOrderDetailse(feature);
 			session.setAttribute("c", c);
-			response.sendRedirect("UserOrderFullDetails.jsp");
+			response.sendRedirect("userOrderFullDetails.jsp");
 		} catch (ClassNotFoundException e) {
 
 			e.printStackTrace();

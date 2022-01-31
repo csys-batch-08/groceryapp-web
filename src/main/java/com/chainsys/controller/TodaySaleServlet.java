@@ -47,7 +47,7 @@ public class TodaySaleServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		session.setAttribute("date", date);
-		response.sendRedirect("TodaySale.jsp");
+		response.sendRedirect("todaySale.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

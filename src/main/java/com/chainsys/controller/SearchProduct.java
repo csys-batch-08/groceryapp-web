@@ -35,7 +35,7 @@ public class SearchProduct extends HttpServlet {
 		try {
 			List<Product> productList = obj5.sortproduct(product);
 			session.setAttribute("productList", productList);
-			response.sendRedirect("SortDisplay.jsp");
+			response.sendRedirect("sortDisplay.jsp");
 		} catch (ClassNotFoundException e) {
 
 			e.printStackTrace();

@@ -126,7 +126,7 @@ public class ProductDaoImpl implements Productinterface {
 	public List<Product> sortproduct(Product product) throws ClassNotFoundException, SQLException {
 		Connection con = GetConnection.getConnections();
 		List<Product> sortproductlist = new ArrayList<Product>();
-		String query = " SELECT  products_name,standard_cost,products_id,Productsimage FROM product where status in('y' ,'Y') and  products_name LIKE ?";
+		String query = " SELECT  products_name,standard_cost,products_id,Productsimage FROM product where status in('y' ,'Y') and upper( products_name) LIKE upper(?)";
 		PreparedStatement stmt = con.prepareStatement(query);
 		stmt.setString(1, "%" + product.getProductName() + "%");
 		ResultSet rs = stmt.executeQuery();

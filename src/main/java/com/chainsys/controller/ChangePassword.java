@@ -38,11 +38,11 @@ public class ChangePassword extends HttpServlet {
 
 			if (flag) {
 
-				resp.sendRedirect("Login.jsp");
+				resp.sendRedirect("login.jsp");
 
 			} else {
 
-				resp.sendRedirect("Login.jsp");
+				resp.sendRedirect("login.jsp");
 
 			}
 

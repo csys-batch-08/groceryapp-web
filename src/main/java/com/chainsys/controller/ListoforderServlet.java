@@ -38,7 +38,7 @@ public class ListoforderServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		response.sendRedirect("Listoforder.jsp");
+		response.sendRedirect("listoforder.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,8 +1,3 @@
-<%@page import="com.chainsys.model.Product"%>
-<%@page import="com.chainsys.daoimpl.ProductDaoImpl"%>
-<%@page import="java.util.Calendar"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
 <%@page import="com.chainsys.model.Customer"%>
 <%@page import="com.chainsys.daoimpl.CustomerDaoImpl"%>
 <%@page import="com.chainsys.model.Order"%>
@@ -21,7 +16,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <title>Change Name</title>
+    <title>Order</title>
 
 <style>
 .kon
@@ -90,7 +85,7 @@
           <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="Logout.jsp">Logout</a>
+          <a class="nav-link" href="logout.jsp">Logout</a>
         </li>
         
       </ul>
@@ -102,32 +97,12 @@
       </div>
        <div class="row">
         <div class="col-sm-12 "> 
-        	<input type="button" class="btn btn-primary" value="Add product"
-		onclick="window.location='AddProductAdminServlet'">
-        <input type="button" class="btn btn-primary" value="Status product"
-		onclick="window.location='InActiveProductsServlet'">
-	
-		<input type="button" class="btn btn-primary" value=" Change Products Price"
-		onclick="window.location='ChangeProductPriceAdminServlet'">
-		<input type="button" class="btn btn-primary" value="Modify Product Name"
-		onclick="window.location='ModifiyProductAdminServlet'">
+        <input type="button" class="btn btn-primary" value="pending Orders"
+		onclick="window.location='PendingOrdersServlet'">
+		<input type="button" class="btn btn-primary" value="List of Orders"
+		onclick="window.location='ListoforderServlet'">
           </div>
           </div>
-          <div id="allusers">
-
-<form action="ChangeProductPrice">
-<div class="mb-3">
-  <label for="formGroupExampleInput" class="form-label">Enter the product name</label>
-  <input type="text" class="form-control" name="pname" id="formGroupExampleInput" placeholder="Product Name" required >
-</div>
-<div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label">Enter the Product Id</label>
-  <input type="text" class="form-control" name="price" id="formGroupExampleInput2" placeholder="Product Id" name="pID"  required >
-</div>
-<input type="submit" value="submit">
-</form>
-</div>
-          
           
            
       <div class="footer">

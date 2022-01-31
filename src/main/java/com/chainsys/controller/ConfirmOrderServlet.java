@@ -100,7 +100,7 @@ public class ConfirmOrderServlet extends HttpServlet {
 			order.setOrderid(oid);
 			OrderDaoImpl obj3 = new OrderDaoImpl();
 			obj3.makefinal(order);
-			response.sendRedirect("AdderPlacedSuccessfully.jsp");
+			response.sendRedirect("adderPlacedSuccessfully.jsp");
 
 		} catch (ClassNotFoundException e) {
 

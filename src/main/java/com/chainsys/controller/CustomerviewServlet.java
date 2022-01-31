@@ -32,7 +32,7 @@ public class CustomerviewServlet extends HttpServlet {
 		try {
 			List<Product> productLists = obj5.ViewAllProducte();
 			session.setAttribute("productLists", productLists);
-			response.sendRedirect("CustomerView.jsp");
+			response.sendRedirect("customerView.jsp");
 
 		} catch (ClassNotFoundException e) {
 

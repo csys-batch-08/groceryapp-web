@@ -37,7 +37,7 @@ public class PendingOrdersServlet extends HttpServlet {
 
 			e.printStackTrace();
 		}
-		response.sendRedirect("PendingOrders.jsp");
+		response.sendRedirect("pendingOrders.jsp");
 
 	}
 

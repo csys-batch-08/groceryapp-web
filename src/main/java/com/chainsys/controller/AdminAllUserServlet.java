@@ -38,7 +38,7 @@ public class AdminAllUserServlet extends HttpServlet {
 
 			e.printStackTrace();
 		}
-		response.sendRedirect("AdminAllUser.jsp");
+		response.sendRedirect("adminAllUser.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -36,7 +36,7 @@ public class CustomerOrderServlet extends HttpServlet {
 		try {
 			List<Order> orderlist = obj.orderdetail(order);
 			session.setAttribute("orderlist", orderlist);
-			response.sendRedirect("CustomerOrder.jsp");
+			response.sendRedirect("customerOrder.jsp");
 
 		} catch (ClassNotFoundException e) {
 

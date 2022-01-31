@@ -11,7 +11,7 @@
 <%session.invalidate(); %>
 <script>
          setTimeout(function(){
-            window.location.href = 'Login.jsp';
+            window.location.href = 'login.jsp';
          }, 2000);
       </script>
 </body>

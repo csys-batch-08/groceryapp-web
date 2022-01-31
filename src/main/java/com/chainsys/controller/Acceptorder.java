@@ -21,7 +21,6 @@ public class Acceptorder extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		boolean flag = false;
 		int ordid = Integer.parseInt(request.getParameter("orderId"));
 		Order order = new Order();

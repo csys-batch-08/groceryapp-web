@@ -32,11 +32,11 @@ public class InActiveProduct extends HttpServlet {
 			boolean flag = obj.delete(product);
 			if (flag) {
 
-				req.getRequestDispatcher("InActiveProducts.jsp").include(req, resp);
+				req.getRequestDispatcher("inActiveProducts.jsp").include(req, resp);
 
 			} else {
 
-				req.getRequestDispatcher("InActiveProducts.jsp").include(req, resp);
+				req.getRequestDispatcher("inActiveProducts.jsp").include(req, resp);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

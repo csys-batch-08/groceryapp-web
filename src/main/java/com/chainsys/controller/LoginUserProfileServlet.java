@@ -19,7 +19,7 @@ public class LoginUserProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.sendRedirect("LoginUserProfile.jsp");
+		response.sendRedirect("loginUserProfile.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

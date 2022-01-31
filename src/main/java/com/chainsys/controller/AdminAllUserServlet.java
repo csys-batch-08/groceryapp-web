@@ -23,6 +23,7 @@ public class AdminAllUserServlet extends HttpServlet {
 
 	}
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -41,6 +42,7 @@ public class AdminAllUserServlet extends HttpServlet {
 		response.sendRedirect("adminAllUser.jsp");
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

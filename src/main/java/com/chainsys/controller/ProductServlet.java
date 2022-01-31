@@ -22,7 +22,7 @@ public class ProductServlet extends HttpServlet {
 		super();
 
 	}
-
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ProductDaoImpl obj = new ProductDaoImpl();
@@ -36,7 +36,7 @@ public class ProductServlet extends HttpServlet {
 		}
 		response.sendRedirect("product.jsp");
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

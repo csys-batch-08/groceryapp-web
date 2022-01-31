@@ -21,7 +21,7 @@ public class ListoforderServlet extends HttpServlet {
 	public ListoforderServlet() {
 		super();
 	}
-
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -40,7 +40,7 @@ public class ListoforderServlet extends HttpServlet {
 
 		response.sendRedirect("listoforder.jsp");
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

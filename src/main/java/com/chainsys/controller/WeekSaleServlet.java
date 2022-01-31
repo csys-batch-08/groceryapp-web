@@ -24,7 +24,7 @@ public class WeekSaleServlet extends HttpServlet {
 		super();
 
 	}
-
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		long millis=System.currentTimeMillis();  
@@ -76,7 +76,7 @@ public class WeekSaleServlet extends HttpServlet {
 		session.setAttribute("date", date);
 		response.sendRedirect("weekSale.jsp");
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

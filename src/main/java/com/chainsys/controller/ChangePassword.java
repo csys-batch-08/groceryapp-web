@@ -21,7 +21,7 @@ public class ChangePassword extends HttpServlet {
 		super();
 
 	}
-
+	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		long phoneNumber = Long.parseLong(req.getParameter("uname"));
@@ -52,10 +52,10 @@ public class ChangePassword extends HttpServlet {
 		}
 
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		doGet(request, response);
 	}
-
 }

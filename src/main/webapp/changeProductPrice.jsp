@@ -115,7 +115,7 @@
           </div>
           <div id="allusers">
 
-<form action="ChangeProductPrice">
+<form action="ChangeProductPrice" method="post">
 <div class="mb-3">
   <label for="formGroupExampleInput" class="form-label">Enter the product name</label>
   <input type="text" class="form-control" name="pname" id="formGroupExampleInput" placeholder="Product Name" required >

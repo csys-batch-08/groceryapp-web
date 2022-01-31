@@ -86,7 +86,7 @@
         </li>
         
       </ul>
-      <form class="d-flex" action="SearchProduct">
+      <form class="d-flex" action="SearchProduct" method="post">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="name">
         <button class="btn btn-primary" type="submit">Search</button>
       </form>
@@ -97,7 +97,7 @@
       </div>
       <div class= kone>
       
-      <form action="ChangePassword">
+      <form action="ChangePassword" method="post">
       <div class="col-md-4">
         <label for="pnumber">Enter MobileNumber</label>
         </div>

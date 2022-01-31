@@ -13,53 +13,49 @@ import javax.servlet.http.HttpServletResponse;
 import com.chainsys.daoimpl.ProductDaoImpl;
 import com.chainsys.model.Product;
 
-
 @WebServlet("/Addproduct")
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public AddProductServlet() {
-        super();
-       
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String productimage= request.getParameter("productimage");
-		System.out.println(productimage);
-		String products= request.getParameter("pname");
-		double price= Double.parseDouble(request.getParameter("price"));
+	public AddProductServlet() {
+		super();
+
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String productimage = request.getParameter("productimage");
+		String products = request.getParameter("pname");
+		double price = Double.parseDouble(request.getParameter("price"));
 		Product product = new Product();
 		product.setProductImage(productimage);
 		product.setProductName(products);
 		product.setProductPrice(price);
-		ProductDaoImpl obj =new ProductDaoImpl();
-		
-		 response.setContentType("text/html");
+		ProductDaoImpl obj = new ProductDaoImpl();
+
+		response.setContentType("text/html");
 		try {
-		boolean	flag =obj.addproduct(product);
-			if(flag)
-			{
+			boolean flag = obj.addproduct(product);
+			if (flag) {
 				response.sendRedirect("AddProductAdminServlet");
-				 
-					
-			}
-			else
-			{
-				 	
+
+			} else {
+
 				response.sendRedirect("AddProductAdminServlet");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-	
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 

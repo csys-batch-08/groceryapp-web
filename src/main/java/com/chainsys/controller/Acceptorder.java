@@ -18,7 +18,7 @@ public class Acceptorder extends HttpServlet {
 		super();
 
 	}
-
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		boolean flag = false;
@@ -32,7 +32,7 @@ public class Acceptorder extends HttpServlet {
 
 		}
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

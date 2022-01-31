@@ -36,7 +36,7 @@ body {
 	<h3>Sign Up
 	</h3>
 
-	<form action="signup">
+	<form action="signup" method="post">
         <label for="cname">Enter User Name</label> 
 		<input type="text"name="cname" autofocus pattern="[1-9a-zA-Z]{3,}"> <br> 
 		<label for="pnome">Enter Mobile Number</label> 

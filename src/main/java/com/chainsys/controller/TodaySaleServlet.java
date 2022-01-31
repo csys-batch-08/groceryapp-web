@@ -23,7 +23,7 @@ public class TodaySaleServlet extends HttpServlet {
 		super();
 
 	}
-
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		long millis=System.currentTimeMillis();  
@@ -49,7 +49,7 @@ public class TodaySaleServlet extends HttpServlet {
 		session.setAttribute("date", date);
 		response.sendRedirect("todaySale.jsp");
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

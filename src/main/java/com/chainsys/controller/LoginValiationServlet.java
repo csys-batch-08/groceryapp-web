@@ -18,8 +18,10 @@ import com.chainsys.model.Customer;
 public class LoginValiationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
+		doGet(request, response);
 	}
 
 	@Override
@@ -60,4 +62,5 @@ public class LoginValiationServlet extends HttpServlet {
 		}
 
 	}
+	
 }

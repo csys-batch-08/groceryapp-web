@@ -22,7 +22,7 @@ public class PendingOrdersServlet extends HttpServlet {
 		super();
 
 	}
-
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		OrderDaoImpl obj = new OrderDaoImpl();
@@ -40,7 +40,7 @@ public class PendingOrdersServlet extends HttpServlet {
 		response.sendRedirect("pendingOrders.jsp");
 
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

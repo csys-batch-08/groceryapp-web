@@ -34,12 +34,12 @@ public class ModifiyProductServlet extends HttpServlet {
 		try {
 			boolean flag = obj.changeName(product);
 			if (flag) {
-
-				req.getRequestDispatcher("changeProductPrice.jsp").include(req, resp);
+				resp.sendRedirect("ModifiyProductAdminServlet");
+				
 
 			} else {
-
-				req.getRequestDispatcher("changeProductPrice.jsp").include(req, resp);
+				resp.sendRedirect("ModifiyProductAdminServlet");
+				
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

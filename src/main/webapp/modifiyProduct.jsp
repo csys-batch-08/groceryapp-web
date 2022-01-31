@@ -115,14 +115,14 @@
           </div>
           <div id="allusers">
 
-<form action="ChangeProductPrice">
+<form action="ModifiyProduct" method="post">
 <div class="mb-3">
   <label for="formGroupExampleInput" class="form-label">Enter the product name</label>
-  <input type="text" class="form-control" name="pname" id="formGroupExampleInput" placeholder="Product Name" required >
+  <input type="text" class="form-control" name="pName" id="formGroupExampleInput" placeholder="Product Name" required >
 </div>
 <div class="mb-3">
   <label for="formGroupExampleInput2" class="form-label">Enter the Product Id</label>
-  <input type="text" class="form-control" name="price" id="formGroupExampleInput2" placeholder="Product Id" name="pID"  required >
+  <input type="text" class="form-control" name="pID" id="formGroupExampleInput2" placeholder="Product Id" name="pID"  required >
 </div>
 <input type="submit" value="submit">
 </form>

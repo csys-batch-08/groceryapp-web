@@ -34,7 +34,7 @@ body {
 
 	<h3>Grocery App</h3>
 
-	<form action="login">
+	<form action="login" method="post">
 		<label for="pnumber">Mobile Number</label><br> <input type="text"
 			name="uname" required autofocus pattern="[6-9]{1}[0-9]{9}"
 			placeholder="Enter Mobile number"> <br>

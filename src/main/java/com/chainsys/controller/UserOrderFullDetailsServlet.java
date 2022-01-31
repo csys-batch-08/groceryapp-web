@@ -23,7 +23,7 @@ public class UserOrderFullDetailsServlet extends HttpServlet {
 		super();
 
 	}
-
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int b = Integer.parseInt(request.getParameter("orderId"));
@@ -59,7 +59,7 @@ public class UserOrderFullDetailsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

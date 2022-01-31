@@ -22,7 +22,7 @@
 			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+
 <dependency>
     <groupId>jstl</groupId>
     <artifactId>jstl</artifactId>

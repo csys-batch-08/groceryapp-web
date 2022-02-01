@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,15 +41,9 @@ public class DecreaseQuantity extends HttpServlet {
 			e2.printStackTrace();
 		}
 		
-		try {
+		
 			qty = obj.check(stt);
-		} catch (ClassNotFoundException e1) {
-
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-
-			e1.printStackTrace();
-		}
+		
 		if (qty <= 10 && !(qty == 1)) {// check quantity
 
 			stt.setQuantity(qty - 1);
@@ -59,12 +52,7 @@ public class DecreaseQuantity extends HttpServlet {
 			try {
 				obj.incease(stt);
 				response.sendRedirect("CartServlet");
-			} catch (ClassNotFoundException e) {
-
-				e.printStackTrace();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
+			
 			} catch (IOException e) {
 				
 				e.printStackTrace();

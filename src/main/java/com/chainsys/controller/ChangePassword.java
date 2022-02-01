@@ -2,7 +2,6 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 
-import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,7 +51,7 @@ public class ChangePassword extends HttpServlet {
 
 			}
 
-		} catch (ClassNotFoundException | SQLException | IOException e) {
+		} catch (  IOException e) {
 
 			e.printStackTrace();
 		}

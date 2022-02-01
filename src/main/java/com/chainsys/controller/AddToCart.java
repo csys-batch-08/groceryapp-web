@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,15 +45,9 @@ public class AddToCart extends HttpServlet {
 	}
 		
 		int oid = 0;
-		try {
+		
 			oid = obj.cartCheck(order);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		// check user if order id already exist in cart
 		if (!(oid > 0)) {
 
@@ -71,27 +64,15 @@ public class AddToCart extends HttpServlet {
 
 		CartDaoImpl obj1 = new CartDaoImpl();
 		int qty = 0;
-		try {
+		
 			qty = obj1.check(stt);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		if (qty > 0 && !(qty > 9)) {// check quantity
 
 			stt.setQuantity(qty + 1);
-			try {
+			
 				obj1.incease(stt);
-			} catch (ClassNotFoundException e) {
-
-				e.printStackTrace();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
+			
 
 			try {
 				response.sendRedirect("CustomerviewServlet");
@@ -110,15 +91,9 @@ public class AddToCart extends HttpServlet {
 
 			stt.setQuantity(1);
 			stt.setPrice(0);
-			try {
+		
 				obj1.addToCart(stt);
-			} catch (ClassNotFoundException e) {
-
-				e.printStackTrace();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
+			
 
 			try {
 				response.sendRedirect("CustomerviewServlet");

@@ -2,7 +2,6 @@ package com.chainsys.controller;
 
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 
@@ -28,13 +27,10 @@ public class ProductServlet extends HttpServlet {
 			 {
 		ProductDaoImpl obj = new ProductDaoImpl();
 		HttpSession session = request.getSession();
-		try {
+		
 			List<Product> productList = obj.AdminViewAllProducts();
 			session.setAttribute("productList", productList);
-		} catch (ClassNotFoundException | SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		try {
 			response.sendRedirect("product.jsp");
 		} catch (IOException e) {

@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -26,12 +25,11 @@ public class UserOrderFullDetailsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			 {
 		Order order = new Order();
-		HttpSession session=null;
+		HttpSession session= request.getSession();
 		Feature feature=null;
 		try {
 			String b1 = request.getParameter("orderId");
 			int b = Integer.parseInt(b1);
-			session = request.getSession();
 			session.setAttribute("b", b);
 			feature = new Feature();
 			feature.setOrderId(b);
@@ -42,28 +40,17 @@ public class UserOrderFullDetailsServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		OrderDaoImpl obj = new OrderDaoImpl();
-		try {
+		
 			List<Feature> orderlist = obj.userOrderDetails(feature);
 			session.setAttribute("orderlists", orderlist);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		String status = obj.status(order);
 		session.setAttribute("status", status);
 		try {
 			double c = obj.userOrderDetailse(feature);
 			session.setAttribute("c", c);
 			response.sendRedirect("userOrderFullDetails.jsp");
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
+		
 		} catch (IOException e) {
 			
 			e.printStackTrace();

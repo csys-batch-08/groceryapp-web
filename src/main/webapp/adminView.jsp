@@ -55,7 +55,7 @@
         var data = google.visualization.arrayToDataTable([
           ['Weekly', 'orders'],
            <c:forEach items="${sales}" var="current">
-    	  [ '<fmt:formatDate value="${current.getOrderdate()}" pattern="DD-MM-YYYY" />',<c:out value="${current.getOrderid()}" /> ],
+    	  [ '<fmt:formatDate value="${current.getOrderdate()}" pattern="dd-MM-yyyy" />',<c:out value="${current.getOrderid()}" /> ],
     	  
     		  </c:forEach>
         ]);

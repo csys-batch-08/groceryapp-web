@@ -119,7 +119,8 @@
 <tr>
 <td><c:out value="${current.getOrderid()}" /></td>
 <td><c:out value="${current.getStatus()}" /></td>
-<td><fmt:formatDate value="${current.getOrderdate()}" pattern="DD-MM-YYYY" /></td>
+<td> <fmt:formatDate pattern="dd-MM-yyyy"
+         value = "${current.getOrderdate()}" /></td>
 </tr>
 </c:forEach>
   </tbody>

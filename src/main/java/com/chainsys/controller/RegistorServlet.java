@@ -1,7 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +49,7 @@ public class RegistorServlet extends HttpServlet {
 			{
 				throw new RegistorException();
 			}
-		} catch (ClassNotFoundException | SQLException | RegistorException | IOException e) {
+		} catch ( RegistorException | IOException e) {
 			session.setAttribute("erroruserids",  "Sorry, User Already exist!");
 
 			try {

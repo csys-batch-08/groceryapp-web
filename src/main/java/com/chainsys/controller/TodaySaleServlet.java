@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -30,20 +29,13 @@ public class TodaySaleServlet extends HttpServlet {
      
 		OrderDaoImpl obj = new OrderDaoImpl();
 		HttpSession session = request.getSession();
-		try {
 			List<Feature> sale = obj.todaySale();
 			session.setAttribute("sale", sale);
-		} catch (ClassNotFoundException | SQLException e) {
-
-			e.printStackTrace();
-		}
-		try {
+		
+		
 			double b = obj.todaySales();
 			session.setAttribute("b", b);
-		} catch (ClassNotFoundException | SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		session.setAttribute("date", date);
 		try {
 			response.sendRedirect("todaySale.jsp");

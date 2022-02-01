@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -53,7 +52,7 @@ public class ConfirmOrderServlet extends HttpServlet {
 			}
 
 			if (offercost > 499 && (offercost < 999)) {
-				System.out.println(offercost);
+				
 				List<Integer> prdid = obj.gettingproductidincart(stt);
 				for (int i = 0; i < prdid.size(); i++) {
 					Product product = new Product();
@@ -101,13 +100,7 @@ public class ConfirmOrderServlet extends HttpServlet {
 			obj3.makefinal(order);
 			response.sendRedirect("adderPlacedSuccessfully.jsp");
 
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
+		}catch (IOException e) {
 		
 			e.printStackTrace();
 		}

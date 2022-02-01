@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -58,20 +57,16 @@ public class WeekSaleServlet extends HttpServlet {
 
 		 
 		OrderDaoImpl obj = new OrderDaoImpl();
-		try {
+		
 			List<Feature> sale = obj.weekSale();
 			session.setAttribute("sale", sale);
-		} catch (ClassNotFoundException | SQLException e) {
-
-			e.printStackTrace();
-		}
-		try {
+		
+		
 			double b = obj.weekSales();
 			session.setAttribute("b", b);
-		} catch (ClassNotFoundException | SQLException e) {
+		
 
-			e.printStackTrace();
-		}
+		
 		session.setAttribute("date", date);
 		try {
 			response.sendRedirect("weekSale.jsp");

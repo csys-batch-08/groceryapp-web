@@ -121,7 +121,8 @@
 <tr>
 <td><c:out value="${current.getOrderid()}" /></td>
 <td><c:out value="${current.getStatus()}" /></td>
-<td><fmt:formatDate value="${current.getOrderdate()}" pattern="DD-MM-YYYY" /></td>
+<td><fmt:formatDate pattern="dd-MM-yyyy"
+         value = "${current.getOrderdate()}" /></td>
 <td> <input type="button" value="confirm" onclick="window.location='Accept?orderId=<c:out value="${current.getOrderid()}" />'" ></td>
 </tr>
 </c:forEach>

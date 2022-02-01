@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +43,7 @@ public class InActiveProduct extends HttpServlet {
 
 				req.getRequestDispatcher("inActiveProducts.jsp").include(req, resp);
 			}
-		} catch (ClassNotFoundException | SQLException | ServletException | IOException e) {
+		} catch ( ServletException | IOException e) {
 			e.printStackTrace();
 		}
 	}

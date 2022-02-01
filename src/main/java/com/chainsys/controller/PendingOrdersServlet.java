@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -26,16 +25,10 @@ public class PendingOrdersServlet extends HttpServlet {
 			 {
 		OrderDaoImpl obj = new OrderDaoImpl();
 		HttpSession session = request.getSession();
-		try {
+		
 			List<Order> OrderList = obj.orderdetails();
 			session.setAttribute("OrderList", OrderList);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		try {
 			response.sendRedirect("pendingOrders.jsp");
 		} catch (IOException e) {

@@ -2,7 +2,7 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 
-import java.sql.SQLException;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,7 +50,7 @@ public class AddProductServlet extends HttpServlet {
 
 				response.sendRedirect("AddProductAdminServlet");
 			}
-		} catch (ClassNotFoundException | SQLException | IOException e) {
+		} catch ( IOException e) {
 
 			e.printStackTrace();
 		}

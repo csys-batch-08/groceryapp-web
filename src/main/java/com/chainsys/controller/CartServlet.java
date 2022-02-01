@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -40,44 +39,26 @@ public class CartServlet extends HttpServlet {
 		order.setCustomerid(cid);
 		OrderDaoImpl obj1 = new OrderDaoImpl();
 		int ojid;
-		try {
+		
 			ojid = obj1.cartCheck(order);
 			if (ojid > 0) {
 				oid = ojid;
 			}
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 
 		session.setAttribute("logincustomerorderId", oid);
 
 		Feature feature = new Feature();
 		feature.setOrderId(oid);
 		CartDaoImpl obj = new CartDaoImpl();
-		try {
+		
 			List<Feature> cartlist = obj.showCartin(feature);
 			session.setAttribute("cartlist", cartlist);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		try {
+		
+		
 			total = obj.showCartinTotal(feature);
 			session.setAttribute("total", total);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 
 		if (total > 499 && total < 999) {
 			offer = total * 0.05;

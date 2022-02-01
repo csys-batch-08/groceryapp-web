@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,27 +38,17 @@ public class IncreaseQuantity extends HttpServlet {
 			e2.printStackTrace();
 		}
 		
-		try {
+		
 			qty = obj.check(stt);
-		} catch (ClassNotFoundException e1) {
-
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-
-			e1.printStackTrace();
-		}
+		
+		
 		if (qty > 0 && !(qty > 9)) {// check quantity
 
 			stt.setQuantity(qty + 1);
-			try {
+			
 				obj.incease(stt);
-			} catch (ClassNotFoundException e) {
-
-				e.printStackTrace();
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
+			
+		
 			try {
 				response.sendRedirect("CartServlet");
 			} catch (IOException e) {

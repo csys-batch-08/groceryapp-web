@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -30,12 +29,7 @@ public class ListoforderServlet extends HttpServlet {
 			List<Order> OrderList = obj.listoforder();
 			session.setAttribute("OrderLists", OrderList);
 			response.sendRedirect("listoforder.jsp");
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
+		
 		} catch (IOException e) {
 		
 			e.printStackTrace();

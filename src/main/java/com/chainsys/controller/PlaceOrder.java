@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
@@ -25,9 +24,9 @@ public class PlaceOrder extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		ProductDaoImpl obj = new ProductDaoImpl();
 
@@ -38,7 +37,11 @@ public class PlaceOrder extends HttpServlet {
 			response.setContentType("text/html");
 
 			for (Product p : productList) {
-				int qty = Integer.parseInt(request.getParameter(p.getProductName()));
+				int qty;
+
+				String qtys = request.getParameter(p.getProductName());
+				qty = Integer.parseInt(qtys);
+
 				if (qty > 0) {
 					productid.add(p.getProductId());
 					productquantiy.add(qty);
@@ -74,21 +77,17 @@ public class PlaceOrder extends HttpServlet {
 
 			response.sendRedirect("CustomerviewServlet");
 
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
 		} catch (IOException e) {
-			
+
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+
 			e.printStackTrace();
 		}
 
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			{
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

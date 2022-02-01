@@ -1,9 +1,7 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,29 +15,29 @@ import com.chainsys.model.Customer;
 @WebServlet("/login")
 public class LoginValiationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		Customer customer = new Customer();
 		CustomerDaoImpl obj = new CustomerDaoImpl();
 		try {
 			String phonenumbers = req.getParameter("uname");
 			long phonenumber = Long.parseLong(phonenumbers);
 			String Password = req.getParameter("pword");
-			
+
 			customer.setPhonenumber(phonenumber);
 			customer.setPassword(Password);
 		} catch (NumberFormatException e2) {
-			
+
 			e2.printStackTrace();
 		}
-		
+
 		HttpSession session = req.getSession();
 		resp.setContentType("text/html");
 		try {
@@ -61,17 +59,20 @@ public class LoginValiationServlet extends HttpServlet {
 
 			}
 
-		} catch (ClassNotFoundException | SQLException | LoginException | IOException e) {
+		} catch ( LoginException | IOException e) {
 			session.setAttribute("erroruserid", ((LoginException) e).getUserNameLoginMessage());
 
 			try {
-				req.getRequestDispatcher("Login.jsp").include(req, resp);
-			} catch (ServletException | IOException e1) {
+				resp.sendRedirect("login.jsp");
+
+			} catch (IOException e1) {
+
 				e1.printStackTrace();
 			}
+
 			e.printStackTrace();
 		}
 
 	}
-	
+
 }

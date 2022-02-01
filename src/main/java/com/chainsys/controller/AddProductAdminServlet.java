@@ -14,7 +14,7 @@ public class AddProductAdminServlet extends HttpServlet {
 		super();
 
 	}
-
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			 {
 
@@ -24,7 +24,7 @@ public class AddProductAdminServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			 {
 

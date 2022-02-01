@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,16 +26,10 @@ public class AdminAllUserServlet extends HttpServlet {
 
 		CustomerDaoImpl obj = new CustomerDaoImpl();
 		HttpSession session = request.getSession();
-		try {
+		
 			List<Customer> userList = obj.viewallLoginUser();
 			session.setAttribute("userList", userList);
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		try {
 			response.sendRedirect("adminAllUser.jsp");
 		} catch (IOException e) {

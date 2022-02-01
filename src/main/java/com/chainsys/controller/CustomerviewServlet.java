@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -33,12 +32,7 @@ public class CustomerviewServlet extends HttpServlet {
 			session.setAttribute("productLists", productLists);
 			response.sendRedirect("customerView.jsp");
 
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
+		
 		} catch (IOException e) {
 			
 			e.printStackTrace();

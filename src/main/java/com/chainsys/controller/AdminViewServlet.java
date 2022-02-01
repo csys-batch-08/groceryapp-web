@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -30,29 +29,17 @@ public class AdminViewServlet extends HttpServlet {
 		OrderDaoImpl obj = new OrderDaoImpl();
 		HttpSession session = request.getSession();
 
-		try {
+		
 			List<Feature> sale = obj.todaySalegraph();
 			session.setAttribute("sale", sale);
 
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		try {
+		
+		
 			List<Order> sales = obj.graphsale();
 			session.setAttribute("sales", sales);
+			response.sendRedirect("adminView.jsp");
 
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		response.sendRedirect("adminView.jsp");
+		
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

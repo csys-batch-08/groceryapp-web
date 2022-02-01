@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,12 +47,7 @@ public class Deleteproductincart extends HttpServlet {
 			if (flag) {
 				response.sendRedirect("CartServlet");
 			}
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
+	
 		} catch (IOException e) {
 			
 			e.printStackTrace();

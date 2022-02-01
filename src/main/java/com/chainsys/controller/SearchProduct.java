@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
@@ -35,12 +34,7 @@ public class SearchProduct extends HttpServlet {
 			List<Product> productList = obj5.sortproduct(product);
 			session.setAttribute("productList", productList);
 			response.sendRedirect("sortDisplay.jsp");
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
+		
 		} catch (IOException e) {
 			
 			e.printStackTrace();

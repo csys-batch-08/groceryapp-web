@@ -2,7 +2,6 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,13 +25,14 @@ public class AddToCart extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		 {
 
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
 
 		Customer customer = (Customer) session.getAttribute("logincustomer");
-		int pid = Integer.parseInt(request.getParameter("orderId"));
+	String pids = request.getParameter("orderId");
+		int pid = Integer.parseInt(pids);
 		int cid = customer.getCustomerid();
 		Order order = new Order();
 		order.setCustomerid(cid);
@@ -85,11 +85,19 @@ public class AddToCart extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			response.sendRedirect("CustomerviewServlet");
+			try {
+				response.sendRedirect("CustomerviewServlet");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 		} else if (qty > 9) {
 
-			response.sendRedirect("CustomerviewServlet");
+			try {
+				response.sendRedirect("CustomerviewServlet");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
 
 			stt.setQuantity(1);
@@ -104,7 +112,11 @@ public class AddToCart extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			response.sendRedirect("CustomerviewServlet");
+			try {
+				response.sendRedirect("CustomerviewServlet");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			;
 
 		}
@@ -113,7 +125,7 @@ public class AddToCart extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			{
 
 		doGet(request, response);
 	}

@@ -17,7 +17,7 @@ import com.chainsys.model.Product;
 public class InActiveProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
 		
 		String productname = req.getParameter("pname");
 		String productstatus = req.getParameter("status");
@@ -38,14 +38,14 @@ public class InActiveProduct extends HttpServlet {
 
 				req.getRequestDispatcher("inActiveProducts.jsp").include(req, resp);
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException | ServletException | IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			{
 
 		doGet(request, response);
 	}

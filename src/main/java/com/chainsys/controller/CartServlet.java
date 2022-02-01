@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ public class CartServlet extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			{
 
 		int oid = 0;
 		double total = 0;
@@ -91,11 +90,16 @@ public class CartServlet extends HttpServlet {
 		}
 		session.setAttribute("offer", total);
 
-		response.sendRedirect("cart.jsp");
+		try {
+			response.sendRedirect("cart.jsp");
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 
 		doGet(request, response);
 	}

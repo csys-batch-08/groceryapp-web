@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +23,7 @@ public class PendingOrdersServlet extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 		OrderDaoImpl obj = new OrderDaoImpl();
 		HttpSession session = request.getSession();
 		try {
@@ -37,12 +36,17 @@ public class PendingOrdersServlet extends HttpServlet {
 
 			e.printStackTrace();
 		}
-		response.sendRedirect("pendingOrders.jsp");
+		try {
+			response.sendRedirect("pendingOrders.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 
 		doGet(request, response);
 	}

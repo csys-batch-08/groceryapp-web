@@ -19,18 +19,19 @@ public class LoginValiationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 
 		doGet(request, response);
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
 
-		long phoneNumber = Long.parseLong(req.getParameter("uname"));
+		String phonenumbers = req.getParameter("uname");
+		long phonenumber = Long.parseLong(phonenumbers);
 		String Password = req.getParameter("pword");
 		Customer customer = new Customer();
-		customer.setPhonenumber(phoneNumber);
+		customer.setPhonenumber(phonenumber);
 		customer.setPassword(Password);
 		CustomerDaoImpl obj = new CustomerDaoImpl();
 		HttpSession session = req.getSession();
@@ -54,10 +55,14 @@ public class LoginValiationServlet extends HttpServlet {
 
 			}
 
-		} catch (ClassNotFoundException | SQLException | LoginException e) {
+		} catch (ClassNotFoundException | SQLException | LoginException | IOException e) {
 			session.setAttribute("erroruserid", ((LoginException) e).getUserNameLoginMessage());
 
-			req.getRequestDispatcher("Login.jsp").include(req, resp);
+			try {
+				req.getRequestDispatcher("Login.jsp").include(req, resp);
+			} catch (ServletException | IOException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}
 

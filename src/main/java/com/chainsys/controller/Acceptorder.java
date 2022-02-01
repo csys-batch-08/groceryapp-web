@@ -1,7 +1,6 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,21 +19,27 @@ public class Acceptorder extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 		boolean flag = false;
-		int ordid = Integer.parseInt(request.getParameter("orderId"));
+		String ordids = request.getParameter("orderId");
+		int ordid = Integer.parseInt(ordids);
 		Order order = new Order();
 		order.setOrderid(ordid);
 		OrderDaoImpl obj = new OrderDaoImpl();
 		flag = obj.accept(order);
 		if (flag) {
-			response.sendRedirect("PendingOrdersServlet");
+			try {
+				response.sendRedirect("PendingOrdersServlet");
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 
 		}
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		 {
 
 		doGet(request, response);
 	}

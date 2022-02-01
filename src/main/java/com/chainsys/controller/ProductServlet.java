@@ -1,10 +1,11 @@
 package com.chainsys.controller;
 
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.ServletException;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ public class ProductServlet extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 		ProductDaoImpl obj = new ProductDaoImpl();
 		HttpSession session = request.getSession();
 		try {
@@ -34,11 +35,16 @@ public class ProductServlet extends HttpServlet {
 
 			e.printStackTrace();
 		}
-		response.sendRedirect("product.jsp");
+		try {
+			response.sendRedirect("product.jsp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 
 		doGet(request, response);
 	}

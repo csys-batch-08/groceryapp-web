@@ -24,11 +24,12 @@ public class AddProductServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			{
 
 		String productimage = request.getParameter("productimage");
 		String products = request.getParameter("pname");
-		double price = Double.parseDouble(request.getParameter("price"));
+		String prices = request.getParameter("price");
+		double price = Double.parseDouble(prices);
 		Product product = new Product();
 		product.setProductImage(productimage);
 		product.setProductName(products);
@@ -45,7 +46,7 @@ public class AddProductServlet extends HttpServlet {
 
 				response.sendRedirect("AddProductAdminServlet");
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException | IOException e) {
 
 			e.printStackTrace();
 		}

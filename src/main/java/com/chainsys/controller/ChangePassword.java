@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,12 +21,13 @@ public class ChangePassword extends HttpServlet {
 
 	}
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
 
-		long phoneNumber = Long.parseLong(req.getParameter("uname"));
+		String phonenumbers = req.getParameter("uname");
+		long phonenumber = Long.parseLong(phonenumbers);
 		String Password = req.getParameter("pword");
 		Customer customer = new Customer();
-		customer.setPhonenumber(phoneNumber);
+		customer.setPhonenumber(phonenumber);
 		customer.setPassword(Password);
 		CustomerDaoImpl obj = new CustomerDaoImpl();
 
@@ -46,7 +46,7 @@ public class ChangePassword extends HttpServlet {
 
 			}
 
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException | IOException e) {
 
 			e.printStackTrace();
 		}
@@ -54,7 +54,7 @@ public class ChangePassword extends HttpServlet {
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 
 		doGet(request, response);
 	}

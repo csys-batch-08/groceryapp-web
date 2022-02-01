@@ -19,7 +19,7 @@ import com.chainsys.model.Customer;
 public class RegistorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		HttpSession session = req.getSession();
 		boolean flag=false;
 		String username = req.getParameter("cname");
@@ -27,7 +27,8 @@ public class RegistorServlet extends HttpServlet {
 		String firstName = req.getParameter("fname");
 		String lastName = req.getParameter("lname");
 		String address = req.getParameter("address");
-		long phonenumber = Long.parseLong(req.getParameter("pnumber"));
+		String phonenumbers = req.getParameter("pnumber");
+		long phonenumber = Long.parseLong(phonenumbers);
 		String emailid = req.getParameter("eid");
 		Customer customer = new Customer(username, password, firstName, lastName, address, phonenumber, emailid);
 		CustomerDaoImpl obj1 = new CustomerDaoImpl();
@@ -41,10 +42,15 @@ public class RegistorServlet extends HttpServlet {
 			{
 				throw new RegistorException();
 			}
-		} catch (ClassNotFoundException | SQLException | RegistorException e) {
+		} catch (ClassNotFoundException | SQLException | RegistorException | IOException e) {
 			session.setAttribute("erroruserids",  "Sorry, User Already exist!");
 
-			req.getRequestDispatcher("signup.jsp").include(req, resp);
+			try {
+				req.getRequestDispatcher("signup.jsp").include(req, resp);
+			} catch (ServletException | IOException e1) {
+				
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		}
 
@@ -52,7 +58,7 @@ public class RegistorServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			{
 
 		doGet(request, response);
 	}

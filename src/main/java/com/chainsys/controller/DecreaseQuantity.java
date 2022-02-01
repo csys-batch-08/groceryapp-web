@@ -23,11 +23,12 @@ public class DecreaseQuantity extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 
 		HttpSession session = request.getSession();
 		int oid = (int) session.getAttribute("logincustomerorderId");
-		int pid = Integer.parseInt(request.getParameter("pId"));
+		String pids = request.getParameter("pId");
+		int pid = Integer.parseInt(pids);
 		int qty = 0;
 		Cart stt = new Cart();
 		stt.setOrderid(oid);
@@ -49,17 +50,27 @@ public class DecreaseQuantity extends HttpServlet {
 			stt.setProductid(pid);
 			try {
 				obj.incease(stt);
+				response.sendRedirect("CartServlet");
 			} catch (ClassNotFoundException e) {
 
 				e.printStackTrace();
 			} catch (SQLException e) {
 
 				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
 			}
-			response.sendRedirect("CartServlet");
-
-		} else {
-			response.sendRedirect("CartServlet");
+			
+		}
+		else
+		{
+			try {
+				response.sendRedirect("CartServlet");
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 		}
 
 	}

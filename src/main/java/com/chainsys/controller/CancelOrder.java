@@ -3,7 +3,7 @@ package com.chainsys.controller;
 import java.io.IOException;
 
 
-import javax.servlet.ServletException;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +22,10 @@ public class CancelOrder extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 
-		int pid = Integer.parseInt(request.getParameter("orderId"));
+		String pids = request.getParameter("orderId");
+		int pid = Integer.parseInt(pids);
 		Order order = new Order();
 		order.setOrderid(pid);
 
@@ -33,14 +34,19 @@ public class CancelOrder extends HttpServlet {
 
 		response.setContentType("text/html");
 		if (flag) {
-			response.sendRedirect("cancel.jsp");
+			try {
+				response.sendRedirect("cancel.jsp");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
 
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 		doGet(request, response);
 	}
 

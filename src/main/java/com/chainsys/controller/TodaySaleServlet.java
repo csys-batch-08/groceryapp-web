@@ -1,11 +1,9 @@
 package com.chainsys.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +23,7 @@ public class TodaySaleServlet extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 		long millis=System.currentTimeMillis();  
 		 java.sql.Date date = new java.sql.Date(millis);   
 		 
@@ -47,11 +45,15 @@ public class TodaySaleServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		session.setAttribute("date", date);
-		response.sendRedirect("todaySale.jsp");
+		try {
+			response.sendRedirect("todaySale.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			{
 
 		doGet(request, response);
 	}

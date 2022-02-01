@@ -3,7 +3,6 @@ package com.chainsys.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,14 +23,16 @@ public class Deleteproductincart extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			{
 
 		HttpSession session = request.getSession();
 		int pid = 0;
 		int oid = 0;
 		response.setContentType("text/html");
 		oid = (int) session.getAttribute("logincustomerorderId");
-		pid = Integer.parseInt(request.getParameter("pId"));
+		String pids = request.getParameter("pId");
+		pid = Integer.parseInt(pids);
+
 		Cart stt = new Cart();
 		stt.setOrderid(oid);
 		stt.setProductid(pid);
@@ -47,12 +48,15 @@ public class Deleteproductincart extends HttpServlet {
 		} catch (SQLException e) {
 
 			e.printStackTrace();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
 		}
 
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			 {
 
 		doGet(request, response);
 	}

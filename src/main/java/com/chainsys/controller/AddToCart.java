@@ -29,14 +29,22 @@ public class AddToCart extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
-
-		Customer customer = (Customer) session.getAttribute("logincustomer");
-	String pids = request.getParameter("orderId");
-		int pid = Integer.parseInt(pids);
-		int cid = customer.getCustomerid();
 		Order order = new Order();
-		order.setCustomerid(cid);
 		OrderDaoImpl obj = new OrderDaoImpl();
+		Customer customer = (Customer) session.getAttribute("logincustomer");
+	int pid=0;
+	int cid=0;
+	try {
+		String pids = request.getParameter("orderId");
+			pid = Integer.parseInt(pids);
+			cid = customer.getCustomerid();
+			
+			order.setCustomerid(cid);
+	} catch (NumberFormatException e1) {
+		
+		e1.printStackTrace();
+	}
+		
 		int oid = 0;
 		try {
 			oid = obj.cartCheck(order);

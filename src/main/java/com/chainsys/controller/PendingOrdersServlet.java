@@ -39,7 +39,7 @@ public class PendingOrdersServlet extends HttpServlet {
 		try {
 			response.sendRedirect("pendingOrders.jsp");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

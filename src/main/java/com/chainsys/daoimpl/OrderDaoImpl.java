@@ -17,16 +17,11 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 	public void creatingOrderId(Order order) {
 		Connection con = null;
-		try {
+		
 			con = GetConnection.getConnections();
-		} catch (ClassNotFoundException e) {
+		
 
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		String query = " INSERT INTO order_details (customer_id,status) VALUES (?,?)";
+					String query = " INSERT INTO order_details (customer_id,status) VALUES (?,?)";
 
 		try {
 			PreparedStatement stmt = con.prepareStatement(query);
@@ -41,18 +36,11 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 	public int GettingOrderID(Order order) {
 		Connection con = null;
+		PreparedStatement stmt= null;
+		con = GetConnection.getConnections();
+				String query1 = "  SELECT order_id FROM order_details where customer_id = ?  order by order_date desc fetch first rows only";
 		try {
-			con = GetConnection.getConnections();
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		String query1 = "  SELECT order_id FROM order_details where customer_id = ?  order by order_date desc fetch first rows only";
-		try {
-			PreparedStatement stmt = con.prepareStatement(query1);
+			 stmt = con.prepareStatement(query1);
 			stmt.setInt(1, order.getCustomerid());
 
 			ResultSet rs = stmt.executeQuery();
@@ -226,15 +214,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 	public void makefinal(Order order) {
 		Connection con = null;
-		try {
+		
 			con = GetConnection.getConnections();
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		String query = " update order_details set status ='confirm' , order_date=TO_CHAR(SYSDATE, 'DD-MM-YYYY') where order_id=?";
 
 		try {
@@ -251,15 +233,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	public String status(Order order) {
 		Connection con = null;
 		String statuse = "";
-		try {
+		
 			con = GetConnection.getConnections();
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		String query1 = "  SELECT status FROM order_details where order_id = ?";
 		try {
 			PreparedStatement stmt = con.prepareStatement(query1);
@@ -280,15 +256,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 	public boolean cancel(Order order) {
 		Connection con = null;
-		try {
+		
 			con = GetConnection.getConnections();
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		String query = " update order_details set status ='cancel'  where order_id=?";
 
 		try {
@@ -338,15 +308,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 	public boolean accept(Order order) {
 		Connection con = null;
-		try {
+		
 			con = GetConnection.getConnections();
-		} catch (ClassNotFoundException e) {
-
-			e.printStackTrace();
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
+		
 		String query = " update order_details set status ='delivered'  where order_id=?";
 
 		try {

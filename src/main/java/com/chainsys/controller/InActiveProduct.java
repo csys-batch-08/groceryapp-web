@@ -18,13 +18,19 @@ public class InActiveProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
-		
-		String productname = req.getParameter("pname");
-		String productstatus = req.getParameter("status");
-		Product product = new Product();
-		product.setProductName(productname);
-		product.setProducStatus(productstatus);
 		ProductDaoImpl obj = new ProductDaoImpl();
+		Product product = new Product();
+		try {
+			String productname = req.getParameter("pname");
+			String productstatus = req.getParameter("status");
+			
+			product.setProductName(productname);
+			product.setProducStatus(productstatus);
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
+		
 
 		resp.setContentType("text/html");
 		try {

@@ -23,15 +23,22 @@ public class IncreaseQuantity extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			 {
-
-		HttpSession session = request.getSession();
-		int oid = (int) session.getAttribute("logincustomerorderId");
-		int pid = Integer.parseInt(request.getParameter("pId"));
-		int qty = 0;
 		Cart stt = new Cart();
-		stt.setOrderid(oid);
-		stt.setProductid(pid);
 		CartDaoImpl obj = new CartDaoImpl();
+		HttpSession session = request.getSession();
+		int qty=0;
+		try {
+			int oid = (int) session.getAttribute("logincustomerorderId");
+			int pid = Integer.parseInt(request.getParameter("pId"));
+			
+			
+			stt.setOrderid(oid);
+			stt.setProductid(pid);
+		} catch (NumberFormatException e2) {
+			
+			e2.printStackTrace();
+		}
+		
 		try {
 			qty = obj.check(stt);
 		} catch (ClassNotFoundException e1) {

@@ -26,14 +26,20 @@ public class LoginValiationServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
-
-		String phonenumbers = req.getParameter("uname");
-		long phonenumber = Long.parseLong(phonenumbers);
-		String Password = req.getParameter("pword");
 		Customer customer = new Customer();
-		customer.setPhonenumber(phonenumber);
-		customer.setPassword(Password);
 		CustomerDaoImpl obj = new CustomerDaoImpl();
+		try {
+			String phonenumbers = req.getParameter("uname");
+			long phonenumber = Long.parseLong(phonenumbers);
+			String Password = req.getParameter("pword");
+			
+			customer.setPhonenumber(phonenumber);
+			customer.setPassword(Password);
+		} catch (NumberFormatException e2) {
+			
+			e2.printStackTrace();
+		}
+		
 		HttpSession session = req.getSession();
 		resp.setContentType("text/html");
 		try {

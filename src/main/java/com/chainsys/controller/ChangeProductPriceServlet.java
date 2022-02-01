@@ -23,14 +23,20 @@ public class ChangeProductPriceServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
-
-		String products = req.getParameter("pname");
-		String prices = req.getParameter("price");
-		double price = Double.parseDouble(prices);
 		Product product = new Product();
-		product.setProductName(products);
-		product.setProductPrice(price);
 		ProductDaoImpl obj = new ProductDaoImpl();
+		try {
+			String products = req.getParameter("pname");
+			String prices = req.getParameter("price");
+			double price = Double.parseDouble(prices);
+			
+			product.setProductName(products);
+			product.setProductPrice(price);
+		} catch (NumberFormatException e1) {
+			
+			e1.printStackTrace();
+		}
+		
 		resp.setContentType("text/html");
 		try {
 			boolean flag = obj.changePrice(product);

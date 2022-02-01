@@ -23,11 +23,15 @@ public class CancelOrder extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			 {
-
-		String pids = request.getParameter("orderId");
-		int pid = Integer.parseInt(pids);
 		Order order = new Order();
-		order.setOrderid(pid);
+		try {
+			String pids = request.getParameter("orderId");
+			int pid = Integer.parseInt(pids);
+			
+			order.setOrderid(pid);
+		} catch (NumberFormatException e1) {
+			e1.printStackTrace();
+		}
 
 		OrderDaoImpl obj = new OrderDaoImpl();
 		boolean flag = obj.cancel(order);

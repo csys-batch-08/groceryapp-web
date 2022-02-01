@@ -24,19 +24,25 @@ public class Deleteproductincart extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			{
-
+		Cart stt = new Cart();
+		CartDaoImpl obj = new CartDaoImpl();
 		HttpSession session = request.getSession();
 		int pid = 0;
 		int oid = 0;
 		response.setContentType("text/html");
-		oid = (int) session.getAttribute("logincustomerorderId");
-		String pids = request.getParameter("pId");
-		pid = Integer.parseInt(pids);
+		try {
+			oid = (int) session.getAttribute("logincustomerorderId");
+			String pids = request.getParameter("pId");
+			pid = Integer.parseInt(pids);
 
-		Cart stt = new Cart();
-		stt.setOrderid(oid);
-		stt.setProductid(pid);
-		CartDaoImpl obj = new CartDaoImpl();
+			
+			stt.setOrderid(oid);
+			stt.setProductid(pid);
+		} catch (NumberFormatException e1) {
+			
+			e1.printStackTrace();
+		}
+		
 		try {
 			boolean flag = obj.delete(stt);
 			if (flag) {

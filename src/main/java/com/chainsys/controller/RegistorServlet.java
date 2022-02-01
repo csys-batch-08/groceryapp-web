@@ -21,17 +21,24 @@ public class RegistorServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		HttpSession session = req.getSession();
-		boolean flag=false;
-		String username = req.getParameter("cname");
-		String password = req.getParameter("password");
-		String firstName = req.getParameter("fname");
-		String lastName = req.getParameter("lname");
-		String address = req.getParameter("address");
-		String phonenumbers = req.getParameter("pnumber");
-		long phonenumber = Long.parseLong(phonenumbers);
-		String emailid = req.getParameter("eid");
-		Customer customer = new Customer(username, password, firstName, lastName, address, phonenumber, emailid);
+		Customer customer = null;
 		CustomerDaoImpl obj1 = new CustomerDaoImpl();
+		boolean flag=false;
+		try {
+			String username = req.getParameter("cname");
+			String password = req.getParameter("password");
+			String firstName = req.getParameter("fname");
+			String lastName = req.getParameter("lname");
+			String address = req.getParameter("address");
+			String phonenumbers = req.getParameter("pnumber");
+			long phonenumber = Long.parseLong(phonenumbers);
+			String emailid = req.getParameter("eid");
+			 customer = new Customer(username, password, firstName, lastName, address, phonenumber, emailid);
+		} catch (NumberFormatException e2) {
+			
+			e2.printStackTrace();
+		}
+		
 		try {
 			 flag = obj1.signup(customer);
 			if (flag) {

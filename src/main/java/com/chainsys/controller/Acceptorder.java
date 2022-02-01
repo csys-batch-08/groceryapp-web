@@ -21,12 +21,17 @@ public class Acceptorder extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			 {
 		boolean flag = false;
-		String ordids = request.getParameter("orderId");
-		int ordid = Integer.parseInt(ordids);
-		Order order = new Order();
-		order.setOrderid(ordid);
-		OrderDaoImpl obj = new OrderDaoImpl();
-		flag = obj.accept(order);
+		try {
+			String ordids = request.getParameter("orderId");
+			int ordid = Integer.parseInt(ordids);
+			Order order = new Order();
+			order.setOrderid(ordid);
+			OrderDaoImpl obj = new OrderDaoImpl();
+			flag = obj.accept(order);
+		} catch (NumberFormatException e1) {
+			
+			e1.printStackTrace();
+		}
 		if (flag) {
 			try {
 				response.sendRedirect("PendingOrdersServlet");

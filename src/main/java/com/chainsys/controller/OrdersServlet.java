@@ -21,7 +21,7 @@ public class OrdersServlet extends HttpServlet {
 		try {
 			response.sendRedirect("orders.jsp");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

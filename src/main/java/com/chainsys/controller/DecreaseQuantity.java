@@ -24,16 +24,24 @@ public class DecreaseQuantity extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			 {
-
-		HttpSession session = request.getSession();
-		int oid = (int) session.getAttribute("logincustomerorderId");
-		String pids = request.getParameter("pId");
-		int pid = Integer.parseInt(pids);
-		int qty = 0;
 		Cart stt = new Cart();
-		stt.setOrderid(oid);
-		stt.setProductid(pid);
 		CartDaoImpl obj = new CartDaoImpl();
+		HttpSession session = request.getSession();
+		int oid=0;
+		int pid=0;
+		int qty=0;
+		try {
+			oid = (int) session.getAttribute("logincustomerorderId");
+			String pids = request.getParameter("pId");
+			pid = Integer.parseInt(pids);
+			
+			
+			stt.setOrderid(oid);
+			stt.setProductid(pid);
+		} catch (NumberFormatException e2) {
+			e2.printStackTrace();
+		}
+		
 		try {
 			qty = obj.check(stt);
 		} catch (ClassNotFoundException e1) {

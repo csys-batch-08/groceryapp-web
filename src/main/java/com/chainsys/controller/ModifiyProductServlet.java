@@ -22,13 +22,20 @@ public class ModifiyProductServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
-		String Pids = req.getParameter("pID");
-		int Pid = Integer.parseInt(Pids);
-		String products = req.getParameter("pName");
 		Product product = new Product();
-		product.setProductId(Pid);
-		product.setProductName(products);
 		ProductDaoImpl obj = new ProductDaoImpl();
+		try {
+			String Pids = req.getParameter("pID");
+			int Pid = Integer.parseInt(Pids);
+			String products = req.getParameter("pName");
+			
+			product.setProductId(Pid);
+			product.setProductName(products);
+		} catch (NumberFormatException e1) {
+			
+			e1.printStackTrace();
+		}
+		
 		resp.setContentType("text/html");
 
 		try {

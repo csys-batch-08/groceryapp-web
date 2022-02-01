@@ -25,14 +25,22 @@ public class UserOrderFullDetailsServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			 {
-		int b = Integer.parseInt(request.getParameter("orderId"));
-
-		HttpSession session = request.getSession();
-		session.setAttribute("b", b);
-		Feature feature = new Feature();
-		feature.setOrderId(b);
 		Order order = new Order();
-		order.setOrderid(b);
+		HttpSession session=null;
+		Feature feature=null;
+		try {
+			String b1 = request.getParameter("orderId");
+			int b = Integer.parseInt(b1);
+			session = request.getSession();
+			session.setAttribute("b", b);
+			feature = new Feature();
+			feature.setOrderId(b);
+			
+			order.setOrderid(b);
+		} catch (NumberFormatException e1) {
+			
+			e1.printStackTrace();
+		}
 		OrderDaoImpl obj = new OrderDaoImpl();
 		try {
 			List<Feature> orderlist = obj.userOrderDetails(feature);

@@ -25,17 +25,21 @@ public class AddProductServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			{
-
+		Product product = new Product();
+		ProductDaoImpl obj = new ProductDaoImpl();
 		String productimage = request.getParameter("productimage");
 		String products = request.getParameter("pname");
-		String prices = request.getParameter("price");
-		double price = Double.parseDouble(prices);
-		Product product = new Product();
-		product.setProductImage(productimage);
-		product.setProductName(products);
-		product.setProductPrice(price);
-		ProductDaoImpl obj = new ProductDaoImpl();
-
+		try {
+			String prices = request.getParameter("price");
+			double price = Double.parseDouble(prices);
+			
+			product.setProductImage(productimage);
+			product.setProductName(products);
+			product.setProductPrice(price);
+		} catch (NumberFormatException e1) {
+						e1.printStackTrace();
+		}
+		
 		response.setContentType("text/html");
 		try {
 			boolean flag = obj.addproduct(product);

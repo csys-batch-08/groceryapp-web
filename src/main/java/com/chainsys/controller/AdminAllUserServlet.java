@@ -35,7 +35,7 @@ public class AdminAllUserServlet extends HttpServlet {
 			request.getRequestDispatcher("adminAllUser.jsp").forward(request, response);
 			
 		} catch (IOException | ServletException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 

@@ -40,7 +40,7 @@ public class TodaySaleServlet extends HttpServlet {
 			request.getRequestDispatcher("todaySale.jsp").forward(request, response);
 			
 		} catch (IOException | ServletException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

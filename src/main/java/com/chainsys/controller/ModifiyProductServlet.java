@@ -43,10 +43,10 @@ public class ModifiyProductServlet extends HttpServlet {
 				resp.sendRedirect("ModifiyProductAdminServlet");
 				
 
-			} else {
-				resp.sendRedirect("ModifiyProductAdminServlet");
+			} 
 				
-			}
+				
+			
 		} catch ( IOException e) {
 			System.out.println(e.getMessage());
 		}

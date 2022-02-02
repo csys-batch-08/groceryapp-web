@@ -47,10 +47,7 @@ public class AddProductServlet extends HttpServlet {
 			if (flag) {
 				response.sendRedirect("AddProductAdminServlet");
 
-			} else {
-
-				response.sendRedirect("AddProductAdminServlet");
-			}
+			} 
 		} catch ( IOException e) {
 
 			System.out.println(e.getMessage());

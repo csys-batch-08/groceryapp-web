@@ -40,10 +40,7 @@ public class InActiveProduct extends HttpServlet {
 
 				req.getRequestDispatcher("inActiveProducts.jsp").include(req, resp);
 
-			} else {
-
-				req.getRequestDispatcher("inActiveProducts.jsp").include(req, resp);
-			}
+			} 
 		} catch ( ServletException | IOException e) {
 			System.out.println(e.getMessage());
 		}

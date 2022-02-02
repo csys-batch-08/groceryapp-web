@@ -44,10 +44,7 @@ public class ChangeProductPriceServlet extends HttpServlet {
 resp.sendRedirect("ChangeProductPriceAdminServlet");
 				
 
-			} else {
-
-				resp.sendRedirect("ChangeProductPriceAdminServlet");
-			}
+			} 
 		} catch ( IOException e) {
 
 			System.out.println(e.getMessage());

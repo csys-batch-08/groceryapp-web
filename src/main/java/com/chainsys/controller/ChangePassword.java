@@ -46,12 +46,7 @@ public class ChangePassword extends HttpServlet {
 
 				resp.sendRedirect("login.jsp");
 
-			} else {
-
-				resp.sendRedirect("login.jsp");
-
-			}
-
+			} 
 		} catch (  IOException e) {
 
 			System.out.println(e.getMessage());

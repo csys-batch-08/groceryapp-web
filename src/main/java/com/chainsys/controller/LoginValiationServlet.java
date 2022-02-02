@@ -35,7 +35,7 @@ public class LoginValiationServlet extends HttpServlet {
 			customer.setPassword(Password);
 		} catch (NumberFormatException e2) {
 
-			e2.printStackTrace();
+			System.out.println(e2.getMessage());
 		}
 
 		HttpSession session = req.getSession();
@@ -67,10 +67,10 @@ public class LoginValiationServlet extends HttpServlet {
 
 			} catch (IOException e1) {
 
-				e1.printStackTrace();
+				System.out.println(e1.getMessage());
 			}
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}

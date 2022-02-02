@@ -3,11 +3,11 @@ package com.chainsys.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.daoimpl.OrderDaoImpl;
 import com.chainsys.model.Feature;
@@ -28,18 +28,18 @@ public class TodaySaleServlet extends HttpServlet {
 		 
      
 		OrderDaoImpl obj = new OrderDaoImpl();
-		HttpSession session = request.getSession();
 			List<Feature> sale = obj.todaySale();
-			session.setAttribute("sale", sale);
+			request.setAttribute("sale", sale);
 		
 		
 			double b = obj.todaySales();
-			session.setAttribute("b", b);
+			request.setAttribute("b", b);
 		
-		session.setAttribute("date", date);
+		request.setAttribute("date", date);
 		try {
-			response.sendRedirect("todaySale.jsp");
-		} catch (IOException e) {
+			request.getRequestDispatcher("todaySale.jsp").forward(request, response);
+			
+		} catch (IOException | ServletException e) {
 			e.printStackTrace();
 		}
 	}

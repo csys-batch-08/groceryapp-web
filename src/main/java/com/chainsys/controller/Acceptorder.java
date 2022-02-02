@@ -30,14 +30,14 @@ public class Acceptorder extends HttpServlet {
 			flag = obj.accept(order);
 		} catch (NumberFormatException e1) {
 			
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 		if (flag) {
 			try {
 				response.sendRedirect("PendingOrdersServlet");
 			} catch (IOException e) {
 				
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 
 		}

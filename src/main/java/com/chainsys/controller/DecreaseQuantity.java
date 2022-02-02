@@ -38,7 +38,7 @@ public class DecreaseQuantity extends HttpServlet {
 			stt.setOrderid(oid);
 			stt.setProductid(pid);
 		} catch (NumberFormatException e2) {
-			e2.printStackTrace();
+			System.out.println(e2.getMessage());
 		}
 		
 		
@@ -55,7 +55,7 @@ public class DecreaseQuantity extends HttpServlet {
 			
 			} catch (IOException e) {
 				
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			
 		}
@@ -65,7 +65,7 @@ public class DecreaseQuantity extends HttpServlet {
 				response.sendRedirect("CartServlet");
 			} catch (IOException e) {
 				
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		}
 

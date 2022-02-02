@@ -3,11 +3,11 @@ package com.chainsys.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.daoimpl.OrderDaoImpl;
 import com.chainsys.model.Order;
@@ -23,16 +23,16 @@ public class ListoforderServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			 {
 
-		HttpSession session = request.getSession();
+		
 		OrderDaoImpl obj = new OrderDaoImpl();
 		try {
 			List<Order> OrderList = obj.listoforder();
-			session.setAttribute("OrderLists", OrderList);
-			response.sendRedirect("listoforder.jsp");
+			request.setAttribute("OrderLists", OrderList);
+			
+			request.getRequestDispatcher("listoforder.jsp").forward(request, response);
+		} catch (IOException | ServletException e) {
 		
-		} catch (IOException e) {
-		
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 		

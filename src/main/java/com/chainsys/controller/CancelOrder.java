@@ -30,7 +30,7 @@ public class CancelOrder extends HttpServlet {
 			
 			order.setOrderid(pid);
 		} catch (NumberFormatException e1) {
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 
 		OrderDaoImpl obj = new OrderDaoImpl();
@@ -41,8 +41,7 @@ public class CancelOrder extends HttpServlet {
 			try {
 				response.sendRedirect("cancel.jsp");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 
 		}

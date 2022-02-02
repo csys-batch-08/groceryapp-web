@@ -17,6 +17,7 @@ public class InActiveProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
+		boolean flag =false;
 		ProductDaoImpl obj = new ProductDaoImpl();
 		Product product = new Product();
 		try {
@@ -27,14 +28,14 @@ public class InActiveProduct extends HttpServlet {
 			product.setProducStatus(productstatus);
 		} catch (Exception e1) {
 			
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 		
 
 		resp.setContentType("text/html");
 		try {
 
-			boolean flag = obj.delete(product);
+			 flag = obj.delete(product);
 			if (flag) {
 
 				req.getRequestDispatcher("inActiveProducts.jsp").include(req, resp);
@@ -44,7 +45,7 @@ public class InActiveProduct extends HttpServlet {
 				req.getRequestDispatcher("inActiveProducts.jsp").include(req, resp);
 			}
 		} catch ( ServletException | IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 

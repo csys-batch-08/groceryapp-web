@@ -21,6 +21,7 @@ public class ChangePassword extends HttpServlet {
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
+		boolean flag =false;
 		CustomerDaoImpl obj = new CustomerDaoImpl();
 		Customer customer = new Customer();
 		try {
@@ -32,14 +33,14 @@ public class ChangePassword extends HttpServlet {
 			customer.setPassword(Password);
 		} catch (NumberFormatException e1) {
 			
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 		
 
 		resp.setContentType("text/html");
 		try {
 
-			boolean flag = obj.changepassword(customer);
+			flag = obj.changepassword(customer);
 
 			if (flag) {
 
@@ -53,7 +54,7 @@ public class ChangePassword extends HttpServlet {
 
 		} catch (  IOException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}

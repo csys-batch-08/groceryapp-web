@@ -94,7 +94,7 @@
       <div class="row">
         <div class="col-sm-12 "> 
         <input type="button" class="btn btn-primary" value="Change Password"
-		onclick="window.location='ChangePassword.jsp'">
+		onclick="window.location='changePassword.jsp'">
           </div>
           </div>
        <div class="row">

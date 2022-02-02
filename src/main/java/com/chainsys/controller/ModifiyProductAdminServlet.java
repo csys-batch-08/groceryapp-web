@@ -22,7 +22,7 @@ public class ModifiyProductAdminServlet extends HttpServlet {
 			response.sendRedirect("modifiyProduct.jsp");
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

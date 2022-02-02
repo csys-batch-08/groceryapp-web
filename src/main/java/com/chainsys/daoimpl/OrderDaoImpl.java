@@ -32,7 +32,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con);
@@ -55,7 +55,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con, rs);
@@ -86,7 +86,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.closeStatement(stmt, con, rs);
@@ -110,7 +110,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.closeStatement(stmt, con, rs);
@@ -141,7 +141,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.closeStatement(stmt, con, rs);
@@ -165,7 +165,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.closeStatement(stmt, con, rs);
@@ -195,7 +195,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 	} catch (SQLException e) {
 		
-		e.printStackTrace();
+		System.out.println(e.getMessage());
 	}
 	 finally {
 			CloseConnection.close(stmt, con, rs);
@@ -227,7 +227,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con, rs);
@@ -255,7 +255,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con, rs);
@@ -284,7 +284,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con, rs);
@@ -310,7 +310,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 				b = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con, rs);
@@ -333,7 +333,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con);
@@ -359,7 +359,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con, rs);
@@ -385,7 +385,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con);
@@ -412,7 +412,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 		
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.closeStatement(stmt, con, rs);
@@ -442,7 +442,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.closeStatement(stmt, con, rs);
@@ -465,7 +465,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con);
@@ -495,7 +495,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.closeStatement(stmt, con, rs);

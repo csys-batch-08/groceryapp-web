@@ -32,7 +32,7 @@ public class ModifiyProductServlet extends HttpServlet {
 			product.setProductName(products);
 		} catch (NumberFormatException e1) {
 			
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 		
 		resp.setContentType("text/html");
@@ -48,7 +48,7 @@ public class ModifiyProductServlet extends HttpServlet {
 				
 			}
 		} catch ( IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 }

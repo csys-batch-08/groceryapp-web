@@ -21,7 +21,7 @@ public class ChangeProductPriceAdminServlet extends HttpServlet {
 		try {
 			response.sendRedirect("changeProductPrice.jsp");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

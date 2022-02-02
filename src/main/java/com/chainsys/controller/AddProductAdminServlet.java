@@ -21,7 +21,7 @@ public class AddProductAdminServlet extends HttpServlet {
 		try {
 			response.sendRedirect("addProduct.jsp");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

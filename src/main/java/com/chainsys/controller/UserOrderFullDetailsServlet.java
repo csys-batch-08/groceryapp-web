@@ -3,6 +3,7 @@ package com.chainsys.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,23 +38,23 @@ public class UserOrderFullDetailsServlet extends HttpServlet {
 			order.setOrderid(b);
 		} catch (NumberFormatException e1) {
 			
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 		OrderDaoImpl obj = new OrderDaoImpl();
 		
 			List<Feature> orderlist = obj.userOrderDetails(feature);
-			session.setAttribute("orderlists", orderlist);
+			request.setAttribute("orderlists", orderlist);
 		
 		String status = obj.status(order);
-		session.setAttribute("status", status);
+		request.setAttribute("status", status);
 		try {
 			double c = obj.userOrderDetailse(feature);
-			session.setAttribute("c", c);
-			response.sendRedirect("userOrderFullDetails.jsp");
-		
-		} catch (IOException e) {
+			request.setAttribute("c", c);
 			
-			e.printStackTrace();
+			request.getRequestDispatcher("userOrderFullDetails.jsp").forward(request, response);
+		} catch (IOException | ServletException e) {
+			
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

@@ -29,7 +29,7 @@ public class ProductDaoImpl implements Productinterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con);
@@ -50,7 +50,7 @@ public class ProductDaoImpl implements Productinterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con);
@@ -73,7 +73,7 @@ public class ProductDaoImpl implements Productinterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con);
@@ -94,7 +94,7 @@ public class ProductDaoImpl implements Productinterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con);
@@ -120,7 +120,7 @@ public class ProductDaoImpl implements Productinterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.closeStatement(stmt, con, rs);
@@ -146,7 +146,7 @@ public class ProductDaoImpl implements Productinterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.closeStatement(stmt, con, rs);
@@ -178,7 +178,7 @@ public class ProductDaoImpl implements Productinterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.closeStatement(stmt, con, rs);
@@ -202,7 +202,7 @@ public class ProductDaoImpl implements Productinterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con, rs);
@@ -232,7 +232,7 @@ public class ProductDaoImpl implements Productinterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con, rs);

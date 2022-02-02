@@ -21,7 +21,7 @@ public class InActiveProductsServlet extends HttpServlet {
 			response.sendRedirect("inActiveProducts.jsp");
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

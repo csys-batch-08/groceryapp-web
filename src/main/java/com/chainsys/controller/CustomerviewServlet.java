@@ -3,11 +3,11 @@ package com.chainsys.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.daoimpl.ProductDaoImpl;
 import com.chainsys.model.Product;
@@ -25,17 +25,17 @@ public class CustomerviewServlet extends HttpServlet {
 			 {
 
 		ProductDaoImpl obj = new ProductDaoImpl();
-		HttpSession session = request.getSession();
+		
 
 		try {
 			List<Product> productLists = obj.ViewAllProducte();
-			session.setAttribute("productLists", productLists);
-			response.sendRedirect("customerView.jsp");
-
-		
-		} catch (IOException e) {
+			request.setAttribute("productLists", productLists);
 			
-			e.printStackTrace();
+
+			request.getRequestDispatcher("customerView.jsp").forward(request, response);
+		} catch (IOException | ServletException e) {
+			
+			System.out.println(e.getMessage());
 		}
 
 	}

@@ -39,7 +39,7 @@ public class Deleteproductincart extends HttpServlet {
 			stt.setProductid(pid);
 		} catch (NumberFormatException e1) {
 			
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 		
 		try {
@@ -50,7 +50,7 @@ public class Deleteproductincart extends HttpServlet {
 	
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}

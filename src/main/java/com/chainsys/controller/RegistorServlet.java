@@ -36,7 +36,7 @@ public class RegistorServlet extends HttpServlet {
 			 customer = new Customer(username, password, firstName, lastName, address, phonenumber, emailid);
 		} catch (NumberFormatException e2) {
 			
-			e2.printStackTrace();
+			System.out.println(e2.getMessage());
 		}
 		
 		try {
@@ -56,9 +56,9 @@ public class RegistorServlet extends HttpServlet {
 				req.getRequestDispatcher("signup.jsp").include(req, resp);
 			} catch (ServletException | IOException e1) {
 				
-				e1.printStackTrace();
+				System.out.println(e1.getMessage());
 			}
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}

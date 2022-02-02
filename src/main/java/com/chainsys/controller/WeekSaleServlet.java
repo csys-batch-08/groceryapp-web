@@ -5,11 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.daoimpl.OrderDaoImpl;
 import com.chainsys.model.Feature;
@@ -27,7 +27,6 @@ public class WeekSaleServlet extends HttpServlet {
 			 {
 		long millis=System.currentTimeMillis();  
 		 java.sql.Date date = new java.sql.Date(millis);  
-		HttpSession session = request.getSession();
 		
 		String todaydates =null;
 		String lastdates=null;
@@ -52,27 +51,28 @@ public class WeekSaleServlet extends HttpServlet {
 		   }
 		    
 		}
-		session.setAttribute("lastdates", lastdates);
-		session.setAttribute("todaydates", todaydates);
+		request.setAttribute("lastdates", lastdates);
+		request.setAttribute("todaydates", todaydates);
 
 		 
 		OrderDaoImpl obj = new OrderDaoImpl();
 		
 			List<Feature> sale = obj.weekSale();
-			session.setAttribute("sale", sale);
+			request.setAttribute("sale", sale);
 		
 		
 			double b = obj.weekSales();
-			session.setAttribute("b", b);
+			request.setAttribute("b", b);
 		
 
 		
-		session.setAttribute("date", date);
+		request.setAttribute("date", date);
 		try {
-			response.sendRedirect("weekSale.jsp");
-		} catch (IOException e) {
 			
-			e.printStackTrace();
+			request.getRequestDispatcher("weekSale.jsp").forward(request, response);
+		} catch (IOException | ServletException e) {
+			
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

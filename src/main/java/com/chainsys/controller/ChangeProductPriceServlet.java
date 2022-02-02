@@ -24,6 +24,7 @@ public class ChangeProductPriceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)  {
 		Product product = new Product();
 		ProductDaoImpl obj = new ProductDaoImpl();
+		boolean flag =false;
 		try {
 			String products = req.getParameter("pname");
 			String prices = req.getParameter("price");
@@ -33,12 +34,12 @@ public class ChangeProductPriceServlet extends HttpServlet {
 			product.setProductPrice(price);
 		} catch (NumberFormatException e1) {
 			
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 		
 		resp.setContentType("text/html");
 		try {
-			boolean flag = obj.changePrice(product);
+			 flag = obj.changePrice(product);
 			if (flag) {
 resp.sendRedirect("ChangeProductPriceAdminServlet");
 				
@@ -49,7 +50,7 @@ resp.sendRedirect("ChangeProductPriceAdminServlet");
 			}
 		} catch ( IOException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 

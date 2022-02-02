@@ -102,7 +102,7 @@ public class ConfirmOrderServlet extends HttpServlet {
 
 		}catch (IOException e) {
 		
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

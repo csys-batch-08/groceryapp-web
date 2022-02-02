@@ -2,11 +2,12 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.daoimpl.CustomerDaoImpl;
 import com.chainsys.model.Customer;
@@ -25,14 +26,15 @@ public class AdminAllUserServlet extends HttpServlet {
 			 {
 
 		CustomerDaoImpl obj = new CustomerDaoImpl();
-		HttpSession session = request.getSession();
+		
 		
 			List<Customer> userList = obj.viewallLoginUser();
-			session.setAttribute("userList", userList);
+			request.setAttribute("userList", userList);
 		
 		try {
-			response.sendRedirect("adminAllUser.jsp");
-		} catch (IOException e) {
+			request.getRequestDispatcher("adminAllUser.jsp").forward(request, response);
+			
+		} catch (IOException | ServletException e) {
 			e.printStackTrace();
 		}
 	}

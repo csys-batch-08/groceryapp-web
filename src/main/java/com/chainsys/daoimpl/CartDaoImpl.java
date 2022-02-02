@@ -32,7 +32,7 @@ public class CartDaoImpl implements CartInterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con);
@@ -59,7 +59,7 @@ public class CartDaoImpl implements CartInterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con, rs);
@@ -81,7 +81,7 @@ public class CartDaoImpl implements CartInterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con);
@@ -113,7 +113,7 @@ public class CartDaoImpl implements CartInterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con, rs);
@@ -139,7 +139,7 @@ public class CartDaoImpl implements CartInterface {
 			}
 	} catch (SQLException e) {
 		
-		e.printStackTrace();
+		System.out.println(e.getMessage());
 	}
 	   finally {
 			CloseConnection.close(stmt, con, rs);
@@ -160,7 +160,7 @@ public class CartDaoImpl implements CartInterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	    finally {
 			CloseConnection.close(stmt, con);
@@ -186,7 +186,7 @@ public class CartDaoImpl implements CartInterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con, rs);
@@ -207,7 +207,7 @@ public class CartDaoImpl implements CartInterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con);
@@ -231,7 +231,7 @@ public class CartDaoImpl implements CartInterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con, rs);

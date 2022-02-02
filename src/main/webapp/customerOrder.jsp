@@ -24,7 +24,7 @@
 <style>
 .kon
 {
-  height : 600px;
+  height : 900px;
 }
     .float-start
     {

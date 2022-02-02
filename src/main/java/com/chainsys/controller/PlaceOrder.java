@@ -79,10 +79,10 @@ public class PlaceOrder extends HttpServlet {
 
 		} catch (IOException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (NumberFormatException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}

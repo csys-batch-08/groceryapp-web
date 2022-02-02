@@ -33,7 +33,7 @@ public class CustomerDaoImpl implements Customerinterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con);
@@ -56,7 +56,7 @@ public class CustomerDaoImpl implements Customerinterface {
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 		
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		 finally {
 				CloseConnection.close(stmt, con);
@@ -92,7 +92,7 @@ public class CustomerDaoImpl implements Customerinterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con, rs);
@@ -126,7 +126,7 @@ public class CustomerDaoImpl implements Customerinterface {
 			}
 		} catch (SQLException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		finally {
 			CloseConnection.close(stmt, con, rs);

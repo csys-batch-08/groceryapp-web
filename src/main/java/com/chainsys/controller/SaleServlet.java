@@ -22,8 +22,7 @@ public class SaleServlet extends HttpServlet {
 		try {
 			response.sendRedirect("sale.jsp");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

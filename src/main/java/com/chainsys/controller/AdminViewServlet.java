@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.chainsys.daoimpl.OrderDaoImpl;
 import com.chainsys.model.Feature;
@@ -28,19 +27,19 @@ public class AdminViewServlet extends HttpServlet {
 
 		try {
 			OrderDaoImpl obj = new OrderDaoImpl();
-			HttpSession session = request.getSession();
 
 			
 				List<Feature> sale = obj.todaySalegraph();
-				session.setAttribute("sale", sale);
+				request.setAttribute("sale", sale);
 
 			
 			
 				List<Order> sales = obj.graphsale();
-				session.setAttribute("sales", sales);
-				response.sendRedirect("adminView.jsp");
-		} catch (IOException e) {
-			e.printStackTrace();
+				request.setAttribute("sales", sales);
+				request.getRequestDispatcher("adminView.jsp").forward(request, response);
+				
+		} catch (IOException | ServletException e) {
+			System.out.println(e.getMessage());
 		}
 
 		

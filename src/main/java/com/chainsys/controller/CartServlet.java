@@ -3,6 +3,7 @@ package com.chainsys.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -53,11 +54,11 @@ public class CartServlet extends HttpServlet {
 		CartDaoImpl obj = new CartDaoImpl();
 		
 			List<Feature> cartlist = obj.showCartin(feature);
-			session.setAttribute("cartlist", cartlist);
+			request.setAttribute("cartlist", cartlist);
 		
 		
 			total = obj.showCartinTotal(feature);
-			session.setAttribute("total", total);
+			request.setAttribute("total", total);
 		
 
 		if (total > 499 && total < 999) {
@@ -69,13 +70,14 @@ public class CartServlet extends HttpServlet {
 			total = total - offer;
 
 		}
-		session.setAttribute("offer", total);
+		request.setAttribute("offer", total);
 
 		try {
-			response.sendRedirect("cart.jsp");
-		} catch (IOException e) {
+			request.getRequestDispatcher("cart.jsp").forward(request, response);
+	
+		} catch (IOException | ServletException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

@@ -41,7 +41,7 @@ public class AddToCart extends HttpServlet {
 			order.setCustomerid(cid);
 	} catch (NumberFormatException e1) {
 		
-		e1.printStackTrace();
+		System.out.println(e1.getMessage());
 	}
 		
 		int oid = 0;
@@ -77,7 +77,7 @@ public class AddToCart extends HttpServlet {
 			try {
 				response.sendRedirect("CustomerviewServlet");
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 
 		} else if (qty > 9) {
@@ -85,7 +85,7 @@ public class AddToCart extends HttpServlet {
 			try {
 				response.sendRedirect("CustomerviewServlet");
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 		} else {
 
@@ -98,7 +98,7 @@ public class AddToCart extends HttpServlet {
 			try {
 				response.sendRedirect("CustomerviewServlet");
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(e.getMessage());
 			}
 			;
 

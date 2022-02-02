@@ -22,7 +22,7 @@ public class LoginUserProfileServlet extends HttpServlet {
 			response.sendRedirect("loginUserProfile.jsp");
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 	@Override

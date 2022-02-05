@@ -25,7 +25,7 @@ public class ChangePassword extends HttpServlet {
 		CustomerDaoImpl obj = new CustomerDaoImpl();
 		Customer customer = new Customer();
 		try {
-			String phonenumbers = req.getParameter("uname");
+			String phonenumbers = req.getParameter("pnumber");
 			long phonenumber = Long.parseLong(phonenumbers);
 			String Password = req.getParameter("pword");
 			

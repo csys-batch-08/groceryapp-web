@@ -26,31 +26,31 @@ public class DecreaseQuantity extends HttpServlet {
 		Cart stt = new Cart();
 		CartDaoImpl obj = new CartDaoImpl();
 		HttpSession session = request.getSession();
-		int oid=0;
-		int pid=0;
-		int qty=0;
+		int orderid=0;
+		int productid=0;
+		int quantity=0;
 		try {
-			oid = (int) session.getAttribute("logincustomerorderId");
+			orderid = (int) session.getAttribute("logincustomerorderId");
 			String pids = request.getParameter("pId");
-			pid = Integer.parseInt(pids);
+			productid = Integer.parseInt(pids);
 			
 			
-			stt.setOrderid(oid);
-			stt.setProductid(pid);
+			stt.setOrderid(orderid);
+			stt.setProductid(productid);
 		} catch (NumberFormatException e2) {
 			System.out.println(e2.getMessage());
 		}
 		
 		
-			qty = obj.check(stt);
+			quantity = obj.check(stt);
 		
-		if (qty <= 10 && !(qty == 1)) {// check quantity
+		if (quantity <= 10 && !(quantity == 1)) {// check quantity
 
-			stt.setQuantity(qty - 1);
-			stt.setOrderid(oid);
-			stt.setProductid(pid);
+			stt.setQuantity(quantity - 1);
+			stt.setOrderid(orderid);
+			stt.setProductid(productid);
 			try {
-				obj.incease(stt);
+				obj.changeQuantity(stt);
 				response.sendRedirect("CartServlet");
 			
 			} catch (IOException e) {

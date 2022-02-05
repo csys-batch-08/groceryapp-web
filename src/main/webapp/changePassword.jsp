@@ -99,11 +99,11 @@
       <div class="col-md-4">
         <label for="pnumber">Enter MobileNumber</label>
         </div>
-        <input type="text" name="uname" required autofocus pattern="[6-9]{1}[0-9]{9}">   <br><br>
+        <input type="text" name="pnumber" required autofocus pattern="[6-9]{1}[0-9]{9}" id="pnumber">   <br><br>
         <div class="col-md-4">
         <label for="pword">New Password</label>
            </div>
-        <input type="password" name="pword" required min="8"> <br> <br>
+        <input type="password" name="pword" required min="8" id="pword"> <br> <br>
         <div class="col-md-4">
         <input type="submit" class="btn btn-success" value="confirm">
            </div>

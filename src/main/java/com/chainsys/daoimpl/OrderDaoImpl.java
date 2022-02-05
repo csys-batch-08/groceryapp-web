@@ -15,7 +15,9 @@ import com.chainsys.util.GetConnection;
 
 public class OrderDaoImpl implements OrderDaoinferace {
 	int custmerid = 0;
-
+	/**
+	 * this method use to create order id for given customer id
+	 */
 	public void creatingOrderId(Order order) {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -65,7 +67,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 		return custmerid;
 	}
-
+	/**
+	 * this method use to show today sale
+	 */
 	public List<Feature> todaySale() {
 		Connection con = null;
 		Statement stmt=null;
@@ -95,7 +99,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		return todaysale;
 	}
-
+	/**
+	 * this method use to show today sale total
+	 */
 	public double todaySales()  {
 		Connection con = null;
 		Statement stmt=null;
@@ -120,7 +126,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		return total;
 
 	}
-
+	/**
+	 * this method use to show week sale
+	 */
 	public List<Feature> weekSale()  {
 		Connection con = null;
 		Statement stmt=null;
@@ -150,7 +158,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		return todaysale;
 	}
-
+	/**
+	 * this method use to show week sale amount
+	 */
 	public double weekSales()  {
 		Connection con = null;
 		Statement stmt=null;
@@ -175,7 +185,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		return total;
 
 	}
-
+	/**
+	 * this method use to show pending order to admin
+	 */
 	public List<Order> orderdetails() {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -185,7 +197,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		String query = "  SELECT order_id,status,order_date FROM order_details where  status ='confirm'";
 	 try {
 		stmt = con.prepareStatement(query);
-			Order order = new Order();// stmt.executeUpdate();
+			Order order = new Order();
 		 rs = stmt.executeQuery();
 			while (rs.next()) {
 				order = new Order();
@@ -204,7 +216,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		}
 		return todayOrder;
 	}
-
+	/**
+	 * this method use to show list of order details to given user
+	 */
 	public List<Feature> userOrderDetails(Feature feature)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -236,7 +250,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		return orderlist;
 	}
-
+	/**
+	 * this method use to show list of order details total to given user
+	 */
 	public double userOrderDetailse(Feature feature)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -264,7 +280,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		return b;
 	}
-
+	/**
+	 * this method use to show list of order to given user
+	 */
 	public List<Order> orderdetail(Order order)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -293,7 +311,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		}
 		return orderList;
 	}
-
+	/**
+	 * this method use to check cart available and get order id
+	 */
 	public int cartCheck(Order order) 
 
 	{
@@ -319,7 +339,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		return b;
 	}
-
+	/**
+	 * this method use to make final order date
+	 */
 	public void makefinal(Order order) {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -341,7 +363,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			CloseConnection.close(stmt, con);
 		}
 	}
-
+	/**
+	 * this method use to check cart available
+	 */
 	public String status(Order order) {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -371,7 +395,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		return statuse;
 
 	}
-
+	/**
+	 * this method use to cancel order
+	 */
 	public boolean cancel(Order order) {
 		Connection con = null;
 		PreparedStatement stmt =null;
@@ -394,7 +420,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		}
 		return true;
 	}
-
+	/**
+	 * this method use to show to order in week
+	 */
 	public List<Order> graphsale()  {
 		Connection con = null;
 		Statement stmt=null;
@@ -421,7 +449,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			}
 		return todaysale;
 	}
-
+	/**
+	 * this method use to show today place order
+	 */
 	public List<Order> listoforder() {
 		Connection con = null;
 		Statement stmt=null;
@@ -451,7 +481,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		}
 		return todaysale;
 	}
-
+	/**
+	 * this method use to admin accept order
+	 */
 	public boolean accept(Order order) {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -474,6 +506,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		}
 		return true;
 	}
+	/**
+	 * this method use to show today place order graph
+	 */
 	public List<Feature> todaySalegraph() {
 		Connection con = null;
 		Statement stmt=null;

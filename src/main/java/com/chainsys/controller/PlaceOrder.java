@@ -37,14 +37,14 @@ public class PlaceOrder extends HttpServlet {
 			response.setContentType("text/html");
 
 			for (Product p : productList) {
-				int qty;
+				int qunatity;
 
-				String qtys = request.getParameter(p.getProductName());
-				qty = Integer.parseInt(qtys);
+				String quantitystr = request.getParameter(p.getProductName());
+				qunatity = Integer.parseInt(quantitystr);
 
-				if (qty > 0) {
+				if (qunatity > 0) {
 					productid.add(p.getProductId());
-					productquantiy.add(qty);
+					productquantiy.add(qunatity);
 				}
 
 			}

@@ -29,8 +29,8 @@ public class LoginValiationServlet extends HttpServlet {
 		CustomerDaoImpl obj = new CustomerDaoImpl();
 		HttpSession session = req.getSession();
 		try {
-			String phonenumbers = req.getParameter("uname");
-			long phonenumber = Long.parseLong(phonenumbers);
+			String phonenumberstr = req.getParameter("phonenumber");
+			long phonenumber = Long.parseLong(phonenumberstr);
 			String Password = req.getParameter("pword");
 
 			customer.setPhonenumber(phonenumber);

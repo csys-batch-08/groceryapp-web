@@ -25,10 +25,10 @@ public class CancelOrder extends HttpServlet {
 			 {
 		Order order = new Order();
 		try {
-			String pids = request.getParameter("orderId");
-			int pid = Integer.parseInt(pids);
+			String orderIdstr = request.getParameter("orderId");
+			int orderId = Integer.parseInt(orderIdstr);
 			
-			order.setOrderid(pid);
+			order.setOrderid(orderId);
 		} catch (NumberFormatException e1) {
 			System.out.println(e1.getMessage());
 		}

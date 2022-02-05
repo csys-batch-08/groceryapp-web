@@ -3,15 +3,14 @@
     pageEncoding="ISO-8859-1"%>
     <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <title>Login</title>
 </head>
 <style>
@@ -36,11 +35,11 @@ body {
 
 	<form action="login" method="post">
 		<label for="pnumber">Mobile Number</label><br> <input type="text"
-			name="uname" required autofocus pattern="[6-9]{1}[0-9]{9}"
-			placeholder="Enter Mobile number"> <br>
+			name="phonenumber" required autofocus pattern="[6-9]{1}[0-9]{9}"
+			placeholder="Enter Mobile number" id="pnumber"> <br>
 		<br> <label for="pword">Password</label><br> <input
 			type="password" name="pword" required min="8"
-			placeholder="Enter password"> <br> <br> <input
+			placeholder="Enter password" id="pword"> <br> <br> <input
 			type="submit" class="btn btn-success" value="Login"><br>
 		<br>
 		

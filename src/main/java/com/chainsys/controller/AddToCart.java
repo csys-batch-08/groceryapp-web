@@ -30,47 +30,47 @@ public class AddToCart extends HttpServlet {
 		Order order = new Order();
 		OrderDaoImpl obj = new OrderDaoImpl();
 		Customer customer = (Customer) session.getAttribute("logincustomer");
-		int pid = 0;
-		int cid = 0;
+		int productId = 0;
+		int customerId = 0;
 		try {
-			String pids = request.getParameter("orderId");
-			pid = Integer.parseInt(pids);
-			cid = customer.getCustomerid();
+			String productIdStr = request.getParameter("productId");
+			productId = Integer.parseInt(productIdStr);
+			customerId  = customer.getCustomerid();
 
-			order.setCustomerid(cid);
+			order.setCustomerid(customerId);
 		} catch (NumberFormatException e1) {
 
 			System.out.println(e1.getMessage());
 		}
 
-		int oid = 0;
+		int orderid = 0;
 
-		oid = obj.cartCheck(order);
+		orderid = obj.cartCheck(order);
 
 		// check user if order id already exist in cart
-		if (!(oid > 0)) {
+		if (!(orderid > 0)) {
 
-			order.setCustomerid(cid);
+			order.setCustomerid(customerId);
 			order.setStatus("in cart");
 
 			obj.creatingOrderId(order);
-			oid = obj.GettingOrderID(order);
+			orderid = obj.GettingOrderID(order);
 
 		}
 		Cart stt = new Cart();
-		stt.setOrderid(oid);
-		stt.setProductid(pid);
+		stt.setOrderid(orderid);
+		stt.setProductid(productId);
 
 		CartDaoImpl obj1 = new CartDaoImpl();
-		int qty = 0;
+		int quantity = 0;
 
-		qty = obj1.check(stt);
+		quantity = obj1.check(stt);
 
-		if (qty > 0 && !(qty > 9)) {// check quantity
+		if (quantity > 0 && !(quantity > 9)) {// check quantity
 
-			stt.setQuantity(qty + 1);
+			stt.setQuantity(quantity + 1);
 
-			obj1.incease(stt);
+			obj1.changeQuantity(stt);
 
 			try {
 				response.sendRedirect("CustomerviewServlet");
@@ -78,7 +78,7 @@ public class AddToCart extends HttpServlet {
 				System.out.println(e.getMessage());
 			}
 
-		} else if (qty > 9) {
+		} else if (quantity > 9) {
 
 			try {
 				response.sendRedirect("CustomerviewServlet");

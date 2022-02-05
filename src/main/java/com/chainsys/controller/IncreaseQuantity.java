@@ -25,28 +25,28 @@ public class IncreaseQuantity extends HttpServlet {
 		Cart stt = new Cart();
 		CartDaoImpl obj = new CartDaoImpl();
 		HttpSession session = request.getSession();
-		int qty=0;
+		int quantity=0;
 		try {
-			int oid = (int) session.getAttribute("logincustomerorderId");
-			int pid = Integer.parseInt(request.getParameter("pId"));
+			int orderid = (int) session.getAttribute("logincustomerorderId");
+			int productid = Integer.parseInt(request.getParameter("pId"));
 			
 			
-			stt.setOrderid(oid);
-			stt.setProductid(pid);
+			stt.setOrderid(orderid);
+			stt.setProductid(productid);
 		} catch (NumberFormatException e2) {
 			
 			System.out.println(e2.getMessage());
 		}
 		
 		
-			qty = obj.check(stt);
+			quantity = obj.check(stt);
 		
 		
-		if (qty > 0 && !(qty > 9)) {// check quantity
+		if (quantity > 0 && !(quantity > 9)) {// check quantity
 
-			stt.setQuantity(qty + 1);
+			stt.setQuantity(quantity + 1);
 			
-				obj.incease(stt);
+				obj.changeQuantity(stt);
 			
 		
 			try {

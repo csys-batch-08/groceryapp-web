@@ -28,29 +28,29 @@ public class CartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			{
 
-		int oid = 0;
+		int orderid = 0;
 		double total = 0;
 		double offer = 0;
 
 		HttpSession session = request.getSession();
 		Customer customer = (Customer) session.getAttribute("logincustomer");
 
-		int cid = customer.getCustomerid();
+		int customerId = customer.getCustomerid();
 		Order order = new Order();
-		order.setCustomerid(cid);
+		order.setCustomerid(customerId);
 		OrderDaoImpl obj1 = new OrderDaoImpl();
-		int ojid;
+		int orderidcheck;
 		
-			ojid = obj1.cartCheck(order);
-			if (ojid > 0) {
-				oid = ojid;
+			orderidcheck = obj1.cartCheck(order);
+			if (orderidcheck > 0) {
+				orderid = orderidcheck;
 			}
 		
 
-		session.setAttribute("logincustomerorderId", oid);
+		session.setAttribute("logincustomerorderId", orderid);
 
 		Feature feature = new Feature();
-		feature.setOrderId(oid);
+		feature.setOrderId(orderid);
 		CartDaoImpl obj = new CartDaoImpl();
 		
 			List<Feature> cartlist = obj.showCartin(feature);

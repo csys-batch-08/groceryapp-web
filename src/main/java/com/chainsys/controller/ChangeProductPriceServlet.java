@@ -27,8 +27,8 @@ public class ChangeProductPriceServlet extends HttpServlet {
 		boolean flag =false;
 		try {
 			String products = req.getParameter("pname");
-			String prices = req.getParameter("price");
-			double price = Double.parseDouble(prices);
+			String pricestr = req.getParameter("price");
+			double price = Double.parseDouble(pricestr);
 			
 			product.setProductName(products);
 			product.setProductPrice(price);

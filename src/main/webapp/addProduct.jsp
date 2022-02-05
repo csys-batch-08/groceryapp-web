@@ -123,7 +123,7 @@
   <input type="text" class="form-control" name="price" id="formGroupExampleInput2" placeholder="Product Price" pattern="[1-9]{1}[0-9]+"  required >
 </div>
 <div class="mb-3">
-  <label for="formGroupExampleInput2" class="form-label">Enter the Price</label>
+  <label for="formGroupExampleInput3" class="form-label">Enter the Price</label>
   <input type="file" class="form-control" required name="productimage" id="formGroupExampleInput3" placeholder="Product image"   required >
 </div>
 <input type="submit" value="submit">

@@ -26,17 +26,17 @@ public class Deleteproductincart extends HttpServlet {
 		Cart stt = new Cart();
 		CartDaoImpl obj = new CartDaoImpl();
 		HttpSession session = request.getSession();
-		int pid = 0;
-		int oid = 0;
+		int productid = 0;
+		int orderid = 0;
 		response.setContentType("text/html");
 		try {
-			oid = (int) session.getAttribute("logincustomerorderId");
+			orderid = (int) session.getAttribute("logincustomerorderId");
 			String pids = request.getParameter("pId");
-			pid = Integer.parseInt(pids);
+			productid = Integer.parseInt(pids);
 
 			
-			stt.setOrderid(oid);
-			stt.setProductid(pid);
+			stt.setOrderid(orderid);
+			stt.setProductid(productid);
 		} catch (NumberFormatException e1) {
 			
 			System.out.println(e1.getMessage());

@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import com.chainsys.dao.CartInterface;
 import com.chainsys.model.Cart;
@@ -15,8 +14,9 @@ import com.chainsys.util.CloseConnection;
 import com.chainsys.util.GetConnection;
 
 public class CartDaoImpl implements CartInterface {
-	Scanner sc = new Scanner(System.in);
-
+	/**
+	 * this method use to add product to cart
+	 */
 	public void addToCart(Cart stt)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
@@ -40,7 +40,9 @@ public class CartDaoImpl implements CartInterface {
 		
 
 	}
-
+	/**
+	 * this method use to get quantity for current order and product
+	 */
 	public int check(Cart stt)  {
 		int b = 0;
 		Connection con = null;
@@ -66,8 +68,10 @@ public class CartDaoImpl implements CartInterface {
 		}
 		return b;
 	}
-
-	public void incease(Cart stt) {
+	/**
+	 * this method use to increase/decrease quantity of product
+	 */
+	public void changeQuantity(Cart stt) {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		
@@ -88,7 +92,9 @@ public class CartDaoImpl implements CartInterface {
 			}
 
 	}
-
+	/**
+	 * this method use to show product in cart
+	 */
 	public List<Feature> showCartin(Feature feature)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -120,7 +126,9 @@ public class CartDaoImpl implements CartInterface {
 			}
 		return incart;
 	}
-
+	/**
+	 * this method use to show product total in cart
+	 */
 	public double showCartinTotal(Feature feature)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -146,7 +154,9 @@ public class CartDaoImpl implements CartInterface {
 		}
 		return total;
 	}
-
+	/**
+	 * this method use to remove product from cart
+	 */
 	public boolean delete(Cart stt)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -169,7 +179,9 @@ public class CartDaoImpl implements CartInterface {
 		return true;
 
 	}
-
+	/**
+	 * this method use to get list of product id from cart
+	 */
 	public List<Integer> gettingproductidincart(Cart stt)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -193,7 +205,9 @@ public class CartDaoImpl implements CartInterface {
 			}
 		return ProductId;
 	}
-
+	/**
+	 * this method use to update current price to product 
+	 */
 	public void insertcurrentvalue(Cart stt) {
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -214,7 +228,9 @@ public class CartDaoImpl implements CartInterface {
 			}
 
 	}
-
+	/**
+	 * this method use to get quantity of product in cart
+	 */
 	public List<Integer> gettingproductpriceincart(Cart stt)  {
 		Connection con = null;
 		PreparedStatement stmt=null;

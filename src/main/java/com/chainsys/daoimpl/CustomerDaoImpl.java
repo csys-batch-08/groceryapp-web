@@ -13,8 +13,10 @@ import com.chainsys.util.CloseConnection;
 import com.chainsys.util.GetConnection;
 
 public class CustomerDaoImpl implements Customerinterface {
-
-	public boolean signup(Customer customer) {
+	/**
+	 * this method use to sign up for new user
+	 */
+	public boolean signup(final Customer customer) {
 		Connection con = null;
 		PreparedStatement stmt= null;
 		
@@ -41,8 +43,11 @@ public class CustomerDaoImpl implements Customerinterface {
 		return true;
 
 	}
+	/**
+	 * this method use to change password for exist user
+	 */
 
-	public boolean changepassword(Customer customer) {
+	public boolean changepassword(final Customer customer) {
 		Connection con = null;
 		PreparedStatement stmt= null;
 		
@@ -65,6 +70,9 @@ public class CustomerDaoImpl implements Customerinterface {
 		return true;
 	}
 
+	/**
+	 * this method use to login exist user
+	 */
 	public Customer login(final Customer customer)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
@@ -91,7 +99,7 @@ public class CustomerDaoImpl implements Customerinterface {
 
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			System.out.println(e.getMessage());
 			throw new RuntimeException("unable to execute");
 		}
@@ -101,7 +109,9 @@ public class CustomerDaoImpl implements Customerinterface {
 		return customerObj;
 
 	}
-
+	/**
+	 * this method use to show list of user sign up to admin
+	 */
 	public List<Customer> viewallLoginUser()  {
 		Connection con = null;
 		PreparedStatement stmt= null;

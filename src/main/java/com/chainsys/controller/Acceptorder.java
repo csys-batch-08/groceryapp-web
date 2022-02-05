@@ -22,10 +22,10 @@ public class Acceptorder extends HttpServlet {
 			 {
 		boolean flag = false;
 		try {
-			String ordids = request.getParameter("orderId");
-			int ordid = Integer.parseInt(ordids);
+			String orderidstr = request.getParameter("orderId");
+			int orderid = Integer.parseInt(orderidstr);
 			Order order = new Order();
-			order.setOrderid(ordid);
+			order.setOrderid(orderid);
 			OrderDaoImpl obj = new OrderDaoImpl();
 			flag = obj.accept(order);
 		} catch (NumberFormatException e1) {

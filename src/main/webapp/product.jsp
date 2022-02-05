@@ -122,9 +122,9 @@
   <thead>
     <tr>
       <th scope="col">Product</th>
-       <th scope="col">ProductId</th>
-      <th scope="col">ProductName</th>
-      <th scope="col">UnitPrice</th>
+       <th scope="col">Product Id</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Unit Price</th>
       <th scope="col">Status</th>
       
     </tr>

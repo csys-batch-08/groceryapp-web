@@ -29,13 +29,13 @@ public class UserOrderFullDetailsServlet extends HttpServlet {
 		HttpSession session= request.getSession();
 		Feature feature=null;
 		try {
-			String b1 = request.getParameter("orderId");
-			int b = Integer.parseInt(b1);
-			session.setAttribute("b", b);
+			String orderIdstr = request.getParameter("orderId");
+			int orderId = Integer.parseInt(orderIdstr);
+			session.setAttribute("b", orderId);
 			feature = new Feature();
-			feature.setOrderId(b);
+			feature.setOrderId(orderId);
 			
-			order.setOrderid(b);
+			order.setOrderid(orderId);
 		} catch (NumberFormatException e1) {
 			
 			System.out.println(e1.getMessage());

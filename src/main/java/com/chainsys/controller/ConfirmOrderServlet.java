@@ -31,71 +31,72 @@ public class ConfirmOrderServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		double value = 0;
 		double offercost = 0;
-		double offercoste = 0;
+		double offercostextra = 0;
 
-		int oid = (int) session.getAttribute("logincustomerorderId");
+		int orderid = (int) session.getAttribute("logincustomerorderId");
 		Cart stt = new Cart();
-		stt.setOrderid(oid);
+		stt.setOrderid(orderid);
 		CartDaoImpl obj = new CartDaoImpl();
 		try {
-			List<Integer> prdids = obj.gettingproductidincart(stt);
-			List<Integer> prdidse = obj.gettingproductpriceincart(stt);
+			List<Integer> productidincart = obj.gettingproductidincart(stt);
+			List<Integer> productcurrentprice = obj.gettingproductpriceincart(stt);
 
-			for (int i = 0; i < prdids.size(); i++) {
+			for (int i = 0; i < productidincart.size(); i++) {
 				Product product = new Product();
-				product.setProductId(prdids.get(i));
+				product.setProductId(productidincart.get(i));
 				ProductDaoImpl obj1 = new ProductDaoImpl();
 				value = obj1.gettingRate(product);
-				offercoste = prdidse.get(i) * value;
-				offercost += offercoste;
+				offercostextra = productcurrentprice.get(i) * value;
+				offercost += offercostextra;
 
 			}
 
+			
 			if (offercost > 499 && (offercost < 999)) {
 				
-				List<Integer> prdid = obj.gettingproductidincart(stt);
-				for (int i = 0; i < prdid.size(); i++) {
+				List<Integer> productidincartfive = obj.gettingproductidincart(stt);
+				for (int i = 0; i < productidincartfive.size(); i++) {
 					Product product = new Product();
-					product.setProductId(prdid.get(i));
+					product.setProductId(productidincartfive.get(i));
 					ProductDaoImpl obj1 = new ProductDaoImpl();
 					value = obj1.gettingRate(product);
 					value = value - (value * 0.05);
-					stt.setOrderid(oid);
+					stt.setOrderid(orderid);
 					stt.setPrice(value);
-					stt.setProductid(prdid.get(i));
+					stt.setProductid(productidincartfive.get(i));
 					obj.insertcurrentvalue(stt);
 
 				}
 			} else if (offercost >= 999) {
-				List<Integer> prdid = obj.gettingproductidincart(stt);
-				for (int i = 0; i < prdid.size(); i++) {
+				List<Integer> productidincartten = obj.gettingproductidincart(stt);
+				for (int i = 0; i < productidincartten.size(); i++) {
 					Product product = new Product();
-					product.setProductId(prdid.get(i));
+					product.setProductId(productidincartten.get(i));
 					ProductDaoImpl obj1 = new ProductDaoImpl();
 					value = obj1.gettingRate(product);
 					value = value - (value * 0.1);
-					stt.setOrderid(oid);
+					stt.setOrderid(orderid);
 					stt.setPrice(value);
-					stt.setProductid(prdid.get(i));
+					stt.setProductid(productidincartten.get(i));
 					obj.insertcurrentvalue(stt);
 
 				}
 			} else {
-				List<Integer> prdid = obj.gettingproductidincart(stt);
-				for (int i = 0; i < prdid.size(); i++) {
+				List<Integer> productidincartnormal = obj.gettingproductidincart(stt);
+				for (int i = 0; i < productidincartnormal.size(); i++) {
 					Product product = new Product();
-					product.setProductId(prdid.get(i));
+					product.setProductId(productidincartnormal.get(i));
 					ProductDaoImpl obj1 = new ProductDaoImpl();
 					value = obj1.gettingRate(product);
-					stt.setOrderid(oid);
+					stt.setOrderid(orderid);
 					stt.setPrice(value);
-					stt.setProductid(prdid.get(i));
+					stt.setProductid(productidincartnormal.get(i));
 					obj.insertcurrentvalue(stt);
 
 				}
 			}
 			Order order = new Order();
-			order.setOrderid(oid);
+			order.setOrderid(orderid);
 			OrderDaoImpl obj3 = new OrderDaoImpl();
 			obj3.makefinal(order);
 			response.sendRedirect("adderPlacedSuccessfully.jsp");

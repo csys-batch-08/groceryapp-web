@@ -104,7 +104,7 @@
        <span> <c:out value="${current.getProductPrice()}" /> </span><br> <br>
        
 		<input type="button" value="Add to cart" class="btn btn-primary"
-		onclick="alert('Added To Cart'); window.location='AddToCart?orderId=<c:out value="${current.getProductId()}" />';">
+		onclick="alert('Added To Cart'); window.location='AddToCart?productId=<c:out value="${current.getProductId()}" />';">
 
         </div>
        </c:forEach>

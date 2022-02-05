@@ -27,10 +27,10 @@ public class SearchProduct extends HttpServlet {
 		String Productname = request.getParameter("name");
 		Product product = new Product();
 		product.setProductName(Productname);
-		ProductDaoImpl obj5 = new ProductDaoImpl();
+		ProductDaoImpl obj = new ProductDaoImpl();
 		
 		try {
-			List<Product> productList = obj5.sortproduct(product);
+			List<Product> productList = obj.sortproduct(product);
 			request.setAttribute("productList", productList);
 			
 			request.getRequestDispatcher("sortDisplay.jsp").forward(request, response);

@@ -24,11 +24,11 @@ public class ModifiyProductServlet extends HttpServlet {
 		Product product = new Product();
 		ProductDaoImpl obj = new ProductDaoImpl();
 		try {
-			String Pids = req.getParameter("pID");
-			int Pid = Integer.parseInt(Pids);
+			String productidstr = req.getParameter("pID");
+			int productid = Integer.parseInt(productidstr);
 			String products = req.getParameter("pName");
 			
-			product.setProductId(Pid);
+			product.setProductId(productid);
 			product.setProductName(products);
 		} catch (NumberFormatException e1) {
 			

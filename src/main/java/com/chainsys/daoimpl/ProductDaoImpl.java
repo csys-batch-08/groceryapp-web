@@ -15,7 +15,9 @@ import com.chainsys.util.GetConnection;
 public class ProductDaoImpl implements Productinterface {
 
 	int b1 = 0;
-
+	/**
+	 * this method use to add new product
+	 */
 	public boolean addproduct(Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
@@ -37,7 +39,9 @@ public class ProductDaoImpl implements Productinterface {
 		return true;
 
 	}
-
+	/**
+	 * this method use to disable/enable product
+	 */
 	public boolean delete(Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
@@ -58,7 +62,9 @@ public class ProductDaoImpl implements Productinterface {
 		return true;
 
 	}
-
+	/**
+	 * this method use to change price of product
+	 */
 	public boolean changePrice(Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
@@ -80,7 +86,9 @@ public class ProductDaoImpl implements Productinterface {
 			}
 		return true;
 	}
-
+	/**
+	 * this method use to change product name
+	 */
 	public boolean changeName(Product product)  {
 		Connection con = null;
 	PreparedStatement stmt= null;
@@ -101,33 +109,10 @@ public class ProductDaoImpl implements Productinterface {
 			}
 		return true;
 	}
-
-	public List<Product> ViewAllProducts() {
-		Connection con = null;
-		Statement stmt= null;
-		ResultSet rs=null;
-		 con = GetConnection.getConnections();
-		 List<Product> productList=null;
-		try {
-			stmt = con.createStatement();
-			productList = new ArrayList<Product>();
-			String view = " SELECT products_name,standard_cost FROM product where status ='y' or status ='Y'";
-			 rs = stmt.executeQuery(view);
-			while (rs.next()) {
-
-				Product product = new Product(rs.getString(1), rs.getDouble(2));
-				productList.add(product);
-			}
-		} catch (SQLException e) {
-			
-			System.out.println(e.getMessage());
-		}
-		 finally {
-				CloseConnection.closeStatement(stmt, con, rs);
-			}
-		return productList;
-	}
-
+	
+	/**
+	 * this method use to show list of product to user 
+	 */
 	public List<Product> ViewAllProducte()  {
 		Connection con = null;
 		Statement stmt= null;
@@ -154,7 +139,9 @@ public class ProductDaoImpl implements Productinterface {
 		return productList;
 
 	}
-
+	/**
+	 * this method use to show list of product to admin
+	 */
 	public List<Product> AdminViewAllProducts()  {
 		Connection con = null;
 		Statement stmt= null;
@@ -185,7 +172,9 @@ public class ProductDaoImpl implements Productinterface {
 			}
 		return productList;
 	}
-
+	/**
+	 * this method use to get current rate of product
+	 */
 	public int gettingRate(Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
@@ -209,7 +198,9 @@ public class ProductDaoImpl implements Productinterface {
 			}
 		return b1;
 	}
-
+	/**
+	 * this method use to search of product
+	 */
 	public List<Product> sortproduct(Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;

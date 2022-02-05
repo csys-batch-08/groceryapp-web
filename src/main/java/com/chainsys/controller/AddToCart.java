@@ -23,31 +23,30 @@ public class AddToCart extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
 		response.setContentType("text/html");
 		Order order = new Order();
 		OrderDaoImpl obj = new OrderDaoImpl();
 		Customer customer = (Customer) session.getAttribute("logincustomer");
-	int pid=0;
-	int cid=0;
-	try {
-		String pids = request.getParameter("orderId");
+		int pid = 0;
+		int cid = 0;
+		try {
+			String pids = request.getParameter("orderId");
 			pid = Integer.parseInt(pids);
 			cid = customer.getCustomerid();
-			
+
 			order.setCustomerid(cid);
-	} catch (NumberFormatException e1) {
-		
-		System.out.println(e1.getMessage());
-	}
-		
+		} catch (NumberFormatException e1) {
+
+			System.out.println(e1.getMessage());
+		}
+
 		int oid = 0;
-		
-			oid = obj.cartCheck(order);
-		
+
+		oid = obj.cartCheck(order);
+
 		// check user if order id already exist in cart
 		if (!(oid > 0)) {
 
@@ -64,15 +63,14 @@ public class AddToCart extends HttpServlet {
 
 		CartDaoImpl obj1 = new CartDaoImpl();
 		int qty = 0;
-		
-			qty = obj1.check(stt);
-		
+
+		qty = obj1.check(stt);
+
 		if (qty > 0 && !(qty > 9)) {// check quantity
 
 			stt.setQuantity(qty + 1);
-			
-				obj1.incease(stt);
-			
+
+			obj1.incease(stt);
 
 			try {
 				response.sendRedirect("CustomerviewServlet");
@@ -91,9 +89,8 @@ public class AddToCart extends HttpServlet {
 
 			stt.setQuantity(1);
 			stt.setPrice(0);
-		
-				obj1.addToCart(stt);
-			
+
+			obj1.addToCart(stt);
 
 			try {
 				response.sendRedirect("CustomerviewServlet");
@@ -107,8 +104,7 @@ public class AddToCart extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

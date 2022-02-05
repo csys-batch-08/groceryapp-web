@@ -38,7 +38,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			CloseConnection.close(stmt, con);
 		}
 	}
-
+/**
+ * this method use to get order id for given customer id
+ */
 	public int GettingOrderID(Order order) {
 		Connection con = null;
 		PreparedStatement stmt= null;

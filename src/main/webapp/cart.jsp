@@ -50,7 +50,7 @@
     }
     .footer {
   position: relative;
-   margin-top:auto
+   margin-top:auto;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -84,7 +84,7 @@
           <a class="nav-link" href="CartServlet">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="logout.jsp">Logout</a>
+          <a class="nav-link" href="Logoutservlet">Logout</a>
         </li>
         
       </ul>

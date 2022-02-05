@@ -19,7 +19,7 @@ public String getProductImage() {
 	return ProductImage;
 }
 public void setProductImage(String productImage) {
-	ProductImage = productImage;
+	this.ProductImage = productImage;
 }
 public int getOrderId() {
 	return orderId;
@@ -31,7 +31,7 @@ public String getProductName() {
 	return ProductName;
 }
 public void setProductName(String productName) {
-	ProductName = productName;
+	this.ProductName = productName;
 }
 public double getPrice() {
 	return price;

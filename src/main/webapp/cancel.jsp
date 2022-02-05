@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
+<html lang="en">
 <meta charset="ISO-8859-1">
 <title>Cancel</title>
 </head>

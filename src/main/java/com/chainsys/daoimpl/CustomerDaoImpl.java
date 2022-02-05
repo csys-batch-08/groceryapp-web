@@ -65,11 +65,11 @@ public class CustomerDaoImpl implements Customerinterface {
 		return true;
 	}
 
-	public Customer login(Customer customer)  {
+	public Customer login(final Customer customer)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
 		ResultSet rs=null;
-
+		Customer customerObj =null;
 		 con = GetConnection.getConnections();
 		String query = "select user_name,first_name,last_name,address,phone,email,customer_id from customer where phone= ? and password= ? ";
 		try {
@@ -80,24 +80,25 @@ public class CustomerDaoImpl implements Customerinterface {
 			 rs = stmt.executeQuery();
 
 			if (rs.next()) {
-
-				customer.setUsername(rs.getString(1));
-				customer.setFirstName(rs.getString(2));
-				customer.setLastName(rs.getString(3));
-				customer.setAddress(rs.getString(4));
-				customer.setPhonenumber(rs.getLong(5));
-				customer.setEmailid(rs.getString(6));
-				customer.setCustomerid(rs.getInt(7));
+				customerObj =new Customer();
+				customerObj.setUsername(rs.getString(1));
+				customerObj.setFirstName(rs.getString(2));
+				customerObj.setLastName(rs.getString(3));
+				customerObj.setAddress(rs.getString(4));
+				customerObj.setPhonenumber(rs.getLong(5));
+				customerObj.setEmailid(rs.getString(6));
+				customerObj.setCustomerid(rs.getInt(7));
 
 			}
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 			System.out.println(e.getMessage());
+			throw new RuntimeException("unable to execute");
 		}
 		finally {
 			CloseConnection.close(stmt, con, rs);
 		}
-		return customer;
+		return customerObj;
 
 	}
 

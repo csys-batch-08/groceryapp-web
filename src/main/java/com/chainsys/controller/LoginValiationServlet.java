@@ -2,6 +2,7 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ public class LoginValiationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		Customer customer = new Customer();
 		CustomerDaoImpl obj = new CustomerDaoImpl();
+		HttpSession session = req.getSession();
 		try {
 			String phonenumbers = req.getParameter("uname");
 			long phonenumber = Long.parseLong(phonenumbers);
@@ -33,14 +35,10 @@ public class LoginValiationServlet extends HttpServlet {
 
 			customer.setPhonenumber(phonenumber);
 			customer.setPassword(Password);
-		} catch (NumberFormatException e2) {
-
-			System.out.println(e2.getMessage());
-		}
-
-		HttpSession session = req.getSession();
+		
+		
 		resp.setContentType("text/html");
-		try {
+		
 
 			customer = obj.login(customer);
 
@@ -48,10 +46,12 @@ public class LoginValiationServlet extends HttpServlet {
 
 				session.setAttribute("logincustomer", customer);
 				if (customer.getCustomerid() == 1) {
-					resp.sendRedirect("AdminViewServlet");
+				
+					req.getRequestDispatcher("AdminViewServlet").include(req, resp);
 
 				} else {
-					resp.sendRedirect("CustomerviewServlet");
+					
+					req.getRequestDispatcher("CustomerviewServlet").include(req, resp);
 				}
 			} else {
 
@@ -59,7 +59,7 @@ public class LoginValiationServlet extends HttpServlet {
 
 			}
 
-		} catch ( LoginException | IOException e) {
+		} catch ( LoginException | IOException | ServletException | NumberFormatException e) {
 			session.setAttribute("erroruserid", ((LoginException) e).getUserNameLoginMessage());
 
 			try {

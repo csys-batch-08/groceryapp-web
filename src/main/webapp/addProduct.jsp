@@ -88,7 +88,7 @@
           <a class="nav-link" href="OrdersServlet">Orders</a>
         </li>
         <li class="nav-item p-3">
-          <a class="nav-link" href="logout.jsp">Logout</a>
+          <a class="nav-link" href="Logoutservlet">Logout</a>
         </li>
         
       </ul>

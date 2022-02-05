@@ -54,7 +54,7 @@ public class CartDaoImpl implements CartInterface {
 			stmt.setInt(1, stt.getOrderid());
 			stmt.setInt(2, stt.getProductid());
    rs = stmt.executeQuery();
-			while (rs.next()) {
+			if (rs.next()) {
 				b = rs.getInt(1);
 			}
 		} catch (SQLException e) {

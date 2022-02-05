@@ -87,7 +87,7 @@
           <a class="nav-link" href="CartServlet">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="Logout.jsp">Logout</a>
+          <a class="nav-link" href="Logoutservlet">Logout</a>
         </li>
         
       </ul>

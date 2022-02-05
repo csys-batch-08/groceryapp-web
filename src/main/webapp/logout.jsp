@@ -8,7 +8,6 @@
 </head>
 <body>
 <h1>Logout successfully</h1>
-<%session.invalidate(); %>
 <script>
          setTimeout(function(){
             window.location.href = 'login.jsp';

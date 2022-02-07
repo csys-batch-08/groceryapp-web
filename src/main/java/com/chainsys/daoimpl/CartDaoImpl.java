@@ -119,7 +119,6 @@ public class CartDaoImpl implements CartInterface {
 
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		 finally {

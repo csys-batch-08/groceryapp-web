@@ -242,7 +242,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 				orderlist.add(feature1);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 			System.out.println(e.getMessage());
 		}
 		 finally {

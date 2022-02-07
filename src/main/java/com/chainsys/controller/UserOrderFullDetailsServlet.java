@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.chainsys.daoimpl.OrderDaoImpl;
-import com.chainsys.model.Feature;
+import com.chainsys.dto.Feature;
 import com.chainsys.model.Order;
 
 @WebServlet("/UserOrderFullDetailsServlet")

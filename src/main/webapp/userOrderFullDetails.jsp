@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@page import="com.chainsys.model.Order"%>
-<%@page import="com.chainsys.model.Feature"%>
+<%@page import="com.chainsys.dto.Feature"%>
 <%@page import="com.chainsys.model.Customer"%>
 <%@page import="com.chainsys.model.Product"%>
 <%@page import="java.util.List"%>
@@ -127,7 +127,7 @@
 							<td><c:out value="${current.getProductName()}" /></td>
 							<td><c:out value="${current.getPrice()}" /></td>
 							<td><c:out value="${current.getQuantity()}" /></td>
-							<td></td>
+							<td> <c:out value="${current.getCost()}" /></td>
 
 
 

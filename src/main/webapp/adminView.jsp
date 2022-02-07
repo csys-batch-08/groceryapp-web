@@ -1,5 +1,5 @@
 <%@page import="com.chainsys.model.Order"%>
-<%@page import="com.chainsys.model.Feature"%>
+<%@page import="com.chainsys.dto.Feature"%>
 <%@page import="java.util.List"%>
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

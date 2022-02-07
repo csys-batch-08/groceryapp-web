@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.chainsys.daoimpl.OrderDaoImpl;
-import com.chainsys.model.Feature;
+import com.chainsys.dto.Feature;
 
 @WebServlet("/TodaySaleServlet")
 public class TodaySaleServlet extends HttpServlet {

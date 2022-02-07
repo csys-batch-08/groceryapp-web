@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.chainsys.daoimpl.CartDaoImpl;
 import com.chainsys.daoimpl.OrderDaoImpl;
+import com.chainsys.dto.Feature;
 import com.chainsys.model.Customer;
-import com.chainsys.model.Feature;
 import com.chainsys.model.Order;
 
 @WebServlet("/CartServlet")

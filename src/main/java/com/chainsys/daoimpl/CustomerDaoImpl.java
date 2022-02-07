@@ -16,14 +16,13 @@ public class CustomerDaoImpl implements Customerinterface {
 	/**
 	 * this method use to sign up for new user
 	 */
-	public boolean signup(final Customer customer) {
+	public void signup(final Customer customer) {
 		Connection con = null;
-		PreparedStatement stmt= null;
-		
+		PreparedStatement stmt = null;
 
-		 con = GetConnection.getConnections();
+		con = GetConnection.getConnections();
 		String query = "insert into customer (user_name ,password,first_name,last_name,address,phone, email) values(?,?,?,?,?,?,?)";
-		 try {
+		try {
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, customer.getUsername());
 			stmt.setString(2, customer.getPassword());
@@ -34,38 +33,36 @@ public class CustomerDaoImpl implements Customerinterface {
 			stmt.setString(7, customer.getEmailid());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.close(stmt, con);
 		}
-		 finally {
-				CloseConnection.close(stmt, con);
-			}
-		return true;
 
 	}
+
 	/**
 	 * this method use to change password for exist user
 	 */
 
 	public boolean changepassword(final Customer customer) {
 		Connection con = null;
-		PreparedStatement stmt= null;
-		
+		PreparedStatement stmt = null;
+
 		con = GetConnection.getConnections();
 		String query = "update  customer set password = ? where phone=?";
-		 try {
+		try {
 			stmt = con.prepareStatement(query);
 
 			stmt.setString(1, customer.getPassword());
 			stmt.setDouble(2, customer.getPhonenumber());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-		
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.close(stmt, con);
 		}
-		 finally {
-				CloseConnection.close(stmt, con);
-			}
 
 		return true;
 	}
@@ -73,57 +70,56 @@ public class CustomerDaoImpl implements Customerinterface {
 	/**
 	 * this method use to login exist user
 	 */
-	public Customer login(final Customer customer)  {
+	public Customer login(final Customer customer) {
 		Connection con = null;
-		PreparedStatement stmt= null;
-		ResultSet rs=null;
-		Customer customerObj =null;
-		 con = GetConnection.getConnections();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Customer customerObj = null;
+		con = GetConnection.getConnections();
 		String query = "select user_name,first_name,last_name,address,phone,email,customer_id from customer where phone= ? and password= ? ";
 		try {
 			stmt = con.prepareStatement(query);
 			stmt.setLong(1, customer.getPhonenumber());
 			stmt.setString(2, customer.getPassword());
-
-			 rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				customerObj =new Customer();
-				customerObj.setUsername(rs.getString(1));
-				customerObj.setFirstName(rs.getString(2));
-				customerObj.setLastName(rs.getString(3));
-				customerObj.setAddress(rs.getString(4));
-				customerObj.setPhonenumber(rs.getLong(5));
-				customerObj.setEmailid(rs.getString(6));
-				customerObj.setCustomerid(rs.getInt(7));
+				customerObj = new Customer();
+				customerObj.setUsername(rs.getString("user_name"));
+				customerObj.setFirstName(rs.getString("first_name"));
+				customerObj.setLastName(rs.getString("last_name"));
+				customerObj.setAddress(rs.getString("address"));
+				customerObj.setPhonenumber(rs.getLong("phone"));
+				customerObj.setEmailid(rs.getString("email"));
+				customerObj.setCustomerid(rs.getInt("customer_id"));
 
 			}
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
 			throw new RuntimeException("unable to execute");
-		}
-		finally {
+		} finally {
 			CloseConnection.close(stmt, con, rs);
 		}
 		return customerObj;
 
 	}
+
 	/**
 	 * this method use to show list of user sign up to admin
 	 */
-	public List<Customer> viewallLoginUser()  {
+	public List<Customer> viewallLoginUser() {
 		Connection con = null;
-		PreparedStatement stmt= null;
-		ResultSet rs=null;
-		 con = GetConnection.getConnections();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		con = GetConnection.getConnections();
 		String query = "select user_name,first_name,last_name,address,phone,email,customer_id from customer";
-		 List<Customer> userList=null;
+		List<Customer> userList = null;
 		try {
 			stmt = con.prepareStatement(query);
 			userList = new ArrayList<Customer>();
 
-			 rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Customer customer = new Customer();
 				customer.setUsername(rs.getString(1));
@@ -136,13 +132,42 @@ public class CustomerDaoImpl implements Customerinterface {
 				userList.add(customer);
 			}
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
-		}
-		finally {
+		} finally {
 			CloseConnection.close(stmt, con, rs);
 		}
 		return userList;
+	}
+
+	/**
+	 * this method use to check sign up for new user
+	 */
+	public int signupcheck(final Customer customer) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		int customerid = 0;
+
+		con = GetConnection.getConnections();
+		String query = "select sum(customer_id)  from customer where phone=? or email =?";
+		try {
+			stmt = con.prepareStatement(query);
+
+			stmt.setLong(1, customer.getPhonenumber());
+			stmt.setString(2, customer.getEmailid());
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				customerid = rs.getInt("sum(customer_id)");
+			}
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.close(stmt, con);
+		}
+		return customerid;
+
 	}
 
 }

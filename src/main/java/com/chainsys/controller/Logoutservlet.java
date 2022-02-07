@@ -24,7 +24,7 @@ public class Logoutservlet extends HttpServlet {
 		try {
 			request.getRequestDispatcher("logout.jsp").include(request, response);
 		} catch (ServletException | IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}

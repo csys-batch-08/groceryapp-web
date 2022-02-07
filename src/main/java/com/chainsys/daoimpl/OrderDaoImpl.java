@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import com.chainsys.dao.OrderDaoinferace;
-import com.chainsys.model.Feature;
+import com.chainsys.dto.Feature;
 import com.chainsys.model.Order;
 import com.chainsys.util.CloseConnection;
 import com.chainsys.util.GetConnection;
@@ -55,7 +55,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 			 rs = stmt.executeQuery();
 			if (rs.next()) {
-				custmerid = rs.getInt(1);
+				custmerid = rs.getInt("order_id");
 			}
 		} catch (SQLException e) {
 
@@ -82,11 +82,11 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			 rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				Feature feature = new Feature();
-				feature.setProductName(rs.getString(1));
-				feature.setPrice(rs.getDouble(2));
-				feature.setQuantity(rs.getInt(3));
-				feature.setCost(rs.getDouble(4));
-				feature.setProductImage(rs.getString(5));
+				feature.setProductName(rs.getString("products_name"));
+				feature.setPrice(rs.getDouble("price"));
+				feature.setQuantity(rs.getInt("quantity"));
+				feature.setCost(rs.getDouble("cost"));
+				feature.setProductImage(rs.getString("productsimage"));
 				todaysale.add(feature);
 
 			}
@@ -114,7 +114,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			 rs = stmt.executeQuery(query);
 			if (rs.next()) {
 
-				total = rs.getDouble(1);
+				total = rs.getDouble("cost");
 			}
 		} catch (SQLException e) {
 			
@@ -141,11 +141,11 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			 rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				Feature feature = new Feature();
-				feature.setProductName(rs.getString(1));
-				feature.setPrice(rs.getDouble(2));
-				feature.setQuantity(rs.getInt(3));
-				feature.setCost(rs.getDouble(4));
-				feature.setProductImage(rs.getString(5));
+				feature.setProductName(rs.getString("products_name"));
+				feature.setPrice(rs.getDouble("price"));
+				feature.setQuantity(rs.getInt("quantity"));
+				feature.setCost(rs.getDouble("cost"));
+				feature.setProductImage(rs.getString("productsimage"));
 				todaysale.add(feature);
 
 			}
@@ -173,7 +173,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			 rs = stmt.executeQuery(query);
 			if (rs.next()) {
 
-				total = rs.getDouble(1);
+				total = rs.getDouble("cost");
 			}
 		} catch (SQLException e) {
 			
@@ -201,9 +201,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		 rs = stmt.executeQuery();
 			while (rs.next()) {
 				order = new Order();
-				order.setOrderid(rs.getInt(1));
-				order.setStatus(rs.getString(2));
-				order.setOrderdate(rs.getDate(3));
+				order.setOrderid(rs.getInt("order_id"));
+				order.setStatus(rs.getString("status"));
+				order.setOrderdate(rs.getDate("order_date"));
 
 				todayOrder.add(order);
 			}
@@ -219,13 +219,13 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	/**
 	 * this method use to show list of order details to given user
 	 */
-	public List<Feature> userOrderDetails(Feature feature)  {
+	public List<Feature> userOrderDetails(final Feature feature)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		 con = GetConnection.getConnections();
 		List<Feature> orderlist = new ArrayList<Feature>();
-		String query = "  select p.products_name,c.quantity,c.price,(c.quantity*c.price),p.Productsimage as cost from order_details o join cart c on o.order_id =c.order_id join product p on p.products_id=c.product_id where o.order_id=?";
+		String query = "  select p.products_name as products_name ,c.quantity as quantity ,c.price as price,(c.quantity*c.price) as total ,p.Productsimage as cost from order_details o join cart c on o.order_id =c.order_id join product p on p.products_id=c.product_id where o.order_id=?";
 		 try {
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, feature.getOrderId());
@@ -233,16 +233,16 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Feature feature1 = new Feature();
-				feature1.setProductName(rs.getString(1));
-				feature1.setQuantity(rs.getInt(2));
-				feature1.setPrice(rs.getDouble(3));
-				feature1.setCost(rs.getDouble(4));
-				feature1.setProductImage(rs.getString(5));
+				feature1.setProductName(rs.getString("products_name"));
+				feature1.setQuantity(rs.getInt("quantity"));
+				feature1.setPrice(rs.getDouble("price"));
+				feature1.setCost(rs.getDouble("total"));
+				feature1.setProductImage(rs.getString("cost"));
 
 				orderlist.add(feature1);
 			}
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		 finally {
@@ -253,7 +253,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	/**
 	 * this method use to show list of order details total to given user
 	 */
-	public double userOrderDetailse(Feature feature)  {
+	public double userOrderDetailse(final Feature feature)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -268,7 +268,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			 rs = stmt.executeQuery();
 			if (rs.next()) {
 
-				b = rs.getInt(1);
+				b = rs.getInt("cost");
 
 			}
 		} catch (SQLException e) {
@@ -283,7 +283,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	/**
 	 * this method use to show list of order to given user
 	 */
-	public List<Order> orderdetail(Order order)  {
+	public List<Order> orderdetail(final Order order)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -298,7 +298,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 			 rs = stmt.executeQuery();
 			while (rs.next()) {
-				Order orders = new Order(rs.getInt(1), rs.getString(2), rs.getDate(3));
+				Order orders = new Order(rs.getInt("order_id"), rs.getString("status"), rs.getDate("order_date"));
 				orderList.add(orders);
 
 			}
@@ -314,7 +314,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	/**
 	 * this method use to check cart available and get order id
 	 */
-	public int cartCheck(Order order) 
+	public int cartCheck(final Order order) 
 
 	{
 		Connection con = null;
@@ -329,7 +329,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			stmt.setInt(1, order.getCustomerid());
 			 rs = stmt.executeQuery();
 			while (rs.next()) {
-				b = rs.getInt(1);
+				b = rs.getInt("order_id");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -342,7 +342,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	/**
 	 * this method use to make final order date
 	 */
-	public void makefinal(Order order) {
+	public void makefinal(final Order order) {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		
@@ -366,7 +366,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	/**
 	 * this method use to check cart available
 	 */
-	public String status(Order order) {
+	public String status(final Order order) {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -381,7 +381,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 			 rs = stmt.executeQuery();
 			if (rs.next()) {
-				statuse = rs.getString(1);
+				statuse = rs.getString("status");
 			}
 		} catch (SQLException e) {
 
@@ -398,7 +398,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	/**
 	 * this method use to cancel order
 	 */
-	public boolean cancel(Order order) {
+	public boolean cancel(final Order order) {
 		Connection con = null;
 		PreparedStatement stmt =null;
 		
@@ -435,8 +435,8 @@ public class OrderDaoImpl implements OrderDaoinferace {
 			 rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				Order orders = new Order();
-				orders.setOrderdate(rs.getDate(2));
-				orders.setOrderid(rs.getInt(1));
+				orders.setOrderdate(rs.getDate("trunc(order_date)"));
+				orders.setOrderid(rs.getInt("count(status)"));
 				todaysale.add(orders);
 
 			}
@@ -466,9 +466,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		
 			while (rs.next()) {
 				Order orders = new Order();
-				orders.setStatus(rs.getString(2));
-				orders.setOrderdate(rs.getDate(3));
-				orders.setOrderid(rs.getInt(1));
+				orders.setStatus(rs.getString("status"));
+				orders.setOrderdate(rs.getDate("order_date"));
+				orders.setOrderid(rs.getInt("order_id"));
 				todaysale.add(orders);
 
 			}
@@ -484,7 +484,7 @@ public class OrderDaoImpl implements OrderDaoinferace {
 	/**
 	 * this method use to admin accept order
 	 */
-	public boolean accept(Order order) {
+	public boolean accept(final Order order) {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		
@@ -522,11 +522,11 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		
 			while (rs.next()) {
 				Feature feature = new Feature();
-				feature.setProductName(rs.getString(1));
-				feature.setPrice(rs.getDouble(2));
-				feature.setQuantity(rs.getInt(3));
-				feature.setCost(rs.getDouble(4));
-				feature.setProductImage(rs.getString(5));
+				feature.setProductName(rs.getString("products_name"));
+				feature.setPrice(rs.getDouble("price"));
+				feature.setQuantity(rs.getInt("quantity"));
+				feature.setCost(rs.getDouble("cost"));
+				feature.setProductImage(rs.getString("productsimage"));
 				todaysale.add(feature);
 
 			}

@@ -18,7 +18,7 @@ public class ProductDaoImpl implements Productinterface {
 	/**
 	 * this method use to add new product
 	 */
-	public boolean addproduct(Product product)  {
+	public boolean addproduct(final Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
 		 con = GetConnection.getConnections();
@@ -42,7 +42,7 @@ public class ProductDaoImpl implements Productinterface {
 	/**
 	 * this method use to disable/enable product
 	 */
-	public boolean delete(Product product)  {
+	public boolean delete(final Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
 		 con = GetConnection.getConnections();
@@ -65,7 +65,7 @@ public class ProductDaoImpl implements Productinterface {
 	/**
 	 * this method use to change price of product
 	 */
-	public boolean changePrice(Product product)  {
+	public boolean changePrice(final Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
 			
@@ -89,7 +89,7 @@ public class ProductDaoImpl implements Productinterface {
 	/**
 	 * this method use to change product name
 	 */
-	public boolean changeName(Product product)  {
+	public boolean changeName(final Product product)  {
 		Connection con = null;
 	PreparedStatement stmt= null;
 		
@@ -126,7 +126,7 @@ public class ProductDaoImpl implements Productinterface {
 			 rs = stmt.executeQuery(view);
 			while (rs.next()) {
 
-				Product product = new Product(rs.getInt(3), rs.getString(1), rs.getDouble(2), rs.getString(4));
+				Product product = new Product(rs.getInt("products_id"), rs.getString("products_name"), rs.getDouble("standard_cost"), rs.getString("Productsimage"));
 				productList.add(product);
 			}
 		} catch (SQLException e) {
@@ -156,11 +156,11 @@ public class ProductDaoImpl implements Productinterface {
 			while (rs.next()) {
 
 				Product product = new Product();
-				product.setProductImage(rs.getString(5));
-				product.setProductName(rs.getString(1));
-				product.setProductId(rs.getInt(2));
-				product.setProductPrice(rs.getDouble(3));
-				product.setProducStatus(rs.getString(4));
+				product.setProductImage(rs.getString("Productsimage"));
+				product.setProductName(rs.getString("products_name"));
+				product.setProductId(rs.getInt("products_id"));
+				product.setProductPrice(rs.getDouble("standard_cost"));
+				product.setProducStatus(rs.getString("status"));
 				productList.add(product);
 			}
 		} catch (SQLException e) {
@@ -175,7 +175,7 @@ public class ProductDaoImpl implements Productinterface {
 	/**
 	 * this method use to get current rate of product
 	 */
-	public int gettingRate(Product product)  {
+	public int gettingRate(final Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
 		ResultSet rs=null;		
@@ -201,10 +201,11 @@ public class ProductDaoImpl implements Productinterface {
 	/**
 	 * this method use to search of product
 	 */
-	public List<Product> sortproduct(Product product)  {
+	public List<Product> sortproduct(final Product product)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
 		ResultSet rs=null;
+		 Product products=null;
 		con = GetConnection.getConnections();
 		List<Product> sortproductlist = new ArrayList<Product>();
 		String query = " SELECT  products_name,standard_cost,products_id,Productsimage FROM product where status in('y' ,'Y') and upper( products_name) LIKE upper(?)";
@@ -213,12 +214,12 @@ public class ProductDaoImpl implements Productinterface {
 			stmt.setString(1, "%" + product.getProductName() + "%");
 			 rs = stmt.executeQuery();
 			while (rs.next()) {
-				product = new Product();
-				product.setProductName(rs.getString(1));
-				product.setProductPrice(rs.getDouble(2));
-				product.setProductId(rs.getInt(3));
-				product.setProductImage(rs.getString(4));
-				sortproductlist.add(product);
+				products = new Product();
+				products.setProductName(rs.getString("products_name"));
+				products.setProductPrice(rs.getDouble("standard_cost"));
+				products.setProductId(rs.getInt("products_id"));
+				products.setProductImage(rs.getString("Productsimage"));
+				sortproductlist.add(products);
 
 			}
 		} catch (SQLException e) {

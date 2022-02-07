@@ -2,7 +2,7 @@
 <%@page import="com.chainsys.daoimpl.CartDaoImpl"%>
 <%@page import="com.chainsys.daoimpl.OrderDaoImpl"%>
 <%@page import="com.chainsys.model.Order"%>
-<%@page import="com.chainsys.model.Feature"%>
+<%@page import="com.chainsys.dto.Feature"%>
 <%@page import="com.chainsys.model.Customer"%>
 <%@page import="com.chainsys.model.Product"%>
 <%@page import="java.util.List"%>

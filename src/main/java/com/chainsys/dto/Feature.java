@@ -1,4 +1,4 @@
-package com.chainsys.model;
+package com.chainsys.dto;
 
 public class Feature {
 private String	ProductName;

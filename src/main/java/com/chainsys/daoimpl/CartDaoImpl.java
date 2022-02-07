@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.chainsys.dao.CartInterface;
+import com.chainsys.dto.Feature;
 import com.chainsys.model.Cart;
-import com.chainsys.model.Feature;
 import com.chainsys.util.CloseConnection;
 import com.chainsys.util.GetConnection;
 
@@ -17,7 +17,7 @@ public class CartDaoImpl implements CartInterface {
 	/**
 	 * this method use to add product to cart
 	 */
-	public void addToCart(Cart stt)  {
+	public void addToCart(final Cart stt)  {
 		Connection con = null;
 		PreparedStatement stmt= null;
 	
@@ -43,7 +43,7 @@ public class CartDaoImpl implements CartInterface {
 	/**
 	 * this method use to get quantity for current order and product
 	 */
-	public int check(Cart stt)  {
+	public int check(final Cart stt)  {
 		int b = 0;
 		Connection con = null;
 		PreparedStatement stmt=null;
@@ -57,7 +57,7 @@ public class CartDaoImpl implements CartInterface {
 			stmt.setInt(2, stt.getProductid());
    rs = stmt.executeQuery();
 			if (rs.next()) {
-				b = rs.getInt(1);
+				b = rs.getInt("quantity");
 			}
 		} catch (SQLException e) {
 			
@@ -71,7 +71,7 @@ public class CartDaoImpl implements CartInterface {
 	/**
 	 * this method use to increase/decrease quantity of product
 	 */
-	public void changeQuantity(Cart stt) {
+	public void changeQuantity(final Cart stt) {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		
@@ -95,30 +95,31 @@ public class CartDaoImpl implements CartInterface {
 	/**
 	 * this method use to show product in cart
 	 */
-	public List<Feature> showCartin(Feature feature)  {
+	public List<Feature> showCartin(final Feature feature)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
+		Feature features=null;
 		 con = GetConnection.getConnections();
 		List<Feature> incart = new ArrayList<Feature>();
-		String query = "select p.products_name,c.quantity,p.standard_cost,(c.quantity*p.standard_cost),p.products_id,Productsimage as cost from order_details o join cart c on o.order_id =c.order_id join product p on p.products_id=c.product_id where o.order_id=?";
+		String query = "select p.products_name as products_name,c.quantity as quantity,p.standard_cost as standard_cost,(c.quantity*p.standard_cost) as total ,p.products_id as products_id,Productsimage as cost from order_details o join cart c on o.order_id =c.order_id join product p on p.products_id=c.product_id where o.order_id=?";
 		 try {
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, feature.getOrderId());
 			 rs = stmt.executeQuery();
 			while (rs.next()) {
-				feature = new Feature();
-				feature.setProductName(rs.getString(1));
-				feature.setQuantity(rs.getInt(2));
-				feature.setPrice(rs.getDouble(3));
-				feature.setCost(rs.getDouble(4));
-				feature.setProductId(rs.getInt(5));
-				feature.setProductImage(rs.getString(6));
-				incart.add(feature);
+				features = new Feature();
+				features.setProductName(rs.getString("products_name"));
+				features.setQuantity(rs.getInt("quantity"));
+				features.setPrice(rs.getDouble("standard_cost"));
+				features.setCost(rs.getDouble("total"));
+				features.setProductId(rs.getInt("products_id"));
+				features.setProductImage(rs.getString("cost"));
+				incart.add(features);
 
 			}
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		 finally {
@@ -129,7 +130,7 @@ public class CartDaoImpl implements CartInterface {
 	/**
 	 * this method use to show product total in cart
 	 */
-	public double showCartinTotal(Feature feature)  {
+	public double showCartinTotal(final Feature feature)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -142,7 +143,7 @@ public class CartDaoImpl implements CartInterface {
 			 rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				total = rs.getDouble(1);
+				total = rs.getDouble("cost");
 
 			}
 	} catch (SQLException e) {
@@ -157,7 +158,7 @@ public class CartDaoImpl implements CartInterface {
 	/**
 	 * this method use to remove product from cart
 	 */
-	public boolean delete(Cart stt)  {
+	public boolean delete(final Cart stt)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		
@@ -182,7 +183,7 @@ public class CartDaoImpl implements CartInterface {
 	/**
 	 * this method use to get list of product id from cart
 	 */
-	public List<Integer> gettingproductidincart(Cart stt)  {
+	public List<Integer> gettingproductidincart(final Cart stt)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -194,7 +195,7 @@ public class CartDaoImpl implements CartInterface {
 			stmt.setInt(1, stt.getOrderid());
 			 rs = stmt.executeQuery();
 			while (rs.next()) {
-				ProductId.add(rs.getInt(1));
+				ProductId.add(rs.getInt("product_id"));
 			}
 		} catch (SQLException e) {
 			
@@ -208,7 +209,7 @@ public class CartDaoImpl implements CartInterface {
 	/**
 	 * this method use to update current price to product 
 	 */
-	public void insertcurrentvalue(Cart stt) {
+	public void insertcurrentvalue(final Cart stt) {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		 con = GetConnection.getConnections();
@@ -231,7 +232,7 @@ public class CartDaoImpl implements CartInterface {
 	/**
 	 * this method use to get quantity of product in cart
 	 */
-	public List<Integer> gettingproductpriceincart(Cart stt)  {
+	public List<Integer> gettingproductpriceincart(final Cart stt)  {
 		Connection con = null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -243,7 +244,7 @@ public class CartDaoImpl implements CartInterface {
 			stmt.setInt(1, stt.getOrderid());
 			 rs = stmt.executeQuery();
 			while (rs.next()) {
-				ProductIds.add(rs.getInt(1));
+				ProductIds.add(rs.getInt("quantity"));
 			}
 		} catch (SQLException e) {
 			

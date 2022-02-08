@@ -15,144 +15,150 @@ import com.chainsys.util.GetConnection;
 public class ProductDaoImpl implements Productinterface {
 
 	int b1 = 0;
+
 	/**
 	 * this method use to add new product
 	 */
-	public boolean addproduct(final Product product)  {
+	public boolean addproduct(final Product product) {
 		Connection con = null;
-		PreparedStatement stmt= null;
-		 con = GetConnection.getConnections();
+		PreparedStatement stmt = null;
+		con = GetConnection.getConnections();
 		String query = " insert into product (products_name,standard_cost,productsimage)values(?,?,?)";
-		 try {
+		try {
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, product.getProductName());
 			stmt.setDouble(2, product.getProductPrice());
 			stmt.setString(3, product.getProductImage());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.close(stmt, con);
 		}
-		 finally {
-				CloseConnection.close(stmt, con);
-			}
 		return true;
 
 	}
+
 	/**
 	 * this method use to disable/enable product
 	 */
-	public boolean delete(final Product product)  {
+	public boolean delete(final Product product) {
 		Connection con = null;
-		PreparedStatement stmt= null;
-		 con = GetConnection.getConnections();
+		PreparedStatement stmt = null;
+		con = GetConnection.getConnections();
 		String query = "update product set status=? where products_name=?";
-		 try {
+		try {
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, product.getProducStatus());
 			stmt.setString(2, product.getProductName());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.close(stmt, con);
 		}
-		 finally {
-				CloseConnection.close(stmt, con);
-			}
 		return true;
 
 	}
+
 	/**
 	 * this method use to change price of product
 	 */
-	public boolean changePrice(final Product product)  {
+	public boolean changePrice(final Product product) {
 		Connection con = null;
-		PreparedStatement stmt= null;
-			
+		PreparedStatement stmt = null;
 
-		 con = GetConnection.getConnections();
+		con = GetConnection.getConnections();
 		String query = "update product set standard_cost =? where products_name=?";
-		 try {
+		try {
 			stmt = con.prepareStatement(query);
 			stmt.setDouble(1, product.getProductPrice());
 			stmt.setString(2, product.getProductName());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.close(stmt, con);
 		}
-		 finally {
-				CloseConnection.close(stmt, con);
-			}
 		return true;
 	}
+
 	/**
 	 * this method use to change product name
 	 */
-	public boolean changeName(final Product product)  {
+	public boolean changeName(final Product product) {
 		Connection con = null;
-	PreparedStatement stmt= null;
-		
-		 con = GetConnection.getConnections();
+		PreparedStatement stmt = null;
+
+		con = GetConnection.getConnections();
 		String query = "update product set products_name = ? where products_id= ?";
-		 try {
+		try {
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, product.getProductName());
 			stmt.setInt(2, product.getProductId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.close(stmt, con);
 		}
-		 finally {
-				CloseConnection.close(stmt, con);
-			}
 		return true;
 	}
-	
+
 	/**
-	 * this method use to show list of product to user 
+	 * this method use to show list of product to user
 	 */
-	public List<Product> ViewAllProducte()  {
+	public List<Product> ViewAllProducte() {
 		Connection con = null;
-		Statement stmt= null;
-		ResultSet rs=null;
-		 con = GetConnection.getConnections();
-		 List<Product> productList=null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		con = GetConnection.getConnections();
+		List<Product> productList = null;
 		try {
 			stmt = con.createStatement();
 			productList = new ArrayList<Product>();
-			String view = " SELECT products_name,standard_cost,products_id,Productsimage FROM product where status ='y' or status ='Y'";
-			 rs = stmt.executeQuery(view);
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT products_name,");
+			sb.append("standard_cost,products_id,Productsimage");
+			sb.append(" ");
+			sb.append("FROM product");
+			sb.append(" where status ='y' or status ='Y'");
+			String query = sb.toString();
+			rs = stmt.executeQuery(query);
 			while (rs.next()) {
 
-				Product product = new Product(rs.getInt("products_id"), rs.getString("products_name"), rs.getDouble("standard_cost"), rs.getString("Productsimage"));
+				Product product = new Product(rs.getInt("products_id"), rs.getString("products_name"),
+						rs.getDouble("standard_cost"), rs.getString("Productsimage"));
 				productList.add(product);
 			}
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.closeStatement(stmt, con, rs);
 		}
-		 finally {
-				CloseConnection.closeStatement(stmt, con, rs);
-			}
 		return productList;
 
 	}
+
 	/**
 	 * this method use to show list of product to admin
 	 */
-	public List<Product> AdminViewAllProducts()  {
+	public List<Product> AdminViewAllProducts() {
 		Connection con = null;
-		Statement stmt= null;
-		ResultSet rs=null;
-		 con = GetConnection.getConnections();
-		 List<Product> productList=null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		con = GetConnection.getConnections();
+		List<Product> productList = null;
 		try {
 			stmt = con.createStatement();
 			productList = new ArrayList<Product>();
 			String view = " SELECT products_name,products_id,standard_cost, status,Productsimage FROM product";
-			 rs = stmt.executeQuery(view);
+			rs = stmt.executeQuery(view);
 			while (rs.next()) {
 
 				Product product = new Product();
@@ -164,55 +170,62 @@ public class ProductDaoImpl implements Productinterface {
 				productList.add(product);
 			}
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.closeStatement(stmt, con, rs);
 		}
-		 finally {
-				CloseConnection.closeStatement(stmt, con, rs);
-			}
 		return productList;
 	}
+
 	/**
 	 * this method use to get current rate of product
 	 */
-	public int gettingRate(final Product product)  {
+	public int gettingRate(final Product product) {
 		Connection con = null;
-		PreparedStatement stmt= null;
-		ResultSet rs=null;		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		con = GetConnection.getConnections();
 		String query = " select standard_cost from product where products_id=? ";
-		 try {
+		try {
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, product.getProductId());
-			 rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			if (rs.next()) {
 				b1 = rs.getInt("standard_cost");
 
 			}
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.close(stmt, con, rs);
 		}
-		 finally {
-				CloseConnection.close(stmt, con, rs);
-			}
 		return b1;
 	}
+
 	/**
 	 * this method use to search of product
 	 */
-	public List<Product> sortproduct(final Product product)  {
+	public List<Product> sortproduct(final Product product) {
 		Connection con = null;
-		PreparedStatement stmt= null;
-		ResultSet rs=null;
-		 Product products=null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Product products = null;
 		con = GetConnection.getConnections();
 		List<Product> sortproductlist = new ArrayList<Product>();
-		String query = " SELECT  products_name,standard_cost,products_id,Productsimage FROM product where status in('y' ,'Y') and upper( products_name) LIKE upper(?)";
-		 try {
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT products_name,");
+		sb.append("standard_cost,products_id,Productsimage");
+		sb.append(" ");
+		sb.append("FROM product ");
+		sb.append(" where status in('y' ,'Y')");
+		sb.append("and upper( products_name) LIKE upper(?)");
+		String query = sb.toString();
+		try {
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, "%" + product.getProductName() + "%");
-			 rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			while (rs.next()) {
 				products = new Product();
 				products.setProductName(rs.getString("products_name"));
@@ -223,12 +236,11 @@ public class ProductDaoImpl implements Productinterface {
 
 			}
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
+		} finally {
+			CloseConnection.close(stmt, con, rs);
 		}
-		 finally {
-				CloseConnection.close(stmt, con, rs);
-			}
 		return sortproductlist;
 
 	}

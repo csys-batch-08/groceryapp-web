@@ -5,9 +5,7 @@ public class Product {
 	private String ProductName;
 	private Double ProductPrice;
 	private String producStatus;
-	private String	ProductImage;
-	
-	
+	private String ProductImage;
 
 	public String getProductImage() {
 		return ProductImage;
@@ -51,10 +49,8 @@ public class Product {
 	public void setProductName(String productName) {
 		ProductName = productName;
 	}
-	
 
-
-	public Product( String productName, Double productPrice) {
+	public Product(String productName, Double productPrice) {
 		super();
 		ProductName = productName;
 		ProductPrice = productPrice;

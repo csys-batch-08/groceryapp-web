@@ -12,12 +12,9 @@ public class AddProductAdminServlet extends HttpServlet {
 
 	public AddProductAdminServlet() {
 		super();
-
 	}
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			response.sendRedirect("addProduct.jsp");
 		} catch (IOException e) {
@@ -25,10 +22,7 @@ public class AddProductAdminServlet extends HttpServlet {
 		}
 	}
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 	}
-
 }

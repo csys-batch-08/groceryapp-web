@@ -24,9 +24,9 @@ public class CartServlet extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		int orderid = 0;
 		double total = 0;
@@ -40,26 +40,23 @@ public class CartServlet extends HttpServlet {
 		order.setCustomerid(customerId);
 		OrderDaoImpl obj1 = new OrderDaoImpl();
 		int orderidcheck;
-		
-			orderidcheck = obj1.cartCheck(order);
-			if (orderidcheck > 0) {
-				orderid = orderidcheck;
-			}
-		
+
+		orderidcheck = obj1.cartCheck(order);
+		if (orderidcheck > 0) {
+			orderid = orderidcheck;
+		}
 
 		session.setAttribute("logincustomerorderId", orderid);
 
 		Feature feature = new Feature();
 		feature.setOrderId(orderid);
 		CartDaoImpl obj = new CartDaoImpl();
-		
-			List<Feature> cartlist = obj.showCartin(feature);
-			request.setAttribute("cartlist", cartlist);
-		
-		
-			total = obj.showCartinTotal(feature);
-			request.setAttribute("total", total);
-		
+
+		List<Feature> cartlist = obj.showCartin(feature);
+		request.setAttribute("cartlist", cartlist);
+
+		total = obj.showCartinTotal(feature);
+		request.setAttribute("total", total);
 
 		if (total > 499 && total < 999) {
 			offer = total * 0.05;
@@ -74,15 +71,15 @@ public class CartServlet extends HttpServlet {
 
 		try {
 			request.getRequestDispatcher("cart.jsp").forward(request, response);
-	
+
 		} catch (IOException | ServletException e) {
-			
+
 			System.out.println(e.getMessage());
 		}
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

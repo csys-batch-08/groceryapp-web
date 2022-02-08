@@ -20,28 +20,28 @@ public class SearchProduct extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		String Productname = request.getParameter("name");
 		Product product = new Product();
 		product.setProductName(Productname);
 		ProductDaoImpl obj = new ProductDaoImpl();
-		
+
 		try {
 			List<Product> productList = obj.sortproduct(product);
 			request.setAttribute("productList", productList);
-			
+
 			request.getRequestDispatcher("sortDisplay.jsp").forward(request, response);
 		} catch (IOException | ServletException e) {
-			
+
 			System.out.println(e.getMessage());
 		}
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

@@ -1,6 +1,5 @@
 package com.chainsys.controller;
 
-
 import java.io.IOException;
 import java.util.List;
 
@@ -21,25 +20,24 @@ public class ProductServlet extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		ProductDaoImpl obj = new ProductDaoImpl();
-		
-		
-			List<Product> productList = obj.AdminViewAllProducts();
-			request.setAttribute("productList", productList);
-		
+
+		List<Product> productList = obj.AdminViewAllProducts();
+		request.setAttribute("productList", productList);
+
 		try {
 			request.getRequestDispatcher("product.jsp").forward(request, response);
-		
+
 		} catch (IOException | ServletException e) {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

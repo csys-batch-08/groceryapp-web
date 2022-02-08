@@ -19,40 +19,36 @@ public class IncreaseQuantity extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		Cart stt = new Cart();
 		CartDaoImpl obj = new CartDaoImpl();
 		HttpSession session = request.getSession();
-		int quantity=0;
+		int quantity = 0;
 		try {
 			int orderid = (int) session.getAttribute("logincustomerorderId");
 			int productid = Integer.parseInt(request.getParameter("pId"));
-			
-			
+
 			stt.setOrderid(orderid);
 			stt.setProductid(productid);
 		} catch (NumberFormatException e2) {
-			
+
 			System.out.println(e2.getMessage());
 		}
-		
-		
-			quantity = obj.check(stt);
-		
-		
+
+		quantity = obj.check(stt);
+
 		if (quantity > 0 && !(quantity > 9)) {// check quantity
 
 			stt.setQuantity(quantity + 1);
-			
-				obj.changeQuantity(stt);
-			
-		
+
+			obj.changeQuantity(stt);
+
 			try {
 				response.sendRedirect("CartServlet");
 			} catch (IOException e) {
-				
+
 				System.out.println(e.getMessage());
 			}
 
@@ -60,15 +56,15 @@ public class IncreaseQuantity extends HttpServlet {
 			try {
 				response.sendRedirect("CartServlet");
 			} catch (IOException e) {
-				
+
 				System.out.println(e.getMessage());
 			}
 		}
 
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

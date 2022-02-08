@@ -19,27 +19,25 @@ public class ListoforderServlet extends HttpServlet {
 	public ListoforderServlet() {
 		super();
 	}
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
 
-		
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+
 		OrderDaoImpl obj = new OrderDaoImpl();
 		try {
 			List<Order> OrderList = obj.listoforder();
 			request.setAttribute("OrderLists", OrderList);
-			
+
 			request.getRequestDispatcher("listoforder.jsp").forward(request, response);
 		} catch (IOException | ServletException e) {
-		
+
 			System.out.println(e.getMessage());
 		}
 
-		
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

@@ -14,9 +14,9 @@ public class ChangeProductPriceAdminServlet extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
 			response.sendRedirect("changeProductPrice.jsp");
@@ -24,9 +24,9 @@ public class ChangeProductPriceAdminServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

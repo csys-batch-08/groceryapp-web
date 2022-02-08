@@ -20,32 +20,30 @@ public class TodaySaleServlet extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
-		long millis=System.currentTimeMillis();  
-		 java.sql.Date date = new java.sql.Date(millis);   
-		 
-     
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		long millis = System.currentTimeMillis();
+		java.sql.Date date = new java.sql.Date(millis);
+
 		OrderDaoImpl obj = new OrderDaoImpl();
-			List<Feature> sale = obj.todaySale();
-			request.setAttribute("sale", sale);
-		
-		
-			double b = obj.todaySales();
-			request.setAttribute("b", b);
-		
+		List<Feature> sale = obj.todaySale();
+		request.setAttribute("sale", sale);
+
+		double b = obj.todaySales();
+		request.setAttribute("b", b);
+
 		request.setAttribute("date", date);
 		try {
 			request.getRequestDispatcher("todaySale.jsp").forward(request, response);
-			
+
 		} catch (IOException | ServletException e) {
 			System.out.println(e.getMessage());
 		}
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

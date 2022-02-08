@@ -35,7 +35,7 @@ public class AddToCart extends HttpServlet {
 		try {
 			String productIdStr = request.getParameter("productId");
 			productId = Integer.parseInt(productIdStr);
-			customerId  = customer.getCustomerid();
+			customerId = customer.getCustomerid();
 
 			order.setCustomerid(customerId);
 		} catch (NumberFormatException e1) {

@@ -24,9 +24,9 @@ public class ConfirmOrderServlet extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
 		double value = 0;
@@ -51,9 +51,8 @@ public class ConfirmOrderServlet extends HttpServlet {
 
 			}
 
-			
 			if (offercost > 499 && (offercost < 999)) {
-				
+
 				List<Integer> productidincartfive = obj.gettingproductidincart(stt);
 				for (int i = 0; i < productidincartfive.size(); i++) {
 					Product product = new Product();
@@ -101,14 +100,14 @@ public class ConfirmOrderServlet extends HttpServlet {
 			obj3.makefinal(order);
 			response.sendRedirect("adderPlacedSuccessfully.jsp");
 
-		}catch (IOException e) {
-		
+		} catch (IOException e) {
+
 			System.out.println(e.getMessage());
 		}
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

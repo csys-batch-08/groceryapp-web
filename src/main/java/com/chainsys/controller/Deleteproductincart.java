@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import com.chainsys.daoimpl.CartDaoImpl;
 import com.chainsys.model.Cart;
 
-
 @WebServlet("/Deleteproductincart")
 public class Deleteproductincart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,9 +19,9 @@ public class Deleteproductincart extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		Cart stt = new Cart();
 		CartDaoImpl obj = new CartDaoImpl();
 		HttpSession session = request.getSession();
@@ -34,29 +33,28 @@ public class Deleteproductincart extends HttpServlet {
 			String pids = request.getParameter("pId");
 			productid = Integer.parseInt(pids);
 
-			
 			stt.setOrderid(orderid);
 			stt.setProductid(productid);
 		} catch (NumberFormatException e1) {
-			
+
 			System.out.println(e1.getMessage());
 		}
-		
+
 		try {
 			boolean flag = obj.delete(stt);
 			if (flag) {
 				response.sendRedirect("CartServlet");
 			}
-	
+
 		} catch (IOException e) {
-			
+
 			System.out.println(e.getMessage());
 		}
 
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

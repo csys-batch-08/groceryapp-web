@@ -17,36 +17,32 @@ import com.chainsys.model.Order;
 public class AdminViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AdminViewServlet () {
+	public AdminViewServlet() {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
 			OrderDaoImpl obj = new OrderDaoImpl();
 
-			
-				List<Feature> sale = obj.todaySalegraph();
-				request.setAttribute("sale", sale);
+			List<Feature> sale = obj.todaySalegraph();
+			request.setAttribute("sale", sale);
 
-			
-			
-				List<Order> sales = obj.graphsale();
-				request.setAttribute("sales", sales);
-				request.getRequestDispatcher("adminView.jsp").forward(request, response);
-				
+			List<Order> sales = obj.graphsale();
+			request.setAttribute("sales", sales);
+			request.getRequestDispatcher("adminView.jsp").forward(request, response);
+
 		} catch (IOException | ServletException e) {
 			System.out.println(e.getMessage());
 		}
 
-		
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

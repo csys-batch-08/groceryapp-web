@@ -35,13 +35,13 @@ public class RegistorServlet extends HttpServlet {
 			String emailid = req.getParameter("eid");
 			customer = new Customer(username, password, firstName, lastName, address, phonenumber, emailid);
 			customerid = obj.signupcheck(customer);
-			
-			if (customerid >0) {
+
+			if (customerid > 0) {
 				throw new RegistorException();
 			} else {
 				obj.signup(customer);
 				resp.sendRedirect("login.jsp");
-				
+
 			}
 		} catch (NumberFormatException | IOException | RegistorException e2) {
 			session.setAttribute("erroruserids", ((RegistorException) e2).getUserNameLoginMessage());

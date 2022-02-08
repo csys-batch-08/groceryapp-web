@@ -15,11 +15,9 @@ public class Acceptorder extends HttpServlet {
 
 	public Acceptorder() {
 		super();
-
 	}
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		boolean flag = false;
 		try {
 			String orderidstr = request.getParameter("orderId");
@@ -29,22 +27,22 @@ public class Acceptorder extends HttpServlet {
 			OrderDaoImpl obj = new OrderDaoImpl();
 			flag = obj.accept(order);
 		} catch (NumberFormatException e1) {
-			
+
 			System.out.println(e1.getMessage());
 		}
 		if (flag) {
 			try {
 				response.sendRedirect("PendingOrdersServlet");
 			} catch (IOException e) {
-				
+
 				System.out.println(e.getMessage());
 			}
 
 		}
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-		 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

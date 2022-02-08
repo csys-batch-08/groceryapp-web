@@ -2,8 +2,6 @@ package com.chainsys.controller;
 
 import java.io.IOException;
 
-
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,14 +18,14 @@ public class CancelOrder extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		Order order = new Order();
 		try {
 			String orderIdstr = request.getParameter("orderId");
 			int orderId = Integer.parseInt(orderIdstr);
-			
+
 			order.setOrderid(orderId);
 		} catch (NumberFormatException e1) {
 			System.out.println(e1.getMessage());
@@ -47,9 +45,9 @@ public class CancelOrder extends HttpServlet {
 		}
 
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 	}
 

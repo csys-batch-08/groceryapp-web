@@ -5,7 +5,6 @@ public class Cart {
 	private int productid;
 	private int quantity;
 	private double price;
-	
 
 	public double getPrice() {
 		return price;

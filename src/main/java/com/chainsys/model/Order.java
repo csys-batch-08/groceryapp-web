@@ -7,7 +7,6 @@ public class Order {
 	private int customerid;
 	private String status;
 	private Date orderdate;
-	
 
 	public int getOrderid() {
 		return orderid;

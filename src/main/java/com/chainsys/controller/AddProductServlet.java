@@ -24,7 +24,7 @@ public class AddProductServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			{
+	{
 		boolean flag =false;
 		Product product = new Product();
 		ProductDaoImpl obj = new ProductDaoImpl();
@@ -33,17 +33,17 @@ public class AddProductServlet extends HttpServlet {
 		try {
 			String prices = request.getParameter("price");
 			double price = Double.parseDouble(prices);
-			
+
 			product.setProductImage(productimage);
 			product.setProductName(products);
 			product.setProductPrice(price);
 		} catch (NumberFormatException e1) {
 			System.out.println(e1.getMessage());
 		}
-		
+
 		response.setContentType("text/html");
 		try {
-			 flag = obj.addproduct(product);
+			flag = obj.addproduct(product);
 			if (flag) {
 				response.sendRedirect("AddProductAdminServlet");
 

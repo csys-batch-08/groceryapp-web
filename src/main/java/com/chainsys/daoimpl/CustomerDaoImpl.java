@@ -21,7 +21,12 @@ public class CustomerDaoImpl implements Customerinterface {
 		PreparedStatement stmt = null;
 
 		con = GetConnection.getConnections();
-		String query = "insert into customer (user_name ,password,first_name,last_name,address,phone, email) values(?,?,?,?,?,?,?)";
+		StringBuilder sb = new StringBuilder();
+		sb.append("insert into customer");
+		sb.append("(user_name ,password,first_name,last_name,address,phone, email)");
+		sb.append(" values(?,?,?,?,?,?,?)");
+
+		String query = sb.toString();
 		try {
 			stmt = con.prepareStatement(query);
 			stmt.setString(1, customer.getUsername());
@@ -76,7 +81,15 @@ public class CustomerDaoImpl implements Customerinterface {
 		ResultSet rs = null;
 		Customer customerObj = null;
 		con = GetConnection.getConnections();
-		String query = "select user_name,first_name,last_name,address,phone,email,customer_id from customer where phone= ? and password= ? ";
+		StringBuilder sb = new StringBuilder();
+		sb.append("select user_name,");
+		sb.append("first_name,last_name,");
+		sb.append("address,phone,email,");
+		sb.append("customer_id");
+		sb.append(" ");
+		sb.append(" from customer where phone= ?");
+		sb.append(" and password= ? ");
+		String query = sb.toString();
 		try {
 			stmt = con.prepareStatement(query);
 			stmt.setLong(1, customer.getPhonenumber());

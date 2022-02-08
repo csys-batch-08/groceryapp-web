@@ -20,26 +20,26 @@ public class PendingOrdersServlet extends HttpServlet {
 		super();
 
 	}
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		OrderDaoImpl obj = new OrderDaoImpl();
-		
-			List<Order> OrderList = obj.orderdetails();
-			request.setAttribute("OrderList", OrderList);
-		
+
+		List<Order> OrderList = obj.orderdetails();
+		request.setAttribute("OrderList", OrderList);
+
 		try {
 			request.getRequestDispatcher("pendingOrders.jsp").forward(request, response);
-		
+
 		} catch (IOException | ServletException e) {
-			
+
 			System.out.println(e.getMessage());
 		}
 
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

@@ -28,7 +28,7 @@ public class LoginValiationServlet extends HttpServlet {
 		Customer customer = new Customer();
 		CustomerDaoImpl obj = new CustomerDaoImpl();
 		HttpSession session = req.getSession();
-		
+
 		try {
 			String phonenumberstr = req.getParameter("phonenumber");
 			long phonenumber = Long.parseLong(phonenumberstr);
@@ -36,22 +36,20 @@ public class LoginValiationServlet extends HttpServlet {
 
 			customer.setPhonenumber(phonenumber);
 			customer.setPassword(Password);
-		
-		
-		resp.setContentType("text/html");
-		
+
+			resp.setContentType("text/html");
 
 			customer = obj.login(customer);
 
-			if (customer!= null) {
+			if (customer != null) {
 
 				session.setAttribute("logincustomer", customer);
 				if (customer.getCustomerid() == 1) {
-				
+
 					req.getRequestDispatcher("AdminViewServlet").include(req, resp);
 
 				} else {
-					
+
 					req.getRequestDispatcher("CustomerviewServlet").include(req, resp);
 				}
 			} else {
@@ -60,7 +58,7 @@ public class LoginValiationServlet extends HttpServlet {
 
 			}
 
-		} catch ( LoginException | IOException | ServletException | NumberFormatException |NullPointerException e) {
+		} catch (LoginException | IOException | ServletException | NumberFormatException | NullPointerException e) {
 			session.setAttribute("erroruserid", ((LoginException) e).getUserNameLoginMessage());
 
 			try {

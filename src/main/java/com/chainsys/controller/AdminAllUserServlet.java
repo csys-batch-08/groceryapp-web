@@ -22,26 +22,23 @@ public class AdminAllUserServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		CustomerDaoImpl obj = new CustomerDaoImpl();
-		
-		
-			List<Customer> userList = obj.viewallLoginUser();
-			request.setAttribute("userList", userList);
-		
+
+		List<Customer> userList = obj.viewallLoginUser();
+		request.setAttribute("userList", userList);
+
 		try {
 			request.getRequestDispatcher("adminAllUser.jsp").forward(request, response);
-			
+
 		} catch (IOException | ServletException e) {
 			System.out.println(e.getMessage());
 		}
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			 {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		doGet(request, response);
 	}

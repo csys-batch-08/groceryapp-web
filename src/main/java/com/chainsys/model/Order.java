@@ -3,25 +3,25 @@ package com.chainsys.model;
 import java.sql.Date;
 
 public class Order {
-	private int orderid;
-	private int customerid;
+	private int orderId;
+	private int customerId;
 	private String status;
-	private Date orderdate;
+	private Date orderDate;
 
 	public int getOrderid() {
-		return orderid;
+		return orderId;
 	}
 
 	public void setOrderid(int orderid) {
-		this.orderid = orderid;
+		this.orderId = orderid;
 	}
 
 	public int getCustomerid() {
-		return customerid;
+		return customerId;
 	}
 
 	public void setCustomerid(int customerid) {
-		this.customerid = customerid;
+		this.customerId = customerid;
 	}
 
 	public String getStatus() {
@@ -30,9 +30,9 @@ public class Order {
 
 	public Order(int orderid, String status, Date orderdate) {
 		super();
-		this.orderid = orderid;
+		this.orderId = orderid;
 		this.status = status;
-		this.orderdate = orderdate;
+		this.orderDate = orderdate;
 	}
 
 	public void setStatus(String status) {
@@ -40,11 +40,11 @@ public class Order {
 	}
 
 	public Date getOrderdate() {
-		return orderdate;
+		return orderDate;
 	}
 
 	public void setOrderdate(Date orderdate) {
-		this.orderdate = orderdate;
+		this.orderDate = orderdate;
 	}
 
 	public Order() {
@@ -54,10 +54,10 @@ public class Order {
 
 	public Order(int orderid, int customerid, String status, Date orderdate) {
 		super();
-		this.orderid = orderid;
-		this.customerid = customerid;
+		this.orderId = orderid;
+		this.customerId = customerid;
 		this.status = status;
-		this.orderdate = orderdate;
+		this.orderDate = orderdate;
 	}
 
 }

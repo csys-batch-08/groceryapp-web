@@ -1,8 +1,8 @@
 package com.chainsys.model;
 
 public class Cart {
-	private int orderid;
-	private int productid;
+	private int orderId;
+	private int productId;
 	private int quantity;
 	private double price;
 
@@ -15,19 +15,19 @@ public class Cart {
 	}
 
 	public int getOrderid() {
-		return orderid;
+		return orderId;
 	}
 
 	public void setOrderid(int orderid) {
-		this.orderid = orderid;
+		this.orderId = orderid;
 	}
 
 	public int getProductid() {
-		return productid;
+		return productId;
 	}
 
 	public void setProductid(int productid) {
-		this.productid = productid;
+		this.productId = productid;
 	}
 
 	public int getQuantity() {
@@ -40,8 +40,8 @@ public class Cart {
 
 	public Cart(int orderid, int productid, int quantity) {
 		super();
-		this.orderid = orderid;
-		this.productid = productid;
+		this.orderId = orderid;
+		this.productId = productid;
 		this.quantity = quantity;
 	}
 

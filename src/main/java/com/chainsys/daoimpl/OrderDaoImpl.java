@@ -48,7 +48,9 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		con = GetConnection.getConnections();
-		String query1 = "  SELECT order_id FROM order_details where customer_id = ?  order by order_date desc fetch first rows only";
+		String query1 = "  SELECT order_id FROM order_details "
+				+ "where customer_id = ?  "
+				+ "order by order_date desc fetch first rows only";
 		try {
 			stmt = con.prepareStatement(query1);
 			stmt.setInt(1, order.getCustomerid());
@@ -194,7 +196,8 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		ResultSet rs = null;
 		List<Order> todayOrder = new ArrayList<Order>();
 		con = GetConnection.getConnections();
-		String query = "  SELECT order_id,status,order_date FROM order_details where  status ='confirm'";
+		String query = "  SELECT order_id,status,order_date "
+				+ "FROM order_details where  status ='confirm'";
 		try {
 			stmt = con.prepareStatement(query);
 			Order order = new Order();
@@ -225,7 +228,12 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		ResultSet rs = null;
 		con = GetConnection.getConnections();
 		List<Feature> orderlist = new ArrayList<Feature>();
-		String query = "  select p.products_name as products_name ,c.quantity as quantity ,c.price as price,(c.quantity*c.price) as total ,p.Productsimage as cost from order_details o join cart c on o.order_id =c.order_id join product p on p.products_id=c.product_id where o.order_id=?";
+		String query = "  select p.products_name as products_name "
+				+ ",c.quantity as quantity ,c.price as price"
+				+ ",(c.quantity*c.price) as total ,p.Productsimage as cost "
+				+ "from order_details o"
+				+ " join cart c on o.order_id =c.order_id "
+				+ "join product p on p.products_id=c.product_id where o.order_id=?";
 		try {
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, feature.getOrderId());
@@ -260,7 +268,11 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		double b = 0;
 		con = GetConnection.getConnections();
 
-		String query = "select sum(c.quantity*c.price) as cost from order_details o join cart c on o.order_id =c.order_id join product p on p.products_id=c.product_id where o.order_id=?";
+		String query = "select sum(c.quantity*c.price) as cost"
+				+ " from order_details o "
+				+ "join cart c on o.order_id =c.order_id "
+				+ "join product p on p.products_id=c.product_id "
+				+ "where o.order_id=?";
 		try {
 			stmt = con.prepareStatement(query);
 			stmt.setInt(1, feature.getOrderId());
@@ -289,7 +301,11 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		ResultSet rs = null;
 		con = GetConnection.getConnections();
 		List<Order> orderList = new ArrayList<Order>();
-		String query = " SELECT order_id,status,order_date FROM order_details where  customer_id= ? and status in ('delivered',  'confirm','cancel') order by order_date desc";
+		String query = " SELECT order_id,status,order_date "
+				+ "FROM order_details "
+				+ "where  customer_id= ? "
+				+ "and status in ('delivered',  'confirm','cancel')"
+				+ " order by order_date desc";
 		try {
 			stmt = con.prepareStatement(query);
 
@@ -347,7 +363,10 @@ public class OrderDaoImpl implements OrderDaoinferace {
 
 		con = GetConnection.getConnections();
 
-		String query = " update order_details set status ='confirm' , order_date=TO_CHAR(SYSDATE, 'DD-MM-YYYY') where order_id=?";
+		String query = " update order_details "
+				+ "set status ='confirm' ,"
+				+ " order_date=TO_CHAR(SYSDATE, 'DD-MM-YYYY') "
+				+ "where order_id=?";
 
 		try {
 			stmt = con.prepareStatement(query);
@@ -427,7 +446,11 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		ResultSet rs = null;
 		con = GetConnection.getConnections();
 		List<Order> todaysale = new ArrayList<Order>();
-		String query = "SELECT count(status),trunc(order_date) FROM order_details where  trunc(order_date) between trunc(sysdate-7) and trunc(sysdate ) and status ='delivered' group by trunc(order_date)";
+		String query = "SELECT count(status),trunc(order_date)"
+				+ " FROM order_details where  trunc(order_date) "
+				+ "between trunc(sysdate-7)"
+				+ " and trunc(sysdate ) and status ='delivered' "
+				+ "group by trunc(order_date)";
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
@@ -456,7 +479,10 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		ResultSet rs = null;
 		con = GetConnection.getConnections();
 		List<Order> todaysale = new ArrayList<Order>();
-		String query = "  SELECT order_id,status,order_date  FROM order_details where  status in ('delivered',  'confirm','cancel') order by order_date desc";
+		String query = "  SELECT order_id,status,order_date  "
+				+ "FROM order_details"
+				+ " where  status in ('delivered',  'confirm','cancel') "
+				+ "order by order_date desc";
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
@@ -512,7 +538,8 @@ public class OrderDaoImpl implements OrderDaoinferace {
 		ResultSet rs = null;
 		con = GetConnection.getConnections();
 		List<Feature> todaysale = new ArrayList<Feature>();
-		String query = "  SELECT products_name,price,quantity,cost,productsimage FROM  today_product_salegraph";
+		String query = "  SELECT products_name,price,quantity"
+				+ ",cost,productsimage FROM  today_product_salegraph";
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);

@@ -91,7 +91,6 @@ public class Feature {
 
 	public Feature() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 }

@@ -10,8 +10,8 @@ public class Customer implements Serializable {
 	private String firstName;
 	private String LastName;
 	private String Address;
-	private long phonenumber;
-	private String emailid;
+	private long phoneNumber;
+	private String emailId;
 
 	public String getUsername() {
 		return username;
@@ -62,19 +62,19 @@ public class Customer implements Serializable {
 	}
 
 	public long getPhonenumber() {
-		return phonenumber;
+		return phoneNumber;
 	}
 
 	public void setPhonenumber(long phonenumber) {
-		this.phonenumber = phonenumber;
+		this.phoneNumber = phonenumber;
 	}
 
 	public String getEmailid() {
-		return emailid;
+		return emailId;
 	}
 
 	public void setEmailid(String emailid) {
-		this.emailid = emailid;
+		this.emailId = emailid;
 	}
 
 	public Customer(String username, String password, int customerid, String firstName, String lastName, String address,
@@ -86,13 +86,12 @@ public class Customer implements Serializable {
 		this.firstName = firstName;
 		this.LastName = lastName;
 		this.Address = address;
-		this.phonenumber = phonenumber;
-		this.emailid = emailid;
+		this.phoneNumber = phonenumber;
+		this.emailId = emailid;
 	}
 
 	public Customer() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Customer(String username, String password, String firstName, String lastName, String address,
@@ -103,15 +102,15 @@ public class Customer implements Serializable {
 		this.firstName = firstName;
 		this.LastName = lastName;
 		this.Address = address;
-		this.phonenumber = phonenumber;
-		this.emailid = emailid;
+		this.phoneNumber = phonenumber;
+		this.emailId = emailid;
 	}
 
 	@Override
 	public String toString() {
 		return "username=" + username + ", Password=" + Password + ", customerid=" + customerid + ", firstName="
-				+ firstName + ", LastName=" + LastName + ", Address=" + Address + ", phonenumber=" + phonenumber
-				+ ", emailid=" + emailid;
+				+ firstName + ", LastName=" + LastName + ", Address=" + Address + ", phonenumber=" + phoneNumber
+				+ ", emailid=" + emailId;
 	}
 
 }

@@ -1,7 +1,7 @@
 # Groceryapp
 #### Objective
 It manage the details of Shopping,Internet,Bills,Customer
-### Features
+##### Features
 	*View all user
   *Place order
   *Cancel order
